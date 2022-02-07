@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RoleController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 // Auth::routes(['register' => false]);
@@ -18,4 +18,5 @@ Route::middleware('auth')->group(function () {
     Route::resources(['users' => UserController::class]);
     Route::resources(['items' => ItemController::class]);
     Route::resources(['roles' => RoleController::class]);
+    Route::resources(['students' => StudentController::class]);
 });

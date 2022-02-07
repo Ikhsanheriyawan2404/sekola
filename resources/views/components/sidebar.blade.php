@@ -23,7 +23,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('students.create') }}" class="nav-link {{ request()->routeIs('students.create') ? 'active' : '' }}">
             <i class="nav-icon fas fa-user-graduate"></i>
             <p>
                 Siswa
