@@ -19,6 +19,16 @@ class RoleSeeder extends Seeder
             'guard_name' => 'web'
         ]);
 
+        Role::create([
+            'name' => 'Admin',
+            'guard_name' => 'web'
+        ]);
+
+        Role::create([
+            'name' => 'User',
+            'guard_name' => 'web'
+        ]);
+
         $role->givePermissionTo([
             'user-list',
             'user-create',
@@ -28,10 +38,6 @@ class RoleSeeder extends Seeder
             'role-create',
             'role-edit',
             'role-delete',
-            'item-list',
-            'item-create',
-            'item-edit',
-            'item-delete',
         ]);
     }
 }
