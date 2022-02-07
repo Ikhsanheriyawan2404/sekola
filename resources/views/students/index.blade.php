@@ -8,12 +8,13 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1 class="m-0">{{ $title ?? '' }}</h1>
+        {{-- <h1 class="m-0">{{ $title ?? '' }}</h1> --}}
+        <img src="{{ asset('storage/img/student/fibOhHfpcpaF2g5Ar0BjbBxDyIZKmhgnhQ8s4scL.jpg') }}" alt="">
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             {{-- <li class="breadcrumb-item"><a href="#">{{ Breadcrumbs::render('home') }}</a></li> --}}
-            <li class="breadcrumb-item active">{{ Breadcrumbs::render('items') }}</li>
+            <li class="breadcrumb-item active">{{ Breadcrumbs::render('students') }}</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -68,19 +69,18 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Detail Barang</h4>
+                <h4 class="modal-title" id="modal-title">Detail Siswa</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div>
-                <input type="hidden" name="item_id" id="item_id">
+                <input type="hidden" name="studentId" id="studentId">
                 <div class="modal-body">
                     <ul class="list-group">
                         <li class="list-group-item name"></li>
-                        <li class="list-group-item price"></li>
-                        <li class="list-group-item quantity"></li>
-                        <li class="list-group-item description"></li>
+                        {{-- <li class="list-group-item" id="photo"></li> --}}
+                        <li class="list-group-item"><img class="img-fluid" style="max-height: 150px;overflow:hidden;" src="a.jpg" id="photo"></li>
                     </ul>
                 </div>
             </div>
@@ -139,15 +139,14 @@
             });
 
             $('body').on('click', '#showItem', function () {
-                var item_id = $(this).data('id');
-                $.get("{{ route('items.index') }}" +'/' + item_id, function (data) {
+                var studentId = $(this).data('id');
+                $.get("{{ route('students.index') }}" +'/' + studentId, function (data) {
                     $('#modal-lg').modal('show');
-                    $('#modal-title').html("Detail Barang");
-                    $('#item_id').val(data.id);
+                    $('#modal-title').html("Detail Siswa");
+                    $('#studentId').val(data.id);
                     $('.name').html('Nama : ' + data.name);
-                    $('.price').html('Harga : ' + data.price);
-                    $('.quantity').html('Kuantitas : ' + data.quantity);
-                    $('.description').html('Deskripsi : ' + data.description);
+                    // $('#photo').html('Nama : ' + data.photo);
+                    $('#photo').attr("src", "/storage/" + data.photo);
                 })
            });
 

@@ -13,19 +13,19 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('home'));
 });
 
-// Home > Items
-Breadcrumbs::for('items', function (BreadcrumbTrail $trail) {
+// Home > Students
+Breadcrumbs::for('students', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Barang', route('items.index'));
+    $trail->push('Siswa', route('students.index'));
 });
-// Home > Items > [Create]
-Breadcrumbs::for('create_item', function (BreadcrumbTrail $trail) {
-    $trail->parent('items');
-    $trail->push('Buat Barang', route('items.create'));
+// Home > Students > [Create]
+Breadcrumbs::for('create_student', function (BreadcrumbTrail $trail) {
+    $trail->parent('students');
+    $trail->push('Tambah Siswa', route('students.create'));
 });
-// Home > Items > [Edit]
-Breadcrumbs::for('edit_item', function (BreadcrumbTrail $trail, $item) {
-    $trail->parent('items');
+// Home > Students > [Edit]
+Breadcrumbs::for('edit_student', function (BreadcrumbTrail $trail, $item) {
+    $trail->parent('students');
     $trail->push("Edit : {$item->name}", route('items.edit', $item));
 });
 

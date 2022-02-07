@@ -11,7 +11,7 @@ class StudentController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $students = Student::all();
+            $students = Student::get();
             return DataTables::of($students)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -40,6 +40,11 @@ class StudentController extends Controller
         return view('students.index', [
             'title' => 'Siswa',
         ]);
+    }
+
+    public function show(Student $student)
+    {
+        return response()->json($student);
     }
 
     public function create()
