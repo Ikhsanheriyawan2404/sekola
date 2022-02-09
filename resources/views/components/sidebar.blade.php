@@ -59,7 +59,7 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     @can('user-list')
-                    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                         Data Pengguna
@@ -69,20 +69,10 @@
                 </li>
                 <li class="nav-item">
                     @can('role-list')
-                    <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}">
+                    <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.*') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-user-tag"></i>
                     <p>
                         Role Pengguna
-                    </p>
-                    </a>
-                    @endcan
-                </li>
-                <li class="nav-item">
-                    @can('role-list')
-                    <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-user-tag"></i>
-                    <p>
-                        Izin Pengguna
                     </p>
                     </a>
                     @endcan
