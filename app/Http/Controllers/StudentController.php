@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
 use App\Models\Student;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -51,20 +52,14 @@ class StudentController extends Controller
     {
         return view('students.create', [
             'title' => 'Tambah Siswa',
+            'student' => new Student,
         ]);
     }
 
-    public function store()
+    public function store(StudentRequest $request)
     {
-        request()->validate([
-            'name' => ['required', 'max:255'],
-            'nisn' => ['required', 'max:255'],
-            'religion' => ['required'],
-            'gender' => ['required'],
-            'date_of_birth' => ['required'],
-            'photo' => 'required|image|mimes:jpg,jpeg,png|max:2058',
-            'phone' => ['required'],
-        ]);
+
+        $request->validated();
 
         Student::create([
             'name' => request('name'),
@@ -77,7 +72,44 @@ class StudentController extends Controller
             'address' => request('address'),
         ]);
 
+
         toast('Data siswa berhasil dibuat!','success');
+        return redirect()->route('students.index');
+    }
+
+    public function edit(Student $student)
+    {
+        return view('students.edit', [
+            'title' => 'Edit Siswa',
+            'student' => $student,
+        ]);
+    }
+
+    public function update(Student $student, StudentRequest $request)
+    {
+        $request->validated();
+
+        if (request('photo')) {
+            Storage::delete($student->photo);
+            $photo = request()->file('photo')->store('img/student');
+        } elseif ($student->photo) {
+            $photo = $student->photo;
+        } else {
+            $photo = null;
+        }
+
+        $student->update([
+            'name' => request('name'),
+            'nisn' => request('nisn'),
+            'gender' => request('gender'),
+            'religion' => request('religion'),
+            'date_of_birth' => request('date_of_birth'),
+            'phone' => request('phone'),
+            'photo' => $photo,
+            'address' => request('address'),
+        ]);
+
+        toast('Data siswa berhasil diedit!','success');
         return redirect()->route('students.index');
     }
 

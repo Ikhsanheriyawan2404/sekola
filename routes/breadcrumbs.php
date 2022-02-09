@@ -24,9 +24,9 @@ Breadcrumbs::for('create_student', function (BreadcrumbTrail $trail) {
     $trail->push('Tambah Siswa', route('students.create'));
 });
 // Home > Students > [Edit]
-Breadcrumbs::for('edit_student', function (BreadcrumbTrail $trail, $item) {
+Breadcrumbs::for('edit_student', function (BreadcrumbTrail $trail, $student) {
     $trail->parent('students');
-    $trail->push("Edit : {$item->name}", route('items.edit', $item));
+    $trail->push("Edit : {$student->name}", route('students.edit', $student));
 });
 
 // Home > Users
