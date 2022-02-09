@@ -15,9 +15,9 @@ class MajorController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         $btn =
-                        '<div class="d-flex justify-content-between">
+                        '<div class="d-flex justify-content-center">
 
-                           <a href="javascript:void(0)" data-id="' . $row->id . '" id="editMajor" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                           <a href="javascript:void(0)" data-id="' . $row->id . '" id="editMajor" class="btn btn-sm mr-2 btn-primary"><i class="fas fa-pencil-alt"></i></a>
 
                            <a href="javascript:void(0)" data-id="' . $row->id . '" id="deleteMajor" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
 
