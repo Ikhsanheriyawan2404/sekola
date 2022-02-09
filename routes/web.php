@@ -6,7 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Auth\LoginController;
-
+use App\Http\Controllers\MajorController;
 
 // Auth::routes(['register' => false]);
 Route::get('', [LoginController::class, 'showLoginForm']);
@@ -18,4 +18,5 @@ Route::middleware('auth')->group(function () {
     Route::resources(['users' => UserController::class]);
     Route::resources(['roles' => RoleController::class]);
     Route::resources(['students' => StudentController::class]);
+    Route::resources(['majors' => MajorController::class]);
 });

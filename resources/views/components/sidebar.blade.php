@@ -31,6 +31,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('majors.index') }}" class="nav-link {{ request()->routeIs('majors.*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-user-graduate"></i>
+            <p>
+                Jurusan
+            </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="nav-icon fas fa-poll"></i>
             <p>

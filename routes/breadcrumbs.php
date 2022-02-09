@@ -61,3 +61,19 @@ Breadcrumbs::for('edit_role', function (BreadcrumbTrail $trail, $role) {
     $trail->push("Edit : {$role->name}", route('roles.edit', $role));
 });
 
+// Home > Roles
+Breadcrumbs::for('majors', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Jurusan', route('majors.index'));
+});
+// Home > Roles > [Create]
+Breadcrumbs::for('create_major', function (BreadcrumbTrail $trail) {
+    $trail->parent('majors');
+    $trail->push('Buat Jurusan', route('majors.create'));
+});
+// Home > Roles > [Edit]
+Breadcrumbs::for('edit_major', function (BreadcrumbTrail $trail, $major) {
+    $trail->parent('majors');
+    $trail->push("Edit : {$major->name}", route('majors.edit', $major));
+});
+
