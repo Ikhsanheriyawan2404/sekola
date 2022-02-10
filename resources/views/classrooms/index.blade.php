@@ -146,16 +146,16 @@
                 })
            });
 
-           $('body').on('click', '#deleteTeacher', function () {
+           $('body').on('click', '#deleteClassroom', function () {
 
-                var teacherId = $(this).data("id");
+                var classroomId = $(this).data("id");
                 confirm("Apakah yakin ingin menghapus data ini!?");
 
                 $.ajax({
-                    url: `{{ route('teachers.index') }}/${teacherId}`,
+                    url: `{{ route('classrooms.index') }}/${classroomId}`,
                     type: "POST",
                     data: {
-                        'id': 'teacherId',
+                        'id': 'classroomId',
                         '_method': 'DELETE',
                         '_token': $('meta[name="csrf-token"]').attr('content')
                     },
