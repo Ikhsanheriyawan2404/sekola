@@ -20,7 +20,7 @@ class ClassroomController extends Controller
                         $btn =
                         '<div class="d-flex justify-content-between">
 
-                            <a href="javascript:void(0)" data-id="'.$row->id.'" id="showItem" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                            <a href="javascript:void(0)" data-id="'.$row->id.'" id="showClassroom" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
 
                             <a href=" ' . route('classrooms.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
 
@@ -41,7 +41,10 @@ class ClassroomController extends Controller
 
     public function show(Classroom $classroom)
     {
-        return response()->json($classroom);
+        return view('classrooms.show', [
+            'title' => 'Detail Kelas',
+            compact('classroom'),
+        ]);
     }
 
     public function create()

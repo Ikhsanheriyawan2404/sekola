@@ -23,11 +23,7 @@
 <div class="container-fluid mb-3 d-flex justify-content-end">
     <div class="row">
         <div class="col-12">
-            {{-- @can('item-create') --}}
-                <a href="{{ route('classrooms.create') }}" class="btn btn-sm btn-primary">Tambah</a>
-                <a href="{{ route('classrooms.create') }}" class="btn btn-sm btn-primary">Impor</a>
-                <a href="{{ route('classrooms.create') }}" class="btn btn-sm btn-primary">Ekspor</a>
-            {{-- @endcan --}}
+
         </div>
     </div>
 </div>
@@ -36,7 +32,7 @@
     @include('components.alerts')
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Data Kelas</h3>
+            <h3 class="card-title">Data Kelas {{ $classroom->name }}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -49,7 +45,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($student as $stu)
 
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -113,7 +111,7 @@
     <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-    <script>
+    {{-- <script>
         $(function () {
 
             let table = $('#data-table').DataTable({
@@ -165,6 +163,6 @@
             });
 
         });
-    </script>
+    </script> --}}
 
 @endsection
