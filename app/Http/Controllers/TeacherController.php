@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TeacherRequest;
 use App\Models\Teacher;
+use App\Http\Requests\TeacherRequest;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class TeacherController extends Controller
@@ -65,6 +66,40 @@ class TeacherController extends Controller
 
 
         toast('Data guru berhasil dibuat!','success');
+        return redirect()->route('teachers.index');
+    }
+
+    public function edit(Teacher $teacher)
+    {
+        return view('teachers.edit', [
+            'title' => "Edit Guru",
+            'teacher' => $teacher,
+        ]);
+    }
+
+    public function update(TeacherRequest $request, Teacher $teacher    )
+    {
+        $request->validated();
+
+        if (request('image')) {
+            Storage::delete($teacher->image);
+            $image = request()->file('image')->store('img/teachers');
+        } elseif ($teacher->image) {
+            $image = $teacher->image;
+        } else {
+            $image = null;
+        }
+
+        $teacher->update([
+            'name' => request('name'),
+            'nip' => request('nip'),
+            'gender' => request('gender'),
+            'phone' => request('phone'),
+            'email' => request('email'),
+            'image' => $image,
+        ]);
+
+        toast('Data guru berhasil diedit!','success');
         return redirect()->route('teachers.index');
     }
 

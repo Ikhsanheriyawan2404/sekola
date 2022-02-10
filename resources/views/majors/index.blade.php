@@ -1,6 +1,8 @@
 @extends('layouts.app', compact('title'))
 
 @section('content')
+@include('sweetalert::alert')
+
 
 <!-- Content Header (Page header) -->
 <div class="content-header">

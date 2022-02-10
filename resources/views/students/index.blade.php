@@ -1,6 +1,8 @@
 @extends('layouts.app', compact('title'))
 
 @section('content')
+@include('sweetalert::alert')
+
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -11,7 +13,6 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            {{-- <li class="breadcrumb-item"><a href="#">{{ Breadcrumbs::render('home') }}</a></li> --}}
             <li class="breadcrumb-item active">{{ Breadcrumbs::render('students') }}</li>
         </ol>
         </div><!-- /.col -->
