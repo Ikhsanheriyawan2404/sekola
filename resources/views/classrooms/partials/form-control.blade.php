@@ -1,3 +1,4 @@
+{{-- {{dd($classroom->major->id)}} --}}
 <div class="card-body">
     <div class="row">
         <div class="col-lg-6">
@@ -17,7 +18,7 @@
                 <select name="teacher_id" class="form-control select2 @error('teacher_id') is-invalid @enderror" style="width: 100%;">
                     <option selected disabled>Pilih wali kelas</option>
                     @foreach ($teachers as $teacher)
-                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                        <option value="{{ $teacher->id }}" {{ $teacher->id == $classroom->teacher_id ? 'selected' : '' }}>{{ $teacher->name }}</option>
                     @endforeach
                 </select>
                 @error('teacher_id')
@@ -31,7 +32,7 @@
                 <select name="major_id" class="form-control select2 @error('major_id') is-invalid @enderror" style="width: 100%;">
                     <option selected disabled>Pilih jurusan</option>
                     @foreach ($majors as $major)
-                        <option value="{{ $major->id }}">{{ $major->name }}</option>
+                        <option value="{{ $major->id }}" {{ $major->id == $classroom->major_id ? 'selected' : '' }}>{{ $major->name }}</option>
                     @endforeach
                 </select>
                 @error('major_id')

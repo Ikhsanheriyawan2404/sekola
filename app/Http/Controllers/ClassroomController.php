@@ -44,6 +44,11 @@ class ClassroomController extends Controller
         ]);
     }
 
+    public function show(Classroom $classroom)
+    {
+        return response()->json($classroom);
+    }
+
     public function create()
     {
         return view('classrooms.create', [
@@ -57,7 +62,7 @@ class ClassroomController extends Controller
     public function store()
     {
         request()->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:classrooms,name,',
             'major_id' => 'required',
             'teacher_id' => 'required',
         ]);
@@ -69,6 +74,39 @@ class ClassroomController extends Controller
         ]);
 
         toast('Data kelas berhasil ditambahkan!', 'success');
-        return redirect('classrooms.index');
+        return redirect()->route('classrooms.index');
+    }
+
+    public function edit(Classroom $classroom)
+    {
+        return view('classrooms.edit', [
+            'title' => 'Edit Kelas',
+            'classroom' => $classroom,
+            'teachers' => Teacher::all(),
+            'majors' => Major::all(),
+        ]);
+    }
+
+    public function update(Classroom $classroom)
+    {
+        request()->validate([
+            'name' => 'required|max:255|unique:classrooms,name,' . $classroom->id,
+            'major_id' => 'required',
+            'teacher_id' => 'required',
+        ]);
+
+        $classroom->update([
+            'name' => request('name'),
+            'major_id' => request('major_id'),
+            'teacher_id' => request('teacher_id'),
+        ]);
+
+        toast('Data kelas berhasil diedit!', 'success');
+        return redirect()->route('classrooms.index');
+    }
+
+    public function destroy(Classroom $classroom)
+    {
+        $classroom->delete();
     }
 }
