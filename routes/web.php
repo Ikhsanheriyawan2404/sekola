@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\Auth\LoginController;
 
 // Auth::routes(['register' => false]);
 Route::get('', [LoginController::class, 'showLoginForm']);
@@ -18,5 +19,6 @@ Route::middleware('auth')->group(function () {
     Route::resources(['users' => UserController::class]);
     Route::resources(['roles' => RoleController::class]);
     Route::resources(['students' => StudentController::class]);
+    Route::resources(['teachers' => TeacherController::class]);
     Route::resources(['majors' => MajorController::class]);
 });

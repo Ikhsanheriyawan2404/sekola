@@ -13,20 +13,36 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('home'));
 });
 
-// Home > Students
+// Home > Siswa
 Breadcrumbs::for('students', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Siswa', route('students.index'));
 });
-// Home > Students > [Create]
+// Home > Siswa > [Create]
 Breadcrumbs::for('create_student', function (BreadcrumbTrail $trail) {
     $trail->parent('students');
     $trail->push('Tambah Siswa', route('students.create'));
 });
-// Home > Students > [Edit]
+// Home > Siswa > [Edit]
 Breadcrumbs::for('edit_student', function (BreadcrumbTrail $trail, $student) {
     $trail->parent('students');
     $trail->push("Edit : {$student->name}", route('students.edit', $student));
+});
+
+// Home > Guru
+Breadcrumbs::for('teachers', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Guru', route('teachers.index'));
+});
+// Home > Guru > [Create]
+Breadcrumbs::for('create_teacher', function (BreadcrumbTrail $trail) {
+    $trail->parent('teachers');
+    $trail->push('Tambah Guru', route('teachers.create'));
+});
+// Home > Guru > [Edit]
+Breadcrumbs::for('edit_teacher', function (BreadcrumbTrail $trail, $teacher) {
+    $trail->parent('teachers');
+    $trail->push("Edit : {$teacher->name}", route('teachers.edit', $teacher));
 });
 
 // Home > Users

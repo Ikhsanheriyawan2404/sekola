@@ -31,6 +31,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('teachers.index') }}" class="nav-link {{ request()->routeIs('teachers.*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-user-graduate"></i>
+            <p>
+                Guru
+            </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ route('majors.index') }}" class="nav-link {{ request()->routeIs('majors.*') ? 'active' : '' }}">
             <i class="nav-icon fas fa-user-graduate"></i>
             <p>

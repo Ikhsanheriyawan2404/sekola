@@ -68,7 +68,7 @@ class StudentController extends Controller
             'religion' => request('religion'),
             'date_of_birth' => request('date_of_birth'),
             'phone' => request('phone'),
-            'photo' => request('photo') ? request()->file('photo')->store('img/student') : null,
+            'photo' => request('photo') ? request()->file('photo')->store('img/students') : null,
             'address' => request('address'),
         ]);
 

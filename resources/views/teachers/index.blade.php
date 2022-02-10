@@ -12,7 +12,7 @@
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             {{-- <li class="breadcrumb-item"><a href="#">{{ Breadcrumbs::render('home') }}</a></li> --}}
-            <li class="breadcrumb-item active">{{ Breadcrumbs::render('students') }}</li>
+            <li class="breadcrumb-item active">{{ Breadcrumbs::render('teachers') }}</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -24,9 +24,9 @@
     <div class="row">
         <div class="col-12">
             {{-- @can('item-create') --}}
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Tambah</a>
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Impor</a>
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Ekspor</a>
+                <a href="{{ route('teachers.create') }}" class="btn btn-sm btn-primary">Tambah</a>
+                <a href="{{ route('teachers.create') }}" class="btn btn-sm btn-primary">Impor</a>
+                <a href="{{ route('teachers.create') }}" class="btn btn-sm btn-primary">Ekspor</a>
             {{-- @endcan --}}
         </div>
     </div>
@@ -36,7 +36,7 @@
     @include('components.alerts')
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Data Siswa</h3>
+            <h3 class="card-title">Data Guru</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -45,9 +45,9 @@
                     <tr>
                         <th style="width: 1%">No.</th>
                         <th>Nama</th>
-                        <th>Nisn</th>
+                        <th>NIP</th>
                         <th>Jenis Kelamin</th>
-                        <th>Agama</th>
+                        <th>Email</th>
                         <th>Nomor HP</th>
                         <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
                     </tr>
@@ -67,18 +67,16 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Detail Siswa</h4>
+                <h4 class="modal-title" id="modal-title">Detail Guru</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div>
-                <input type="hidden" name="studentId" id="studentId">
+                <input type="hidden" name="tacherId" id="tacherId">
                 <div class="modal-body">
                     <ul class="list-group">
-                        <li class="list-group-item name"></li>
-                        {{-- <li class="list-group-item" id="photo"></li> --}}
-                        <li class="list-group-item"><img class="img-fluid" style="max-height: 150px;overflow:hidden;" src="a.jpg" id="photo"></li>
+
                     </ul>
                 </div>
             </div>
@@ -124,13 +122,13 @@
                 serverSide: true,
                 responsive: true,
 
-                ajax: "{{ route('students.index') }}",
+                ajax: "{{ route('teachers.index') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'name', name: 'name'},
-                    {data: 'nisn', name: 'nisn'},
+                    {data: 'nip', name: 'nip'},
                     {data: 'gender', name: 'gender'},
-                    {data: 'religion', name: 'religion'},
+                    {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'action', name: 'action', orderable: true, searchable: true},
                 ]
