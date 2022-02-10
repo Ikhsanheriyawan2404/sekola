@@ -83,3 +83,8 @@ Breadcrumbs::for('majors', function (BreadcrumbTrail $trail) {
     $trail->push('Jurusan', route('majors.index'));
 });
 
+// Home > Majors
+Breadcrumbs::for('rooms', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Ruang Kelas', route('rooms.index'));
+});

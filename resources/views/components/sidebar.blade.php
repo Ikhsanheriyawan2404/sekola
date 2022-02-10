@@ -47,6 +47,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('rooms.index') }}" class="nav-link {{ request()->routeIs('rooms.*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-user-graduate"></i>
+            <p>
+                Ruang
+            </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="nav-icon fas fa-poll"></i>
             <p>

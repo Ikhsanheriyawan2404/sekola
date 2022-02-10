@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
@@ -21,4 +22,5 @@ Route::middleware('auth')->group(function () {
     Route::resources(['students' => StudentController::class]);
     Route::resources(['teachers' => TeacherController::class]);
     Route::resources(['majors' => MajorController::class]);
+    Route::resources(['rooms' => RoomController::class]);
 });
