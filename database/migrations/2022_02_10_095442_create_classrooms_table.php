@@ -14,9 +14,14 @@ class CreateClassroomsTable extends Migration
     public function up()
     {
         Schema::create('classrooms', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
+            $table->unsignedBigInteger('major_id');
+            $table->unsignedBigInteger('teacher_id');
             $table->timestamps();
+
+            $table->foreign('major_id')->references('id')->on('majors')->onDelete('CASCADE');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('CASCADE');
         });
     }
 

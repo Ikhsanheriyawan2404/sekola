@@ -39,6 +39,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('classrooms.index') }}" class="nav-link {{ request()->routeIs('classrooms.*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-user-graduate"></i>
+            <p>
+                Kelas
+            </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ route('majors.index') }}" class="nav-link {{ request()->routeIs('majors.*') ? 'active' : '' }}">
             <i class="nav-icon fas fa-user-graduate"></i>
             <p>

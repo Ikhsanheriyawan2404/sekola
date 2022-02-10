@@ -45,6 +45,22 @@ Breadcrumbs::for('edit_teacher', function (BreadcrumbTrail $trail, $teacher) {
     $trail->push("Edit : {$teacher->name}", route('teachers.edit', $teacher));
 });
 
+// Home > Kelas
+Breadcrumbs::for('classrooms', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Kelas', route('classrooms.index'));
+});
+// Home > Kelas > [Create]
+Breadcrumbs::for('create_classroom', function (BreadcrumbTrail $trail) {
+    $trail->parent('classrooms');
+    $trail->push('Tambah Kelas', route('classrooms.create'));
+});
+// Home > Kelas > [Edit]
+Breadcrumbs::for('edit_classroom', function (BreadcrumbTrail $trail, $classroom) {
+    $trail->parent('classrooms');
+    $trail->push("Edit : {$classroom->name}", route('classrooms.edit', $classroom));
+});
+
 // Home > Users
 Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
@@ -77,13 +93,13 @@ Breadcrumbs::for('edit_role', function (BreadcrumbTrail $trail, $role) {
     $trail->push("Edit : {$role->name}", route('roles.edit', $role));
 });
 
-// Home > Majors
+// Home > Jurusan
 Breadcrumbs::for('majors', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Jurusan', route('majors.index'));
 });
 
-// Home > Majors
+// Home > Ruang
 Breadcrumbs::for('rooms', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Ruang Kelas', route('rooms.index'));

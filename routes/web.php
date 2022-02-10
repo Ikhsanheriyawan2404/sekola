@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\Auth\LoginController;
 
 // Auth::routes(['register' => false]);
@@ -23,4 +24,5 @@ Route::middleware('auth')->group(function () {
     Route::resources(['teachers' => TeacherController::class]);
     Route::resources(['majors' => MajorController::class]);
     Route::resources(['rooms' => RoomController::class]);
+    Route::resources(['classrooms' => ClassroomController::class]);
 });

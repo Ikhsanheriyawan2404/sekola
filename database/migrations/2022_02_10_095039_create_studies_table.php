@@ -14,7 +14,7 @@ class CreateStudiesTable extends Migration
     public function up()
     {
         Schema::create('studies', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->enum('type', ['Umum', 'Kejuruan', 'Khusus']);
             $table->timestamps();
