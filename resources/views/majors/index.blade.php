@@ -152,7 +152,7 @@
                 setTimeout(function () {
                     $('#name').focus();
                 }, 500);
-                $('#modal-title').html(`Edit Jurusan : ${major_id}`);
+                $('#modal-title').html(`Edit Jurusan`);
                 $('#saveBtn').removeAttr('disabled');
                 $('#saveBtn').html("Edit");
                 $('#majorId').val(data.id);
@@ -186,23 +186,25 @@
         $('body').on('click', '#deleteMajor', function () {
 
             var major_id = $(this).data("id");
-            confirm("Apakah yakin ingin menghapus data ini!?");
+            let confirmation = confirm("Apakah yakin ingin menghapus data ini!?");
 
-            $.ajax({
-                url: `{{ route('majors.index') }}/${major_id}`,
-                type: "POST",
-                data: {
-                    'id': 'major_id',
-                    '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    alert(error);
-                }
-            });
+            if (confirmation) {
+                $.ajax({
+                    url: `{{ route('majors.index') }}/${major_id}`,
+                    type: "POST",
+                    data: {
+                        'id': 'major_id',
+                        '_method': 'DELETE',
+                        '_token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        table.draw();
+                    },
+                    error: function (data) {
+                        alert(error);
+                    }
+                });
+            }
         });
 
     });

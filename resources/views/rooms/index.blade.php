@@ -180,23 +180,25 @@
         $('body').on('click', '#deleteRoom', function () {
 
             var room_id = $(this).data("id");
-            confirm("Apakah yakin ingin menghapus data ini!?");
+            let confirmation = confirm("Apakah yakin ingin menghapus data ini!?");
 
-            $.ajax({
-                url: `{{ route('rooms.index') }}/${room_id}`,
-                type: "POST",
-                data: {
-                    'id': 'room_id',
-                    '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    alert(error);
-                }
-            });
+            if (confirmation) {
+                $.ajax({
+                    url: `{{ route('rooms.index') }}/${room_id}`,
+                    type: "POST",
+                    data: {
+                        'id': 'room_id',
+                        '_method': 'DELETE',
+                        '_token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        table.draw();
+                    },
+                    error: function (data) {
+                        alert(error);
+                    }
+                });
+            }
         });
 
     });
