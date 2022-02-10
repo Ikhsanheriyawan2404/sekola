@@ -47,8 +47,6 @@
                         <th>Nama</th>
                         <th>NIP</th>
                         <th>Jenis Kelamin</th>
-                        <th>Email</th>
-                        <th>Nomor HP</th>
                         <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
@@ -76,7 +74,12 @@
                 <input type="hidden" name="tacherId" id="tacherId">
                 <div class="modal-body">
                     <ul class="list-group">
-
+                        <li class="list-group-item"><img class="img-fluid" style="max-height: 150px;overflow:hidden;" src="a.jpg" id="photo"></li>
+                        <li class="list-group-item name"></li>
+                        <li class="list-group-item nip"></li>
+                        <li class="list-group-item gender"></li>
+                        <li class="list-group-item email"></li>
+                        <li class="list-group-item phone"></li>
                     </ul>
                 </div>
             </div>
@@ -128,21 +131,22 @@
                     {data: 'name', name: 'name'},
                     {data: 'nip', name: 'nip'},
                     {data: 'gender', name: 'gender'},
-                    {data: 'email', name: 'email'},
-                    {data: 'phone', name: 'phone'},
                     {data: 'action', name: 'action', orderable: true, searchable: true},
                 ]
             });
 
             $('body').on('click', '#showItem', function () {
-                var studentId = $(this).data('id');
-                $.get("{{ route('students.index') }}" +'/' + studentId, function (data) {
+                var teacherId = $(this).data('id');
+                $.get("{{ route('teachers.index') }}" +'/' + teacherId, function (data) {
                     $('#modal-lg').modal('show');
-                    $('#modal-title').html("Detail Siswa");
+                    $('#modal-title').html("Detail Guru");
                     $('#studentId').val(data.id);
-                    $('.name').html('Nama : ' + data.name);
-                    // $('#photo').html('Nama : ' + data.photo);
                     $('#photo').attr("src", "/storage/" + data.photo);
+                    $('.name').html('Nama : ' + data.name);
+                    $('.nip').html('NIP : ' + data.nip);
+                    $('.gender').html('Jenis Kelamin : ' + data.gender);
+                    $('.email').html('Email : ' + data.email);
+                    $('.phone').html('Nomor Telepon : ' + data.phone);
                 })
            });
 

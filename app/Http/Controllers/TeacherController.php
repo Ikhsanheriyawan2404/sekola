@@ -42,6 +42,11 @@ class TeacherController extends Controller
         ]);
     }
 
+    public function show(Teacher $teacher)
+    {
+        return response()->json($teacher);
+    }
+
     public function create()
     {
         return view('teachers.create', [
