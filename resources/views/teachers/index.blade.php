@@ -150,6 +150,28 @@
                 })
            });
 
+           $('body').on('click', '#deleteTeacher', function () {
+
+                var teacherId = $(this).data("id");
+                confirm("Apakah yakin ingin menghapus data ini!?");
+
+                $.ajax({
+                    url: `{{ route('teachers.index') }}/${teacherId}`,
+                    type: "POST",
+                    data: {
+                        'id': 'teacherId',
+                        '_method': 'DELETE',
+                        '_token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        table.draw();
+                    },
+                    error: function (data) {
+                        alert(error);
+                    }
+                });
+            });
+
         });
     </script>
 

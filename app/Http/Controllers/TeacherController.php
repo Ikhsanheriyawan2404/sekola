@@ -20,15 +20,10 @@ class TeacherController extends Controller
 
                             <a href="javascript:void(0)" data-id="'.$row->id.'" id="showItem" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
 
+                            <a href=" ' . route('teachers.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
 
-                           <a href=" ' . route('teachers.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="javascript:void(0)" data-id="' . $row->id . '" id="deleteTeacher" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
 
-
-                           <form action=" ' . route('teachers.destroy', $row->id) . '" method="POST">
-                               <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Apakah yakin ingin menghapus ini?\')"><i class="fas fa-trash"></i></button>
-                            ' . csrf_field() . '
-                            ' . method_field('DELETE') . '
-                           </form>
                         </div>';
 
                         return $btn;
@@ -75,6 +70,8 @@ class TeacherController extends Controller
 
     public function destroy(Teacher $teacher)
     {
-        return $teacher->delete();
+        $teacher->delete();
+        toast('Data jurusan berhasil dihapus!','success');
+        return redirect()->route('majors.index');
     }
 }

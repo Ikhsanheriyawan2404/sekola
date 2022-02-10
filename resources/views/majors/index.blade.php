@@ -114,11 +114,11 @@
 <script>
     $(function () {
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
 
         let table = $('#data-table').DataTable({
             processing: true,
@@ -186,57 +186,24 @@
         $('body').on('click', '#deleteMajor', function () {
 
             var major_id = $(this).data("id");
-            confirm("Are You sure want to delete !");
+            confirm("Apakah yakin ingin menghapus data ini!?");
 
             $.ajax({
-                type: "DELETE",
                 url: `{{ route('majors.index') }}/${major_id}`,
+                type: "POST",
+                data: {
+                    'id': 'major_id',
+                    '_method': 'DELETE',
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                },
                 success: function (data) {
-
+                    table.draw();
                 },
                 error: function (data) {
-                    table.draw();
+                    alert(error);
                 }
             });
         });
-
-        // function createPost() {
-        //     var title = $('#title').val();
-        //     var description = $('#description').val();
-        //     var id = $('#post_id').val();
-
-        //     let _url     = `/posts`;
-        //     let _token   = $('meta[name="csrf-token"]').attr('content');
-
-        //     $.ajax({
-        //         url: _url,
-        //         type: "POST",
-        //         data: {
-        //             id: id,
-        //             title: title,
-        //             description: description,
-        //             _token: _token
-        //         },
-        //         success: function(response) {
-        //             if(response.code == 200) {
-        //                 if(id != ""){
-        //                 $("#row_"+id+" td:nth-child(2)").html(response.data.title);
-        //                 $("#row_"+id+" td:nth-child(3)").html(response.data.description);
-        //                 } else {
-        //                 $('table tbody').prepend('<tr id="row_'+response.data.id+'"><td>'+response.data.id+'</td><td>'+response.data.title+'</td><td>'+response.data.description+'</td><td><a href="javascript:void(0)" data-id="'+response.data.id+'" onclick="editPost(event.target)" class="btn btn-info">Edit</a></td><td><a href="javascript:void(0)" data-id="'+response.data.id+'" class="btn btn-danger" onclick="deletePost(event.target)">Delete</a></td></tr>');
-        //                 }
-        //                 $('#title').val('');
-        //                 $('#description').val('');
-
-        //                 $('#post-modal').modal('hide');
-        //             }
-        //         },
-        //         error: function(response) {
-        //             $('#titleError').text(response.responseJSON.errors.title);
-        //             $('#descriptionError').text(response.responseJSON.errors.description);
-        //         }
-        //     });
-        // }
 
     });
 </script>
