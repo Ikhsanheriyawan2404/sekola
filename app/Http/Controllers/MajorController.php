@@ -51,7 +51,6 @@ class MajorController extends Controller
     public function destroy(Major $major)
     {
         $major->delete();
-        toast('Data jurusan berhasil dihapus!','success');
         return redirect()->route('majors.index');
     }
 }
