@@ -14,7 +14,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">{{ Breadcrumbs::render('schedules') }}</li>
+            {{-- <li class="breadcrumb-item active">{{ Breadcrumbs::render('show_schedule', $classroom) }}</li> --}}
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->

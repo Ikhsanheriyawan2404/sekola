@@ -92,6 +92,11 @@ Breadcrumbs::for('edit_schedule', function (BreadcrumbTrail $trail, $schedule) {
     $trail->parent('schedules');
     $trail->push("Edit : {$schedule->name}", route('schedules.edit', $schedule));
 });
+// // Home > Jadwal > [Show]
+// Breadcrumbs::for('show_schedule', function (BreadcrumbTrail $trail, $classroom) {
+//     $trail->parent('schedules');
+//     $trail->push("Show", route('schedules.show', $classroom));
+// });
 
 // Home > Users
 Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {

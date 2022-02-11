@@ -20,8 +20,8 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="end">Jam Selesai</label>
-                <input type="time" class="form-control" name="end">
+                <label for="start">Jam Selesai</label>
+                <input type="time" class="form-control" name="start">
             </div>
             <div class="form-group">
                 <label for="end">Jam Selesai</label>
