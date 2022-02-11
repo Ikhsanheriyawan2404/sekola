@@ -100,6 +100,20 @@
                     @enderror
                 </div>
             </div>
+            <div class="form-group">
+                <label>Kelas <span class="text-danger">*</span></label>
+                <select name="classroom_id" class="form-control select2 @error('classroom_id') is-invalid @enderror" style="width: 100%;">
+                    <option selected disabled>Pilih kelas</option>
+                    @foreach ($classrooms as $classroom)
+                        <option value="{{ $classroom->id }}" {{ $classroom->id == $student->classroom_id ? 'selected' : '' }}>{{ $classroom->name }}</option>
+                    @endforeach
+                </select>
+                @error('classroom_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
     </div>
 </div>

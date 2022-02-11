@@ -128,15 +128,7 @@
                 ]
             });
 
-            $('body').on('click', '#showStudents', function () {
-                var studentId = $(this).data('id');
-                $.get("{{ route('classrooms.show.students') }}" +'/' + studentId, function (data) {
-                    console.log(data);
-                    $('#modal-lg').modal('show');
-                    $('#modal-title').html(`Siswa Kelas`);
-                    $('#studentId').val(data.id);
-                })
-           });
+
 
            $('body').on('click', '#deleteClassroom', function () {
 

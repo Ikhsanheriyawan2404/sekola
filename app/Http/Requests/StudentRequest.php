@@ -31,6 +31,7 @@ class StudentRequest extends FormRequest
             'date_of_birth' => ['required'],
             'photo' => 'image|mimes:jpg,jpeg,png|max:2058',
             'phone' => ['required'],
+            'classroom_id' => ['required'],
         ];
     }
 }

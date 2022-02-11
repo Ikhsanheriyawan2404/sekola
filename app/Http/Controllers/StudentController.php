@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Models\Classroom;
 use App\Models\Student;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -53,6 +54,7 @@ class StudentController extends Controller
         return view('students.create', [
             'title' => 'Tambah Siswa',
             'student' => new Student,
+            'classrooms' => Classroom::all(),
         ]);
     }
 
@@ -70,6 +72,7 @@ class StudentController extends Controller
             'phone' => request('phone'),
             'photo' => request('photo') ? request()->file('photo')->store('img/students') : null,
             'address' => request('address'),
+            'classroom_id' => request('classroom_id'),
         ]);
 
 
@@ -82,6 +85,7 @@ class StudentController extends Controller
         return view('students.edit', [
             'title' => 'Edit Siswa',
             'student' => $student,
+            'classrooms' => Classroom::all(),
         ]);
     }
 
@@ -107,6 +111,7 @@ class StudentController extends Controller
             'phone' => request('phone'),
             'photo' => $photo,
             'address' => request('address'),
+            'classroom_id' => request('classroom_id'),
         ]);
 
         toast('Data siswa berhasil diedit!','success');
