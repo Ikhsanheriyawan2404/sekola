@@ -45,7 +45,9 @@
                     <tr>
                         <th style="width: 1%">No.</th>
                         <th>Nama</th>
-                        <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
+                        <th>Wali Kelas</th>
+                        <th>Jurusan</th>
+                        <th class="text-center"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,7 +65,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Detail Guru</h4>
+                <h4 class="modal-title" id="modal-title">Siswa</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -125,6 +127,8 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'name', name: 'name'},
+                    {data: 'teacher', name: 'teacher.name'},
+                    {data: 'major', name: 'major.name'},
                     {data: 'action', name: 'action', orderable: true, searchable: true},
                 ]
             });
