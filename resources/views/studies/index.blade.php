@@ -25,8 +25,6 @@
         <div class="col-12">
             {{-- @can('item-create') --}}
                 <a href="{{ route('studies.create') }}" class="btn btn-sm btn-primary">Tambah</a>
-                <a href="{{ route('studies.create') }}" class="btn btn-sm btn-primary">Impor</a>
-                <a href="{{ route('studies.create') }}" class="btn btn-sm btn-primary">Ekspor</a>
             {{-- @endcan --}}
         </div>
     </div>
@@ -46,6 +44,7 @@
                         <th style="width: 1%">No.</th>
                         <th>Nama</th>
                         <th>Jurusan</th>
+                        <th>Tipe</th>
                         <th class="text-center"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
@@ -58,45 +57,6 @@
     </div>
     <!-- /.card -->
 </div>
-
-<!-- MODAL -->
-<div class="modal fade" id="modal-lg">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-title">Siswa</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div>
-                <input type="hidden" name="studentId" id="studentId">
-                <div class="modal-body">
-                    <table id="data-table" class="table table-bordered table-striped">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Nama</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Agama</th>
-                                <th>No HP</th>
-                                <th>Foto</th>
-                            </tr>
-                        </thead>
-                        <tbody id="students">
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer justify-content-right">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-            </div>
-        </div>
-    <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
 
 @endsection
 
@@ -135,6 +95,7 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'name', name: 'name'},
                     {data: 'major', name: 'major.name'},
+                    {data: 'type', name: 'type'},
                     {data: 'action', name: 'action', orderable: true, searchable: true},
                 ]
             });

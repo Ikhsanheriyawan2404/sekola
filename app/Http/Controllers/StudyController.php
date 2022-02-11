@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Major;
 use App\Models\Study;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -41,25 +42,27 @@ class StudyController extends Controller
     {
         return view('studies.create', [
             'title' => 'Tambah Mata Pelajaran',
-            'classroom' => new Study(),
+            'study' => new Study(),
+            'majors' => Major::all(),
         ]);
     }
 
     public function store()
     {
         request()->validate([
-            'name' => 'required|max:255|unique:classrooms,name,',
+            'name' => 'required|max:255|unique:studies,name,',
+            'type' => 'required',
             'major_id' => 'required',
-            'teacher_id' => 'required',
         ]);
 
         Study::create([
             'name' => request('name'),
+            'study_code' => request('study_code'),
+            'type' => request('type'),
             'major_id' => request('major_id'),
-            'teacher_id' => request('teacher_id'),
         ]);
 
-        toast('Data mata pelajaran berhasil ditambahkan!', 'success');
+        toast('Data mapel berhasil ditambahkan!', 'success');
         return redirect()->route('studies.index');
     }
 
@@ -68,25 +71,27 @@ class StudyController extends Controller
         return view('studies.edit', [
             'title' => 'Edit Mata Pelajaran' . $study->name,
             'study' => $study,
+            'majors' => Major::all(),
         ]);
     }
 
     public function update(Study $study)
     {
         request()->validate([
-            'name' => 'required|max:255|unique:classrooms,name,' . $classroom->id,
+            'name' => 'required|max:255|unique:studies,name,' . $study->id,
+            'type' => 'required',
             'major_id' => 'required',
-            'teacher_id' => 'required',
         ]);
 
-        $classroom->update([
+        $study->update([
             'name' => request('name'),
+            'study_code' => request('study_code'),
+            'type' => request('type'),
             'major_id' => request('major_id'),
-            'teacher_id' => request('teacher_id'),
         ]);
 
-        toast('Data kelas berhasil diedit!', 'success');
-        return redirect()->route('classrooms.index');
+        toast('Data mapel berhasil diedit!', 'success');
+        return redirect()->route('studies.index');
     }
 
     public function destroy(Study $study)
