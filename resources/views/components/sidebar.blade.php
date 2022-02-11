@@ -23,6 +23,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('schedules.index') }}" class="nav-link {{ request()->routeIs('schedules.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-clock"></i>
+                <p>
+                    Jadwal
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ route('students.index') }}" class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-graduate"></i>
                 <p>

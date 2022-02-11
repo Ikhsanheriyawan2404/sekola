@@ -77,6 +77,22 @@ Breadcrumbs::for('edit_study', function (BreadcrumbTrail $trail, $study) {
     $trail->push("Edit : {$study->name}", route('studies.edit', $study));
 });
 
+// Home > Jadwal
+Breadcrumbs::for('schedules', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Jadwal', route('schedules.index'));
+});
+// Home > Jadwal > [Create]
+Breadcrumbs::for('create_schedule', function (BreadcrumbTrail $trail) {
+    $trail->parent('schedules');
+    $trail->push('Tambah Jadwal', route('schedules.create'));
+});
+// Home > Jadwal > [Edit]
+Breadcrumbs::for('edit_schedule', function (BreadcrumbTrail $trail, $schedule) {
+    $trail->parent('schedules');
+    $trail->push("Edit : {$schedule->name}", route('schedules.edit', $schedule));
+});
+
 // Home > Users
 Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

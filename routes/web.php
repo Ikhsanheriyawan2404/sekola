@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ScheduleController;
 
 // Auth::routes(['register' => false]);
 Route::get('', [LoginController::class, 'showLoginForm']);
@@ -29,5 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::resources(['classrooms' => ClassroomController::class]);
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');
     Route::resources(['studies' => StudyController::class]);
+    Route::resources(['schedules' => ScheduleController::class]);
 
 });
