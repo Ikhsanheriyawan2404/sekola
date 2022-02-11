@@ -15,7 +15,7 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu', 'Minggu']);
+            $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Sabtu', 'Minggu']);
             $table->unsignedBigInteger('study_id');
             $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('classroom_id');
