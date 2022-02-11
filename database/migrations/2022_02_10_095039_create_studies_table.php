@@ -16,8 +16,12 @@ class CreateStudiesTable extends Migration
         Schema::create('studies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('study_code');
+            $table->unsignedBigInteger('major_id');
             $table->enum('type', ['Umum', 'Kejuruan', 'Khusus']);
             $table->timestamps();
+
+            $table->foreign('major_id')->references('id')->on('majors')->onDelete('CASCADE');
         });
     }
 

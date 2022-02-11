@@ -61,6 +61,22 @@ Breadcrumbs::for('edit_classroom', function (BreadcrumbTrail $trail, $classroom)
     $trail->push("Edit : {$classroom->name}", route('classrooms.edit', $classroom));
 });
 
+// Home > Mata Pelajaran
+Breadcrumbs::for('studies', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Mata Pelajaran', route('studies.index'));
+});
+// Home > Mata Pelajaran > [Create]
+Breadcrumbs::for('create_study', function (BreadcrumbTrail $trail) {
+    $trail->parent('studies');
+    $trail->push('Tambah Mata Pelajaran', route('studies.create'));
+});
+// Home > Mata Pelajaran > [Edit]
+Breadcrumbs::for('edit_study', function (BreadcrumbTrail $trail, $study) {
+    $trail->parent('studies');
+    $trail->push("Edit : {$study->name}", route('studies.edit', $study));
+});
+
 // Home > Users
 Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
