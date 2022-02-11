@@ -52,7 +52,9 @@
         $(document).ready(function() {
             $('.select2').select2();
 
-
+            $(document).on('submit', 'form', function() {
+                $('button').attr('disabled', 'disabled');
+            });
         });
     </script>
 @endsection

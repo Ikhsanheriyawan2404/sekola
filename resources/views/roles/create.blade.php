@@ -82,5 +82,9 @@
             checkboxes[i].checked = source.checked;
             }
         }
+
+        $(document).on('submit', 'form', function() {
+            $('button').attr('disabled', 'disabled');
+        });
     </script>
 @endsection
