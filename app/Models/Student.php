@@ -11,6 +11,11 @@ class Student extends Model
 
     protected $fillable = ['name', 'nisn', 'gender', 'religion', 'date_of_birth', 'phone', 'photo', 'address'];
 
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class);
+    }
+
     public function getTakeImageAttribute()
     {
         return "/storage/" . $this->photo;

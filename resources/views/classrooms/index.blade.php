@@ -71,14 +71,9 @@
                 </button>
             </div>
             <div>
-                <input type="hidden" name="tacherId" id="tacherId">
+                <input type="hidden" name="studentId" id="studentId">
                 <div class="modal-body">
-                    <ul class="list-group">
-                        <li class="list-group-item"><img class="img-fluid" style="max-height: 150px;overflow:hidden;" src="a.jpg" id="photo"></li>
-                        <li class="list-group-item name"></li>
-                        <li class="list-group-item teacher"></li>
-                        <li class="list-group-item major"></li>
-                    </ul>
+
                 </div>
             </div>
             <div class="modal-footer justify-content-right">
@@ -133,16 +128,13 @@
                 ]
             });
 
-            $('body').on('click', '#showClassroom', function () {
-                var classroomId = $(this).data('id');
-                $.get("{{ route('classrooms.index') }}" +'/' + classroomId, function (data) {
+            $('body').on('click', '#showStudents', function () {
+                var studentId = $(this).data('id');
+                $.get("{{ route('classrooms.show.students') }}" +'/' + studentId, function (data) {
                     console.log(data);
                     $('#modal-lg').modal('show');
-                    $('#modal-title').html("Detail Kelas");
+                    $('#modal-title').html(`Siswa Kelas`);
                     $('#studentId').val(data.id);
-                    $('.name').html('Nama : ' + data.name);
-                    $('.teacher').html('Wali Kelas : ' + data.teacher_id);
-                    $('.major').html('Jurusan : ' + data.major_id);
                 })
            });
 

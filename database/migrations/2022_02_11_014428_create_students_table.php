@@ -19,12 +19,14 @@ class CreateStudentsTable extends Migration
             $table->string('nisn');
             $table->enum('gender', ['L', 'P']);
             $table->enum('religion', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Khonghucu']);
+            $table->unsignedBigInteger('classroom_id');
             $table->string('date_of_birth');
             $table->string('photo');
             $table->string('phone');
             $table->text('address')->nullable;
-            // $table->string('class');
             $table->timestamps();
+
+            $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('CASCADE');
         });
     }
 
