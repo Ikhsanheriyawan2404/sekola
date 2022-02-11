@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ScheduleRequest;
 use App\Models\Classroom;
+use App\Models\Room;
 use App\Models\Schedule;
 use App\Models\Study;
 use App\Models\Teacher;
@@ -20,7 +21,7 @@ class ScheduleController extends Controller
                     ->addColumn('action', function($row){
                         $btn =
                         '<div class="d-flex justify-content-center">
-                            <a href="javascript:void(0)" data-id="'.$row->id.'" id="showSchedule" class="btn btn-sm btn-primary mr-2">
+                            <a href="' . route('schedules.show', $row->id) . '" class="btn btn-sm btn-primary mr-2">
                             <i class="fas fa-eye"></i>
                             Jadwal
                             </a>
@@ -37,9 +38,13 @@ class ScheduleController extends Controller
         ]);
     }
 
-    public function show(Schedule $schedule)
+    public function show($id)
     {
-        return $schedule;
+        return view('schedules.show', [
+            'title' => 'Data Jadwal',
+            // 'classroom' => $classroom,
+            'schedules' => Schedule::where('classroom_id', $id)->get(),
+        ]);
     }
 
     public function create()
@@ -48,15 +53,21 @@ class ScheduleController extends Controller
             'title' => 'Tamvah Jadwal',
             'schedule' => new Schedule(),
             'classrooms' => Classroom::all(),
-            'teachers' => Teacher::all(),
+            'rooms' => Room::all(),
             'studies' => Study::all(),
         ]);
     }
 
-    public function store(ScheduleRequest $request)
+    public function store()
     {
-        Schedule::create([
-
-        ]);
+        return $schedule = [
+            'day' => request('day'),
+            'study_id' => request('study_id'),
+            'room_id' => request('room_id'),
+            'classroom_id' => request('classroom_id'),
+            'start' => request('start'),
+            'end' => request('end'),
+        ];
+        // dd($schedule);
     }
 }

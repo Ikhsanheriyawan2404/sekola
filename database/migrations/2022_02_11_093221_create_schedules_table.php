@@ -17,7 +17,6 @@ class CreateSchedulesTable extends Migration
             $table->bigIncrements('id');
             $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum`at', 'Sabtu', 'Minggu']);
             $table->unsignedBigInteger('study_id');
-            $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('classroom_id');
             $table->unsignedBigInteger('room_id');
             $table->time('start');
@@ -25,7 +24,6 @@ class CreateSchedulesTable extends Migration
             $table->timestamps();
 
             $table->foreign('study_id')->references('id')->on('studies')->onDelete('CASCADE');
-            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('CASCADE');
             $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('CASCADE');
             $table->foreign('room_id')
                 ->references('id')
