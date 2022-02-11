@@ -49,12 +49,10 @@
     <!-- bs-custom-file-input -->
     <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script>
-        $(function () {
-            bsCustomFileInput.init();
-        });
-
         $(document).ready(function() {
             $('.select2').select2();
+
+
         });
     </script>
 @endsection

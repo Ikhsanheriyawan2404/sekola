@@ -73,7 +73,20 @@
             <div>
                 <input type="hidden" name="studentId" id="studentId">
                 <div class="modal-body">
+                    <table id="data-table" class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Agama</th>
+                                <th>No HP</th>
+                                <th>Foto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students">
 
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal-footer justify-content-right">
@@ -128,7 +141,29 @@
                 ]
             });
 
-
+            $('body').on('click', '#showStudents', function () {
+                var studentId = $(this).data('id');
+                $.get("/classrooms/show/students" +'/' + studentId, function (data) {
+                    $('#modal-lg').modal('show');
+                    $('#studentId').val(data.id);
+                    $('#modal-title').html(`Siswa Kelas : ${data}`);
+                    let siswa = '';
+                    if (data) {
+                        $.each(data,function(index, val){
+                            siswa += "<tr>";
+                                siswa += `<td>${val.name}</td>`;
+                                siswa += `<td>${val.gender}</td>`;
+                                siswa += `<td>${val.religion}</td>`;
+                                siswa += `<td>${val.phone}</td>`;
+                                siswa += `<td>
+                                    <img class="img-fluid" style="max-height: 50px;overflow:hidden;" src="/storage/${val.photo}" id="photo">
+                                        </td>`;
+                            siswa+="</tr>";
+                        });
+                        $("#students").html(siswa);
+                    }
+                })
+           });
 
            $('body').on('click', '#deleteClassroom', function () {
 

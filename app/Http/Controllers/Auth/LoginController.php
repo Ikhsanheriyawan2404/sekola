@@ -43,7 +43,7 @@ class LoginController extends Controller
     {
         if ($user->hasRole('Superadmin') || $user->hasRole('Admin') ) {
             Alert::success('Selamat', 'Kamu berhasil login');
-            return redirect()->route('users.index');
+            return redirect()->route('home');
         }
         Alert::success('Selamat', 'Kamu berhasil login');
         return redirect()->route('home');

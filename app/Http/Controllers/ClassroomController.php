@@ -114,8 +114,9 @@ class ClassroomController extends Controller
         $classroom->delete();
     }
 
-    public function showStudent(Student $student)
+    public function showStudents($id)
     {
+        $student = Student::get()->where('classroom_id', $id);
         return response()->json($student);
     }
 }

@@ -24,31 +24,39 @@
         </li>
         <li class="nav-item">
             <a href="{{ route('students.index') }}" class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-user-graduate"></i>
-            <p>
-                Siswa
-            </p>
+                <i class="nav-icon fas fa-user-graduate"></i>
+                <p>
+                    Siswa
+                </p>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('teachers.index') }}" class="nav-link {{ request()->routeIs('teachers.*') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-user-graduate"></i>
-            <p>
-                Guru
-            </p>
+                <i class="nav-icon fas fa-graduation-cap"></i>
+                <p>
+                    Guru
+                </p>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('classrooms.index') }}" class="nav-link {{ request()->routeIs('classrooms.*') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-user-graduate"></i>
+                <i class="nav-icon fas fa-chalkboard"></i>
+                <p>
+                    Kelas
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('studies.index') }}" class="nav-link {{ request()->routeIs('studies.*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-book-open"></i>
             <p>
-                Kelas
+                Mata Pelajaran
             </p>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('majors.index') }}" class="nav-link {{ request()->routeIs('majors.*') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-user-graduate"></i>
+            <i class="nav-icon fas fa-cogs"></i>
             <p>
                 Jurusan
             </p>
@@ -56,7 +64,7 @@
         </li>
         <li class="nav-item">
             <a href="{{ route('rooms.index') }}" class="nav-link {{ request()->routeIs('rooms.*') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-user-graduate"></i>
+            <i class="nav-icon fas fa-building"></i>
             <p>
                 Ruang
             </p>
