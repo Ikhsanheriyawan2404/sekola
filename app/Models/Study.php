@@ -15,4 +15,9 @@ class Study extends Model
     {
         return $this->belongsTo(Major::class);
     }
+
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class);
+    }
 }
