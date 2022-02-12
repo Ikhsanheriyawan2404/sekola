@@ -43,7 +43,7 @@ class ScheduleController extends Controller
     {
         return view('schedules.show', [
             'title' => 'Data Jadwal',
-            'schedules' => Schedule::where('classroom_id', $id)->get(),
+            'schedules' => Schedule::where('classroom_id', $id)->orderBy('day', 'ASC')->get(),
         ]);
     }
 
