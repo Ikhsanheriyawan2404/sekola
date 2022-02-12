@@ -50,7 +50,10 @@
     <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            $('.select2').select2({
+                placeholder: 'Pilih mapel pengajar',
+                allowClear: true,
+            });
 
             $(document).on('submit', 'form', function() {
                 $('button').attr('disabled', 'disabled');

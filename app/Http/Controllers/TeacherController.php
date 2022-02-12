@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Study;
 use App\Models\Teacher;
 use App\Http\Requests\TeacherRequest;
 use Illuminate\Support\Facades\Storage;
@@ -35,12 +36,14 @@ class TeacherController extends Controller
 
         return view('teachers.index', [
             'title' => 'Guru',
+            'teachers' => Teacher::all(),
         ]);
     }
 
     public function show(Teacher $teacher)
     {
-        return response()->json($teacher);
+        $study_teacher = $teacher->studies()->get();
+        return response()->json($study_teacher);
     }
 
     public function create()
@@ -48,6 +51,7 @@ class TeacherController extends Controller
         return view('teachers.create', [
             'title' => 'Tambah Guru',
             'teacher' => new Teacher,
+            'studies' => Study::all(),
         ]);
     }
 
@@ -55,7 +59,7 @@ class TeacherController extends Controller
     {
         $request->validated();
 
-        Teacher::create([
+        $teacher = Teacher::create([
             'name' => request('name'),
             'nip' => request('nip'),
             'gender' => request('gender'),
@@ -64,6 +68,7 @@ class TeacherController extends Controller
             'image' => request('image') ? request()->file('image')->store('img/teachers') : null,
         ]);
 
+        $teacher->studies()->sync(request('studies'));
 
         toast('Data guru berhasil dibuat!','success');
         return redirect()->route('teachers.index');
@@ -74,6 +79,7 @@ class TeacherController extends Controller
         return view('teachers.edit', [
             'title' => "Edit Guru",
             'teacher' => $teacher,
+            'studies' => Study::all(),
         ]);
     }
 
@@ -98,6 +104,8 @@ class TeacherController extends Controller
             'email' => request('email'),
             'image' => $image,
         ]);
+
+        $teacher->studies()->sync(request('studies'));
 
         toast('Data guru berhasil diedit!','success');
         return redirect()->route('teachers.index');

@@ -14,7 +14,7 @@ class TeacherSeeder extends Seeder
      */
     public function run()
     {
-        Teacher::create([
+        $teacher1 = Teacher::create([
             'name' => 'Sukirno',
             'nip' => '1902921021',
             'email' => 'guru@email.com',
@@ -22,12 +22,16 @@ class TeacherSeeder extends Seeder
             'gender' => 'L',
         ]);
 
-        Teacher::create([
+        // $teacher1->studies()->sync(1);
+
+        $teacher2 = Teacher::create([
             'name' => 'Suherti',
             'nip' => '1902921022',
             'email' => 'teacher@email.com',
             'phone' => '082423428',
             'gender' => 'P',
         ]);
+
+        // $teacher2->studies()->sync(2);
     }
 }

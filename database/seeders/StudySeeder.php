@@ -14,19 +14,24 @@ class StudySeeder extends Seeder
      */
     public function run()
     {
-        Study::create([
+        $study1 = Study::create([
             'name' => 'Pemrograman Web Dasar',
             'study_code' => 'MK201',
             'major_id' => 1,
             'type' => 'Kejuruan',
         ]);
 
-        Study::create([
+        // $study1->teachers()->sync(1);
+
+        $study2 = Study::create([
             'name' => 'Bahasa Indonesia',
             'study_code' => 'BI200',
             'major_id' => 1,
             'type' => 'Umum',
         ]);
+
+        // $study2->teachers()->sync(2);
+
 
         Study::create([
             'name' => 'Pemeliharaan Mesin',

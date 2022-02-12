@@ -3,6 +3,7 @@
 @section('content')
 @include('sweetalert::alert')
 
+{{-- {{dd($teachers->find($study->id)->studies())}} --}}
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -75,12 +76,7 @@
                 <input type="hidden" name="tacherId" id="tacherId">
                 <div class="modal-body">
                     <ul class="list-group">
-                        <li class="list-group-item"><img class="img-fluid" style="max-height: 150px;overflow:hidden;" src="a.jpg" id="photo"></li>
-                        <li class="list-group-item name"></li>
-                        <li class="list-group-item nip"></li>
-                        <li class="list-group-item gender"></li>
-                        <li class="list-group-item email"></li>
-                        <li class="list-group-item phone"></li>
+                        <li class="list-group-item studies"></li>
                     </ul>
                 </div>
             </div>
@@ -137,17 +133,18 @@
             });
 
             $('body').on('click', '#showItem', function () {
-                var teacherId = $(this).data('id');
+                let teacherId = $(this).data('id');
+                let button = '';
                 $.get("{{ route('teachers.index') }}" +'/' + teacherId, function (data) {
+                    $.each(data, function (index, val) {
+                        // console.log(val.name);
+                        button += `<button class="btn btn-primary mr-2">${val.name}</button>`;
+                        // console.log(button);
+                    });
+                    $(".studies").html(button);
                     $('#modal-lg').modal('show');
                     $('#modal-title').html("Detail Guru");
                     $('#studentId').val(data.id);
-                    $('#photo').attr("src", "/storage/" + data.photo);
-                    $('.name').html('Nama : ' + data.name);
-                    $('.nip').html('NIP : ' + data.nip);
-                    $('.gender').html('Jenis Kelamin : ' + data.gender);
-                    $('.email').html('Email : ' + data.email);
-                    $('.phone').html('Nomor Telepon : ' + data.phone);
                 })
            });
 

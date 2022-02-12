@@ -69,7 +69,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Alamat email</label>
-                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="cth: user@mail.test" value="{{ $teacher->name ?? old('email') }}">
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="cth: user@mail.test" value="{{ $teacher->email ?? old('email') }}">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -88,10 +88,12 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label for="customFile">Foto <span class="text-danger">*</span></label>
+                <label for="customFile">Foto</label>
 
                 <div class="custom-file">
-                    <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile">
+                    <input type="file" name="image" class="custom-file-input @error('image')
+                    is-invalid
+                    @enderror" id="customFile">
                     <label class="custom-file-label" for="customFile">Pilih foto</label>
                     @error('image')
                         <span class="invalid-feedback" role="alert">
@@ -99,6 +101,19 @@
                         </span>
                     @enderror
                 </div>
+            </div>
+            <div class="form-group">
+                <label>Mata pelajaran <span class="text-danger">*</span></label>
+                <select name="studies[]" class="form-control select2 @error('studies') is-invalid @enderror" data-placeholer="Pilih mapel pengajar" style="width: 100%;" multiple="multiple">
+                    @foreach ($studies as $study)
+                        <option {{ $teacher->studies()->find($study->id) ? 'selected' : '' }} value="{{ $study->id }}" >{{ $study->name }}</option>
+                    @endforeach
+                </select>
+                @error('studies')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
     </div>
