@@ -18,7 +18,21 @@ class StudySeeder extends Seeder
             'name' => 'Pemrograman Web Dasar',
             'study_code' => 'MK201',
             'major_id' => 1,
+            'type' => 'Kejuruan',
+        ]);
+
+        Study::create([
+            'name' => 'Bahasa Indonesia',
+            'study_code' => 'BI200',
+            'major_id' => 1,
             'type' => 'Umum',
+        ]);
+
+        Study::create([
+            'name' => 'Pemeliharaan Mesin',
+            'study_code' => 'MK201',
+            'major_id' => 1,
+            'type' => 'Kejuruan',
         ]);
     }
 }

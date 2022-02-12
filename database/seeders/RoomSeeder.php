@@ -17,5 +17,13 @@ class RoomSeeder extends Seeder
         Room::create([
             'name' => '01',
         ]);
+
+        Room::create([
+            'name' => '02',
+        ]);
+
+        Room::create([
+            'name' => '03',
+        ]);
     }
 }

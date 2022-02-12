@@ -19,5 +19,11 @@ class ClassroomSeeder extends Seeder
             'major_id' => 1,
             'teacher_id' => 2,
         ]);
+
+        Classroom::create([
+            'name' => 'X TKR 1',
+            'major_id' => 3,
+            'teacher_id' => 1,
+        ]);
     }
 }
