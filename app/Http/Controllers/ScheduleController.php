@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+// use App\Http\Requests\ScheduleRequest;
+
 use App\Http\Requests\ScheduleRequest;
 use App\Models\Classroom;
 use App\Models\Room;
 use App\Models\Schedule;
 use App\Models\Study;
-use App\Models\Teacher;
-use Database\Seeders\ClassroomSeeder;
 use Yajra\DataTables\Facades\DataTables;
 
 class ScheduleController extends Controller
@@ -43,7 +43,6 @@ class ScheduleController extends Controller
     {
         return view('schedules.show', [
             'title' => 'Data Jadwal',
-            // 'classroom' => Classroom::where('id', $id)->get(),
             'schedules' => Schedule::where('classroom_id', $id)->get(),
         ]);
     }
@@ -73,7 +72,7 @@ class ScheduleController extends Controller
         ]);
 
         toast('Data jadwal berhasil dibuat!','success');
-        return redirect()->route('scheduls.index');
+        return redirect()->route('schedules.index');
     }
 
     public function edit(Schedule $schedule)

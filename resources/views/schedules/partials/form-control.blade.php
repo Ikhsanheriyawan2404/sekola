@@ -20,12 +20,22 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="start">Jam Selesai</label>
-                <input type="time" class="form-control" name="start">
+                <label for="start">Jam mulai</label>
+                <input type="time" class="form-control @error('start') is_invalid @enderror" name="start">
+                @error('start')
+                    <span class="invalid-feedback" rnbhhhhhhnbbbbbbbbbbbbbbbbbbbbbbbbbbb              ole="alert">                                                                                                                                    nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group">
-                <label for="end">Jam Selesai</label>
-                <input type="time" class="form-control" name="end">
+                <label for="end">Jam selesai</label>
+                <input type="time" class="form-control @error('end') is_invalid @enderror" name="end">
+                @error('end')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
         <div class="col-lg-6">

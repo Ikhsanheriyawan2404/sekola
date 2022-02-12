@@ -52,15 +52,6 @@
         $(document).ready(function() {
             $('.select2').select2();
 
-            //Timepicker
-            $('#timepacker').datetimepicker({
-                format: 'LT'
-            })
-
-            // $('#end').datetimepicker({
-            //     format: 'LT'
-            // })
-
             $(document).on('submit', 'form', function() {
                 $('button').attr('disabled', 'disabled');
             });

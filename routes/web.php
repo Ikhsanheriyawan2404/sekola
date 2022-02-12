@@ -31,6 +31,5 @@ Route::middleware('auth')->group(function () {
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
-    // Route::get('/schedules/{id}/show', [ScheduleController::class, 'showSchedules'])->name('schedules.showSchedules');
 
 });
