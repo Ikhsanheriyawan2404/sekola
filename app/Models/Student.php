@@ -9,7 +9,7 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'nisn', 'gender', 'religion', 'date_of_birth', 'phone', 'photo', 'address', 'classroom_id'];
+    protected $fillable = ['name', 'nisn', 'gender', 'religion', 'date_of_birth', 'phone', 'image', 'address', 'classroom_id'];
 
     public function classroom()
     {
@@ -18,6 +18,6 @@ class Student extends Model
 
     public function getTakeImageAttribute()
     {
-        return "/storage/" . $this->photo;
+        return "/storage/" . $this->image;
     }
 }

@@ -91,9 +91,9 @@
                 <label for="customFile">Foto <span class="text-danger">*</span></label>
 
                 <div class="custom-file">
-                    <input type="file" name="photo" class="custom-file-input @error('photo') is-invalid @enderror" id="customFile">
+                    <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile">
                     <label class="custom-file-label" for="customFile">Pilih foto</label>
-                    @error('photo')
+                    @error('image')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

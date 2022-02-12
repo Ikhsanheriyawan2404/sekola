@@ -29,7 +29,7 @@ class StudentRequest extends FormRequest
             'religion' => ['required'],
             'gender' => ['required'],
             'date_of_birth' => ['required'],
-            'photo' => 'image|mimes:jpg,jpeg,png|max:2058',
+            'image' => 'image|mimes:jpg,jpeg,png|max:2058',
             'phone' => ['required'],
             'classroom_id' => ['required'],
         ];

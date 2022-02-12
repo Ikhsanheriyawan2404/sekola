@@ -21,9 +21,9 @@ class CreateStudentsTable extends Migration
             $table->enum('religion', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Khonghucu']);
             $table->unsignedBigInteger('classroom_id');
             $table->string('date_of_birth');
-            $table->string('photo');
+            $table->string('image')->nullable();
             $table->string('phone');
-            $table->text('address')->nullable;
+            $table->text('address')->nullable();
             $table->timestamps();
 
             $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('CASCADE');

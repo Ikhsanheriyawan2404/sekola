@@ -78,7 +78,7 @@
                 <div class="modal-body">
                     <ul class="list-group">
                         <li class="list-group-item name"></li>
-                        <li class="list-group-item"><img class="img-fluid" style="max-height: 150px;overflow:hidden;" src="a.jpg" id="photo"></li>
+                        <li class="list-group-item"><img class="img-fluid" style="max-height: 150px;overflow:hidden;" src="" id="image"></li>
                     </ul>
                 </div>
             </div>
@@ -143,7 +143,7 @@
                     $('#modal-title').html("Detail Siswa");
                     $('#studentId').val(data.id);
                     $('.name').html('Nama : ' + data.name);
-                    $('#photo').attr("src", "/storage/" + data.photo);
+                    $('#image').attr("src", "/storage/" + data.image);
                 })
            });
 

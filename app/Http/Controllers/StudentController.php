@@ -70,7 +70,7 @@ class StudentController extends Controller
             'religion' => request('religion'),
             'date_of_birth' => request('date_of_birth'),
             'phone' => request('phone'),
-            'photo' => request('photo') ? request()->file('photo')->store('img/students') : null,
+            'image' => request('image') ? request()->file('image')->store('img/students') : null,
             'address' => request('address'),
             'classroom_id' => request('classroom_id'),
         ]);
@@ -93,13 +93,13 @@ class StudentController extends Controller
     {
         $request->validated();
 
-        if (request('photo')) {
-            Storage::delete($student->photo);
-            $photo = request()->file('photo')->store('img/student');
-        } elseif ($student->photo) {
-            $photo = $student->photo;
+        if (request('image')) {
+            Storage::delete($student->image);
+            $image = request()->file('image')->store('img/student');
+        } elseif ($student->image) {
+            $image = $student->image;
         } else {
-            $photo = null;
+            $image = null;
         }
 
         $student->update([
@@ -109,7 +109,7 @@ class StudentController extends Controller
             'religion' => request('religion'),
             'date_of_birth' => request('date_of_birth'),
             'phone' => request('phone'),
-            'photo' => $photo,
+            'image' => $image,
             'address' => request('address'),
             'classroom_id' => request('classroom_id'),
         ]);
@@ -120,7 +120,7 @@ class StudentController extends Controller
 
     public function destroy(Student $student)
     {
-        Storage::delete($student->photo);
+        Storage::delete($student->image);
         $student->delete();
         toast('Data siswa berhasil dihapus!','success');
         return redirect()->route('students.index');
