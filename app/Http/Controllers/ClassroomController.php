@@ -31,7 +31,7 @@ class ClassroomController extends Controller
                             Siswa
                             </a>
 
-                            <a href="javascript:void(0)" data-id="'.$row->id.'" id="showSchedule" class="btn btn-sm btn-primary mr-2">
+                            <a href="' . route('schedules.show', $row->id) . '" class="btn btn-sm btn-primary mr-2">
                             <i class="fas fa-eye"></i>
                             Jadwal
                             </a>
