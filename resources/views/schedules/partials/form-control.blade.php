@@ -5,7 +5,7 @@
                 <label>Hari <span class="text-danger">*</span></label>
                 <select name="day" class="form-control select2 @error('day') is-invalid @enderror" style="width: 100%;">
                     <option selected disabled>Pilih hari</option>
-                    <option value="Senin" {{ $schedule->day == 'Selasa' ? 'selected' : '' }}>Selasa</option>
+                    <option value="Senin" {{ $schedule->day == 'Senin' ? 'selected' : '' }}>Senin</option>
                     <option value="Selasa" {{ $schedule->day == 'Selasa' ? 'selected' : '' }}>Selasa</option>
                     <option value="Rabu" {{ $schedule->day == 'Rabu' ? 'selected' : '' }}>Rabu</option>
                     <option value="Kamis" {{ $schedule->day == 'Kamis' ? 'selected' : '' }}>Kamis</option>
@@ -20,18 +20,18 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="start">Jam mulai</label>
-                <input type="time" class="form-control @error('start') is_invalid @enderror" name="start">
+                <label for="start">Jam mulai <span class="text-danger">*</span></label>
+                <input type="time" class="form-control @error('start') is_invalid @enderror" name="start" value="{{ $schedule->start ?? old('start') }}">
                 @error('start')
-                    <span class="invalid-feedback" rnbhhhhhhnbbbbbbbbbbbbbbbbbbbbbbbbbbb              ole="alert">                                                                                                                                    nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+                    <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="end">Jam selesai</label>
-                <input type="time" class="form-control @error('end') is_invalid @enderror" name="end">
-                @error('end')
+                <label for="finished">Jam selesai <span class="text-danger">*</span></label>
+                <input type="time" class="form-control @error('finished') is_invalid @enderror" name="finished" value="{{ $schedule->finished ?? old('finished') }}">
+                @error('finished')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

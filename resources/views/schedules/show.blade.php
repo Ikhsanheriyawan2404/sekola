@@ -51,6 +51,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if ($schedules->isEmpty())
+                        <tr>
+                            <td colspan="8" class="text-center">Belum ada data jadwal</td>
+                        </tr>
+                    @endif
                     @foreach ($schedules as $schedule)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
@@ -58,11 +63,15 @@
                         <td>{{ $schedule->study->name }}</td>
                         <td>{{ $schedule->classroom->name }}</td>
                         <td>{{ $schedule->room->name }}</td>
-                        <td>{{ $schedule->start }}</td>
-                        <td>{{ $schedule->end }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></button>
-                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                        <td>{{ date('H:i', strtotime($schedule->start)) }}</td>
+                        <td>{{ date('H:i', strtotime($schedule->finished)) }}</td>
+                        <td class="d-flex justify-content-center">
+                            <a href="{{ route('schedules.edit', $schedule->id) }}" class="btn btn-sm btn-primary mr-2"><i class="fas fa-pencil-alt"></i></a>
+                            <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah yakin ingin menghapus ini?')"><i class="fas fa-trash"></i></button>
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </td>
                     </tr>
                     @endforeach

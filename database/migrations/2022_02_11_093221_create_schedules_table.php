@@ -20,7 +20,7 @@ class CreateSchedulesTable extends Migration
             $table->unsignedBigInteger('classroom_id');
             $table->unsignedBigInteger('room_id');
             $table->time('start');
-            $table->time('end');
+            $table->time('finished');
             $table->timestamps();
 
             $table->foreign('study_id')->references('id')->on('studies')->onDelete('CASCADE');

@@ -29,7 +29,7 @@ class ScheduleRequest extends FormRequest
             'classroom_id' => 'required',
             'room_id' => 'required',
             'start' => 'required',
-            'end' => 'required',
+            'finished' => 'required',
         ];
     }
 }

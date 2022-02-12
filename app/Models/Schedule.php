@@ -9,7 +9,7 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['day', 'study_id', 'classroom_id', 'room_id', 'start', 'end'];
+    protected $fillable = ['day', 'study_id', 'classroom_id', 'room_id', 'start', 'finished'];
 
     public function study()
     {

@@ -68,7 +68,7 @@ class ScheduleController extends Controller
             'room_id' => request('room_id'),
             'classroom_id' => request('classroom_id'),
             'start' => request('start'),
-            'end' => request('end'),
+            'finished' => request('finished'),
         ]);
 
         toast('Data jadwal berhasil dibuat!','success');
@@ -100,7 +100,15 @@ class ScheduleController extends Controller
             'end' => request('end'),
         ]);
 
-        toast('Data siswa berhasil diedit!','success');
-        return redirect()->route('students.index');
+        toast('Data jadwal berhasil diedit!','success');
+        return redirect()->route('schedules.show', $schedule->classroom->id);
+    }
+
+    public function destroy(Schedule $schedule)
+    {
+        $schedule->delete();
+        toast('Data siswa berhasil dihapus!','success');
+        return back();
+
     }
 }
