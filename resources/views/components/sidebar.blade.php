@@ -148,6 +148,14 @@
             </ul>
         </li>
         <li class="nav-item">
+            <a href="{{ route('settings.index') }}" class="nav-link {{ request()->routeIs('settings.*') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-cogs"></i>
+                <p>
+                    Pengaturan
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             <i class="nav-icon fas fa-sign-out-alt" style="color: rgb(184, 0, 0);"></i>

@@ -146,3 +146,9 @@ Breadcrumbs::for('rooms', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Ruang Kelas', route('rooms.index'));
 });
+
+// Home > Setting
+Breadcrumbs::for('settings', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Info Sekolah', route('settings.index'));
+});

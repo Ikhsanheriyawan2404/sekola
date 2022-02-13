@@ -6,24 +6,14 @@ use App\Models\{Student, Teacher, Classroom, Study, Major, Room};
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __invoke()
     {
-        $this->middleware('auth');
+        return view('home');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home', [
+        return view('dashboard', [
             'title' => 'Dashboard',
             'students' => Student::all(),
             'teachers' => Teacher::all(),

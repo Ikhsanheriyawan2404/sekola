@@ -71,6 +71,8 @@ class RoleSeeder extends Seeder
             'schedule-create',
             'schedule-edit',
             'schedule-delete',
+            'setting-list',
+            'setting-edit',
         ]);
 
         $operator->givePermissionTo([

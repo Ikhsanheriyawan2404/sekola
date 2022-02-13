@@ -51,6 +51,8 @@ class PermissionSeeder extends Seeder
             'schedule-create',
             'schedule-edit',
             'schedule-delete',
+            'setting-list',
+            'setting-edit',
          ];
 
          foreach ($permissions as $permission) {

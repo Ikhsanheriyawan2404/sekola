@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\SettingSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             TeacherSeeder::class,
             ClassroomSeeder::class,
             StudentSeeder::class,
+            SettingSeeder::class,
         ]);
         \App\Models\Student::factory(50)->create();
     }

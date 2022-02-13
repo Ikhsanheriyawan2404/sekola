@@ -16,10 +16,11 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('school_name');
-            $table->text('address');
+            $table->string('image')->nullable();
             $table->string('phone');
             $table->string('email');
             $table->enum('type', ['Negeri', 'Swasta']);
+            $table->text('address');
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class SettingSeeder extends Seeder
     {
         Setting::create([
             'school_name' => 'SMK N 1 SUZURAN',
+            'image' => 'image.jpg',
             'address' => 'Desa Kempek Blok Penangisan Kecamatan Gempol Kabupaten Cirebon Jawa Barat 45161',
             'phone' => '082117088123',
             'email' => 'ikhsanheriyawan2404@gmail.com',
