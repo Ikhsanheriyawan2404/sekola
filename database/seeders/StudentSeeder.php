@@ -20,7 +20,7 @@ class StudentSeeder extends Seeder
             'gender' => 'L',
             'religion' => 'Islam',
             'classroom_id' => 1,
-            'date_of_birth' => '19-02-2001',
+            'date_of_birth' => '2001-02-19',
             'phone' => '082117088123',
         ]);
     }

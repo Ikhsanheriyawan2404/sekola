@@ -46,7 +46,7 @@
                     <tr>
                         <th style="width: 1%">No.</th>
                         <th>Nama</th>
-                        <th>Nisn</th>
+                        <th>NISN</th>
                         <th>Kelas</th>
                         <th>Jenis Kelamin</th>
                         <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
@@ -76,8 +76,14 @@
                 <input type="hidden" name="studentId" id="studentId">
                 <div class="modal-body">
                     <ul class="list-group">
-                        <li class="list-group-item name"></li>
                         <li class="list-group-item"><img class="img-fluid" style="max-height: 150px;overflow:hidden;" src="" id="image"></li>
+                        <li class="list-group-item name"></li>
+                        <li class="list-group-item nisn"></li>
+                        <li class="list-group-item gender"></li>
+                        <li class="list-group-item religion"></li>
+                        <li class="list-group-item date_of_birth"></li>
+                        <li class="list-group-item phone"></li>
+                        <li class="list-group-item address"></li>
                     </ul>
                 </div>
             </div>
@@ -141,6 +147,12 @@
                     $('#modal-title').html("Detail Siswa");
                     $('#studentId').val(data.id);
                     $('.name').html('Nama : ' + data.name);
+                    $('.nisn').html('NISN : ' + data.nisn);
+                    $('.gender').html('Jenis Kelamin : ' + data.gender);
+                    $('.date_of_birth').html('Tanggal Lahir : ' + data.date_of_birth);
+                    $('.religion').html('Agama : ' + data.religion);
+                    $('.phone').html('No HP : ' + data.phone);
+                    $('.address').html('Alamat : ' + data.address);
                     $('#image').attr("src", "/storage/" + data.image);
                 })
            });

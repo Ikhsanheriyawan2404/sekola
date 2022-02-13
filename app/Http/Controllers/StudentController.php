@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StudentRequest;
-use App\Models\Classroom;
 use App\Models\Student;
+use App\Models\Classroom;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\StudentStoreRequest;
+use App\Http\Requests\StudentUpdateRequest;
 
 class StudentController extends Controller
 {
@@ -64,7 +65,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function store(StudentRequest $request)
+    public function store(StudentStoreRequest $request)
     {
 
         $request->validated();
@@ -95,7 +96,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function update(Student $student, StudentRequest $request)
+    public function update(Student $student, StudentUpdateRequest $request)
     {
         $request->validated();
 

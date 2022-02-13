@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StudentFactory extends Factory
@@ -19,12 +18,12 @@ class StudentFactory extends Factory
 
         return [
             'name' => $this->faker->name(),
-            'nisn' => $this->faker->numberBetween(1, 1000),
+            'nisn' => $this->faker->unique()->numberBetween(1, 999999),
             'gender' => $genders[rand(0,1)],
             'religion' => $religions[rand(0,5)],
             'classroom_id' => rand(1,2),
             'date_of_birth' => $this->faker->date(),
-            'phone' => $this->faker->phoneNumber(),
+            'phone' => $this->faker->numberBetween(1, 999999),
             'address' => $this->faker->address(),
         ];
     }
