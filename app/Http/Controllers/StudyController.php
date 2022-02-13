@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Major;
-use App\Models\Study;
+use App\Models\{Major, Study};
 use Yajra\DataTables\Facades\DataTables;
 
 class StudyController extends Controller

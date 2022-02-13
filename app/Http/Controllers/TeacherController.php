@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Study;
-use App\Models\Teacher;
+use App\Models\{Study, Teacher};
 use App\Http\Requests\TeacherRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;

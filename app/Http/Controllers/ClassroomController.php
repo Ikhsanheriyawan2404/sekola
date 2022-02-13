@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Major;
-use App\Models\Teacher;
-use App\Models\Classroom;
-use App\Models\Student;
+use App\Models\{Classroom, Major, Teacher, Student};
 use Yajra\DataTables\Facades\DataTables;
 
 class ClassroomController extends Controller

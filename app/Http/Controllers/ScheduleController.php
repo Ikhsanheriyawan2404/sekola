@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 // use App\Http\Requests\ScheduleRequest;
 
 use App\Http\Requests\ScheduleRequest;
-use App\Models\Classroom;
-use App\Models\Room;
-use App\Models\Schedule;
-use App\Models\Study;
+use App\Models\{Classroom, Room, Schedule, Study};
 use Yajra\DataTables\Facades\DataTables;
 
 class ScheduleController extends Controller
