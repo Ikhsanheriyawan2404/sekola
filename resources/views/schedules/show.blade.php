@@ -14,7 +14,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            {{-- <li class="breadcrumb-item active">{{ Breadcrumbs::render('show_schedule', $classroom) }}</li> --}}
+            <li class="breadcrumb-item active">{{ Breadcrumbs::render('show_schedule') }}</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -45,8 +45,7 @@
                         <th>Pelajaran</th>
                         <th>Kelas</th>
                         <th>Ruang</th>
-                        <th>Mulai</th>
-                        <th>Selesai</th>
+                        <th>Jam Pelajaran</th>
                         <th class="text-center"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
@@ -60,11 +59,13 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $schedule->day }}</td>
-                        <td>{{ $schedule->study->name }}</td>
+                        <td>
+                            {{ $schedule->study->name }}
+                            <small class="text-muted"></small>
+                        </td>
                         <td>{{ $schedule->classroom->name }}</td>
                         <td>{{ $schedule->room->name }}</td>
-                        <td>{{ date('H:i', strtotime($schedule->start)) }}</td>
-                        <td>{{ date('H:i', strtotime($schedule->finished)) }}</td>
+                        <td>{{ date('H:i', strtotime($schedule->start)) }} - {{ date('H:i', strtotime($schedule->finished)) }}</td>
                         <td class="d-flex justify-content-center">
                             <a href="{{ route('schedules.edit', $schedule->id) }}" class="btn btn-sm btn-primary mr-2"><i class="fas fa-pencil-alt"></i></a>
                             <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST">

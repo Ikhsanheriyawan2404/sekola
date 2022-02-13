@@ -40,6 +40,20 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group">
+                <label>Guru <span class="text-danger">*</span></label>
+                <select name="teacher_id" class="form-control select2 @error('teacher_id') is-invalid @enderror" style="width: 100%;">
+                    <option selected disabled>Pilih pengajar</option>
+                    @foreach ($teachers as $teacher)
+                        <option value="{{ $teacher->id }}" {{ $teacher->id == $schedule->teacher_id ? 'selected' : '' }}>{{ $teacher->name }}</option>
+                    @endforeach
+                </select>
+                @error('teacher_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label>Mata pelajaran <span class="text-danger">*</span></label>
                 <select name="study_id" class="form-control select2 @error('study_id') is-invalid @enderror" style="width: 100%;">
                     <option selected disabled>Pilih mapel</option>

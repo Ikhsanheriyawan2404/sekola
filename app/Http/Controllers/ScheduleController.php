@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 // use App\Http\Requests\ScheduleRequest;
 
 use App\Http\Requests\ScheduleRequest;
-use App\Models\{Classroom, Room, Schedule, Study};
+use App\Models\{Classroom, Room, Schedule, Study, Teacher};
 use Yajra\DataTables\Facades\DataTables;
 
 class ScheduleController extends Controller
@@ -38,9 +38,10 @@ class ScheduleController extends Controller
 
     public function show($id)
     {
+        $schedules = Schedule::where('classroom_id', $id)->orderBy('day', 'ASC')->orderBy('start', 'ASC')->get();
         return view('schedules.show', [
             'title' => 'Data Jadwal',
-            'schedules' => Schedule::where('classroom_id', $id)->orderBy('day', 'ASC')->get(),
+            'schedules' => $schedules,
         ]);
     }
 
@@ -52,6 +53,7 @@ class ScheduleController extends Controller
             'classrooms' => Classroom::all(),
             'rooms' => Room::all(),
             'studies' => Study::all(),
+            'teachers' => Teacher::all(),
         ]);
     }
 
@@ -61,6 +63,7 @@ class ScheduleController extends Controller
 
         Schedule::create([
             'day' => request('day'),
+            'teacher_id' => request('teacher_id'),
             'study_id' => request('study_id'),
             'room_id' => request('room_id'),
             'classroom_id' => request('classroom_id'),
@@ -80,6 +83,7 @@ class ScheduleController extends Controller
             'classrooms' => Classroom::all(),
             'rooms' => Room::all(),
             'studies' => Study::all(),
+            'teachers' => Teacher::all(),
         ]);
     }
 
@@ -90,6 +94,7 @@ class ScheduleController extends Controller
 
         $schedule->update([
             'day' => request('day'),
+            'teacher_id' => request('teacher_id'),
             'study_id' => request('study_id'),
             'room_id' => request('room_id'),
             'classroom_id' => request('classroom_id'),
@@ -104,7 +109,7 @@ class ScheduleController extends Controller
     public function destroy(Schedule $schedule)
     {
         $schedule->delete();
-        toast('Data siswa berhasil dihapus!','success');
+        toast('Data jadwal berhasil dihapus!','success');
         return back();
 
     }

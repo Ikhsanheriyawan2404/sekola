@@ -82,6 +82,11 @@ Breadcrumbs::for('schedules', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Jadwal', route('schedules.index'));
 });
+// Home > Jadwal > [Show]
+Breadcrumbs::for('show_schedule', function (BreadcrumbTrail $trail) {
+    $trail->parent('schedules');
+    $trail->push('Lihat Jadwal', route('schedules.index'));
+});
 // Home > Jadwal > [Create]
 Breadcrumbs::for('create_schedule', function (BreadcrumbTrail $trail) {
     $trail->parent('schedules');
