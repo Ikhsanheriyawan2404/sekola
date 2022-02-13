@@ -7,6 +7,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class StudyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:studies-list|studies-create|studies-edit|studies-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:studies-create', ['only' => ['create','store']]);
+        $this->middleware('permission:studies-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:studies-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         if (request()->ajax()) {

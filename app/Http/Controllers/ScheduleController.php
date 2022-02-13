@@ -10,6 +10,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ScheduleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:schedule-list|schedule-create|schedule-edit|schedule-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:schedule-create', ['only' => ['create','store']]);
+        $this->middleware('permission:schedule-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:schedule-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         if (request()->ajax()) {

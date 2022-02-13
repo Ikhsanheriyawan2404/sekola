@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
             'guard_name' => 'web'
         ]);
 
-        Role::create([
+        $operator = Role::create([
             'name' => 'Operator',
             'guard_name' => 'web'
         ]);
@@ -67,6 +67,42 @@ class RoleSeeder extends Seeder
             'room-create',
             'room-edit',
             'room-delete',
+            'schedule-list',
+            'schedule-create',
+            'schedule-edit',
+            'schedule-delete',
+        ]);
+
+        $operator->givePermissionTo([
+            'user-list',
+            'student-list',
+            'student-create',
+            'student-edit',
+            'student-delete',
+            'teacher-list',
+            'teacher-create',
+            'teacher-edit',
+            'teacher-delete',
+            'classroom-list',
+            'classroom-create',
+            'classroom-edit',
+            'classroom-delete',
+            'studies-list',
+            'studies-create',
+            'studies-edit',
+            'studies-delete',
+            'major-list',
+            'major-create',
+            'major-edit',
+            'major-delete',
+            'room-list',
+            'room-create',
+            'room-edit',
+            'room-delete',
+            'schedule-list',
+            'schedule-create',
+            'schedule-edit',
+            'schedule-delete',
         ]);
     }
 }

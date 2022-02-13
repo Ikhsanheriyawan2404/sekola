@@ -7,6 +7,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class MajorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:major-list|major-create|major-edit|major-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:major-create', ['only' => ['create','store']]);
+        $this->middleware('permission:major-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:major-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         if (request()->ajax()) {

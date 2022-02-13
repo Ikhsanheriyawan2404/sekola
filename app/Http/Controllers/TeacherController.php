@@ -9,6 +9,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class TeacherController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:teacher-list|teacher-create|teacher-edit|teacher-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:teacher-create', ['only' => ['create','store']]);
+        $this->middleware('permission:teacher-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:teacher-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         if (request()->ajax()) {

@@ -18,6 +18,14 @@
             <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
+                Dashboard Admin
+            </p>
+            </a>
+        </li>
+        <li class="nav-item menu-open">
+            <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
                 Dashboard
             </p>
             </a>
@@ -41,46 +49,56 @@
             @endcan
         </li>
         <li class="nav-item">
+            @can('teacher-list')
             <a href="{{ route('teachers.index') }}" class="nav-link {{ request()->routeIs('teachers.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-graduation-cap"></i>
                 <p>
                     Guru
                 </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item">
+            @can('classroom-list')
             <a href="{{ route('classrooms.index') }}" class="nav-link {{ request()->routeIs('classrooms.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-chalkboard"></i>
                 <p>
                     Kelas
                 </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item">
+            @can('studies-list')
             <a href="{{ route('studies.index') }}" class="nav-link {{ request()->routeIs('studies.*') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-book-open"></i>
-            <p>
-                Mata Pelajaran
-            </p>
+                <i class="nav-icon fas fa-book-open"></i>
+                <p>
+                    Mata Pelajaran
+                </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item">
+            @can('major-list')
             <a href="{{ route('majors.index') }}" class="nav-link {{ request()->routeIs('majors.*') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-cogs"></i>
-            <p>
-                Jurusan
-            </p>
+                <i class="nav-icon fas fa-cogs"></i>
+                <p>
+                    Jurusan
+                </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item">
+            @can('room-list')
             <a href="{{ route('rooms.index') }}" class="nav-link {{ request()->routeIs('rooms.*') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-building"></i>
-            <p>
-                Ruang
-            </p>
+                <i class="nav-icon fas fa-building"></i>
+                <p>
+                    Ruang
+                </p>
             </a>
+            @endcan
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="nav-icon fas fa-poll"></i>
             <p>
@@ -95,7 +113,7 @@
                 Absensi
             </p>
             </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             @can('user-list')
             <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'active' : '' }}">
