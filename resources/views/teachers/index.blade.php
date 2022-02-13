@@ -137,16 +137,14 @@
                 let button = '';
                 $.get("{{ route('teachers.index') }}" +'/' + teacherId, function (data) {
                     $.each(data, function (index, val) {
-                        // console.log(val.name);
                         button += `<button class="btn btn-primary mr-2">${val.name}</button>`;
-                        // console.log(button);
                     });
                     $(".studies").html(button);
                     $('#modal-lg').modal('show');
                     $('#modal-title').html("Detail Guru");
                     $('#studentId').val(data.id);
                 })
-           });
+            });
 
            $('body').on('click', '#deleteTeacher', function () {
 

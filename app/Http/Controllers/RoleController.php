@@ -24,7 +24,7 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
-        return view();
+        return response()->json($role);
     }
 
     public function create()
