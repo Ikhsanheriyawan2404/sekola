@@ -16,6 +16,12 @@ class StudentController extends Controller
             $students = Student::get();
             return DataTables::of($students)
                     ->addIndexColumn()
+                    ->addColumn('classroom', function(Student $student) {
+                        return $student->classroom->name;
+                    })
+                    ->editColumn('gender', function($request) {
+                        return $request->gender == 'L' ? 'Laki-Laki' : 'Perempuan';
+                    })
                     ->addColumn('action', function($row){
                         $btn =
                         '<div class="d-flex justify-content-between">

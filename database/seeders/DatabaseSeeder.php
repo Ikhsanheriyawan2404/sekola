@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(1)->create();
         $this->call([
             PermissionSeeder::class,
             RoleSeeder::class,
@@ -25,5 +24,6 @@ class DatabaseSeeder extends Seeder
             ClassroomSeeder::class,
             StudentSeeder::class,
         ]);
+        \App\Models\Student::factory(50)->create();
     }
 }

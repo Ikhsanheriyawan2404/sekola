@@ -47,9 +47,8 @@
                         <th style="width: 1%">No.</th>
                         <th>Nama</th>
                         <th>Nisn</th>
+                        <th>Kelas</th>
                         <th>Jenis Kelamin</th>
-                        <th>Agama</th>
-                        <th>Nomor HP</th>
                         <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
@@ -129,9 +128,8 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'name', name: 'name'},
                     {data: 'nisn', name: 'nisn'},
+                    {data: 'classroom', name: 'classroom.name'},
                     {data: 'gender', name: 'gender'},
-                    {data: 'religion', name: 'religion'},
-                    {data: 'phone', name: 'phone'},
                     {data: 'action', name: 'action', orderable: true, searchable: true},
                 ]
             });
