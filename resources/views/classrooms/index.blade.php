@@ -156,7 +156,7 @@
                                 siswa += `<td>${val.religion}</td>`;
                                 siswa += `<td>${val.phone}</td>`;
                                 siswa += `<td>
-                                    <img class="img-fluid" style="max-height: 50px;overflow:hidden;" src="/storage/${val.photo}" id="photo">
+                                    <img class="img-fluid" style="max-height: 50px;overflow:hidden;" src="/storage/${val.image}" id="photo">
                                         </td>`;
                             siswa+="</tr>";
                         });

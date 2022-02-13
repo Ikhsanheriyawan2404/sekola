@@ -5,8 +5,6 @@
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
-    {{-- {{dd($schedules)}} --}}
-    {{-- {{dd($classroom)}} --}}
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
@@ -61,7 +59,7 @@
                         <td>{{ $schedule->day }}</td>
                         <td>
                             {{ $schedule->study->name }}
-                            <small class="text-muted"></small>
+                            <small class="text-muted">({{ $schedule->teacher->name }})</small>
                         </td>
                         <td>{{ $schedule->classroom->name }}</td>
                         <td>{{ $schedule->room->name }}</td>
