@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
-use App\Models\Classroom;
+use App\Models\{Student, Classroom};
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\StudentStoreRequest;
-use App\Http\Requests\StudentUpdateRequest;
+use App\Http\Requests\{StudentStoreRequest, StudentUpdateRequest};
 
 class StudentController extends Controller
 {
