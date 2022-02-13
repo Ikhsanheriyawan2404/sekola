@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Student, Teacher, Classroom, Study, Major, Room};
+use App\Models\{Student, Teacher, Classroom, Study, Major, Room, Setting};
 
 class HomeController extends Controller
 {
-    public function __invoke()
-    {
-        return view('home');
-    }
-
     public function index()
     {
+        return view('home', [
+            'title' => 'Home',
+            'school' => Setting::find(1),
+        ]);
+    }
+
+    public function home()
+    {
         return view('dashboard', [
+            'title' => 'Dashboard'
+        ]);
+    }
+
+    public function dashboard()
+    {
+        return view('dashboard_admin', [
             'title' => 'Dashboard',
             'students' => Student::all(),
             'teachers' => Teacher::all(),
@@ -23,4 +33,5 @@ class HomeController extends Controller
             'rooms' => Room::all(),
         ]);
     }
+
 }

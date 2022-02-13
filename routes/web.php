@@ -15,13 +15,14 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SettingController;
 
 // Auth::routes(['register' => false]);
-Route::get('/kontol', [HomeController::class]);
+Route::get('kontol', [HomeController::class,  'index']);
 Route::get('', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'dashboard'])->name('home');
+    // Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
     Route::resources(['users' => UserController::class]);
     Route::resources(['roles' => RoleController::class]);
     Route::resources(['students' => StudentController::class]);
