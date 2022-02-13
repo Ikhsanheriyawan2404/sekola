@@ -22,7 +22,7 @@ class TeacherSeeder extends Seeder
             'gender' => 'L',
         ]);
 
-        // $teacher1->studies()->sync(1);
+        $teacher1->studies()->sync(1);
 
         $teacher2 = Teacher::create([
             'name' => 'Suherti',
@@ -32,6 +32,6 @@ class TeacherSeeder extends Seeder
             'gender' => 'P',
         ]);
 
-        // $teacher2->studies()->sync(2);
+        $teacher2->studies()->sync(2);
     }
 }

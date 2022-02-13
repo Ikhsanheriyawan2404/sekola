@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-            TeacherSeeder::class,
-            MajorSeeder::class,
-            ClassroomSeeder::class,
             RoomSeeder::class,
+            MajorSeeder::class,
             StudySeeder::class,
+            TeacherSeeder::class,
+            ClassroomSeeder::class,
             StudentSeeder::class,
         ]);
     }
