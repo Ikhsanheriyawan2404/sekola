@@ -31,12 +31,14 @@
             </a>
         </li>
         <li class="nav-item">
+            @can('student-list')
             <a href="{{ route('students.index') }}" class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-user-graduate"></i>
                 <p>
                     Siswa
                 </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item">
             <a href="{{ route('teachers.index') }}" class="nav-link {{ request()->routeIs('teachers.*') ? 'active' : '' }}">

@@ -9,6 +9,14 @@ use App\Http\Requests\{StudentStoreRequest, StudentUpdateRequest};
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:student-list|student-create|student-edit|student-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:student-create', ['only' => ['create','store']]);
+        $this->middleware('permission:student-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:student-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         if (request()->ajax()) {

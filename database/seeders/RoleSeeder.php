@@ -14,22 +14,27 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create([
+        $superadmin = Role::create([
             'name' => 'Superadmin',
             'guard_name' => 'web'
         ]);
 
         Role::create([
-            'name' => 'Admin',
+            'name' => 'Operator',
             'guard_name' => 'web'
         ]);
 
         Role::create([
-            'name' => 'User',
+            'name' => 'Guru',
             'guard_name' => 'web'
         ]);
 
-        $role->givePermissionTo([
+        Role::create([
+            'name' => 'Siswa',
+            'guard_name' => 'web'
+        ]);
+
+        $superadmin->givePermissionTo([
             'user-list',
             'user-create',
             'user-edit',
@@ -38,6 +43,30 @@ class RoleSeeder extends Seeder
             'role-create',
             'role-edit',
             'role-delete',
+            'student-list',
+            'student-create',
+            'student-edit',
+            'student-delete',
+            'teacher-list',
+            'teacher-create',
+            'teacher-edit',
+            'teacher-delete',
+            'classroom-list',
+            'classroom-create',
+            'classroom-edit',
+            'classroom-delete',
+            'studies-list',
+            'studies-create',
+            'studies-edit',
+            'studies-delete',
+            'major-list',
+            'major-create',
+            'major-edit',
+            'major-delete',
+            'room-list',
+            'room-create',
+            'room-edit',
+            'room-delete',
         ]);
     }
 }
