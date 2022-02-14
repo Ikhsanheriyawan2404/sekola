@@ -67,11 +67,15 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', [
-            'title' => 'Profil saya',
-            'user' => $user,
-            'student' => Student::where('id', $user->id),
-        ]);
+        if ($user->id === auth()->user()->id) {
+            return view('users.show', [
+                'title' => 'Profil saya',
+                'user' => $user,
+                'student' => Student::where('id', $user->id),
+            ]);
+        } else {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
     }
 
     public function editPassword(User $user)
