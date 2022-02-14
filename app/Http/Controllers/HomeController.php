@@ -17,13 +17,32 @@ class HomeController extends Controller
     public function home()
     {
         return view('dashboard', [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
+            'students' => Student::all(),
+            'teachers' => Teacher::all(),
+            'classrooms' => Classroom::all(),
+            'studies' => Study::all(),
+            'majors' => Major::all(),
+            'rooms' => Room::all(),
         ]);
     }
 
-    public function dashboard()
+    public function admin()
     {
         return view('dashboard_admin', [
+            'title' => 'Dashboard',
+            'students' => Student::all(),
+            'teachers' => Teacher::all(),
+            'classrooms' => Classroom::all(),
+            'studies' => Study::all(),
+            'majors' => Major::all(),
+            'rooms' => Room::all(),
+        ]);
+    }
+
+    public function teacher()
+    {
+        return view('dashboard_teacher', [
             'title' => 'Dashboard',
             'students' => Student::all(),
             'teachers' => Teacher::all(),

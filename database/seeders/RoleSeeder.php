@@ -29,7 +29,7 @@ class RoleSeeder extends Seeder
             'guard_name' => 'web'
         ]);
 
-        Role::create([
+        $student = Role::create([
             'name' => 'Siswa',
             'guard_name' => 'web'
         ]);
@@ -73,6 +73,7 @@ class RoleSeeder extends Seeder
             'schedule-delete',
             'setting-list',
             'setting-edit',
+            'dashboard-admin',
         ]);
 
         $operator->givePermissionTo([
@@ -105,6 +106,11 @@ class RoleSeeder extends Seeder
             'schedule-create',
             'schedule-edit',
             'schedule-delete',
+            'dashboard-admin',
+        ]);
+
+        $student->givePermissionTo([
+            'dashboard-student',
         ]);
     }
 }

@@ -15,28 +15,34 @@
         <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
-            <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-                Dashboard Admin
-            </p>
+            @can('dashboard-admin')
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
+                </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item menu-open">
+            @can('dashboard-student')
             <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-                Dashboard
-            </p>
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
+                </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item">
+            @can('schedule-list')
             <a href="{{ route('schedules.index') }}" class="nav-link {{ request()->routeIs('schedules.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-clock"></i>
                 <p>
                     Jadwal
                 </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item">
             @can('student-list')
@@ -148,12 +154,14 @@
             </ul>
         </li>
         <li class="nav-item">
+            @can('setting-list')
             <a href="{{ route('settings.index') }}" class="nav-link {{ request()->routeIs('settings.*') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                     Pengaturan
                 </p>
             </a>
+            @endcan
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"

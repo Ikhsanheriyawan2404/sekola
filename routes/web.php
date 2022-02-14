@@ -21,8 +21,9 @@ Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [HomeController::class, 'dashboard'])->name('home');
-    // Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
+    Route::get('/admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
+    Route::get('/teacher/dashboard/{teacher:id}', [HomeController::class, 'teacher'])->name('teacher.dashboard');
+    Route::get('/student/dashboard', [HomeController::class, 'home'])->name('home');
     Route::resources(['users' => UserController::class]);
     Route::resources(['roles' => RoleController::class]);
     Route::resources(['students' => StudentController::class]);
