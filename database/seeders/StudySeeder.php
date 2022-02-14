@@ -14,29 +14,59 @@ class StudySeeder extends Seeder
      */
     public function run()
     {
-        $study1 = Study::create([
+        Study::create([
             'name' => 'Pemrograman Web Dasar',
             'study_code' => 'MK201',
-            'major_id' => 1,
+            'major_id' => 2,
             'type' => 'Kejuruan',
         ]);
 
-        // $study1->teachers()->sync(1);
+        Study::create([
+            'name' => 'Data Mining',
+            'study_code' => 'MK202',
+            'major_id' => 2,
+            'type' => 'Kejuruan',
+        ]);
 
-        $study2 = Study::create([
+        Study::create([
+            'name' => 'Machine Learning',
+            'study_code' => 'MK203',
+            'major_id' => 2,
+            'type' => 'Kejuruan',
+        ]);
+
+        Study::create([
             'name' => 'Bahasa Indonesia',
             'study_code' => 'BI200',
-            'major_id' => 1,
+            'major_id' => 5,
             'type' => 'Umum',
         ]);
 
-        // $study2->teachers()->sync(2);
+        Study::create([
+            'name' => 'Matematika',
+            'study_code' => 'MK201',
+            'major_id' => 5,
+            'type' => 'Kejuruan',
+        ]);
 
+        Study::create([
+            'name' => 'Bahasa Inggris',
+            'study_code' => 'MK201',
+            'major_id' => 5,
+            'type' => 'Kejuruan',
+        ]);
+
+        Study::create([
+            'name' => 'Pemrograman Android Dasar',
+            'study_code' => 'MK201',
+            'major_id' => 2,
+            'type' => 'Kejuruan',
+        ]);
 
         Study::create([
             'name' => 'Pemeliharaan Mesin',
             'study_code' => 'MK201',
-            'major_id' => 1,
+            'major_id' => 3,
             'type' => 'Kejuruan',
         ]);
     }

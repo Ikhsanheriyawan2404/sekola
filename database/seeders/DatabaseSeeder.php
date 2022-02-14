@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\SettingSeeder;
+use Database\Seeders\ScheduleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,7 +26,8 @@ class DatabaseSeeder extends Seeder
             ClassroomSeeder::class,
             StudentSeeder::class,
             SettingSeeder::class,
+            ScheduleSeeder::class,
         ]);
-        // \App\Models\Student::factory(50)->create();
+        \App\Models\Student::factory(50)->create();
     }
 }

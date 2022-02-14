@@ -15,8 +15,8 @@ class ClassroomSeeder extends Seeder
     public function run()
     {
         Classroom::create([
-            'name' => 'X TKJ 1',
-            'major_id' => 1,
+            'name' => 'X RPL 1',
+            'major_id' => 2,
             'teacher_id' => 2,
         ]);
 

@@ -25,6 +25,7 @@ class StudentFactory extends Factory
             'date_of_birth' => $this->faker->date(),
             'phone' => $this->faker->numberBetween(1, 999999),
             'address' => $this->faker->address(),
+            'email' => $this->faker->email(),
         ];
     }
 }

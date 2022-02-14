@@ -29,5 +29,9 @@ class MajorSeeder extends Seeder
         Major::create([
             'name' => 'Teknik Sepeda Motor'
         ]);
+
+        Major::create([
+            'name' => 'Umum'
+        ]);
     }
 }
