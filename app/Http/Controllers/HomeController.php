@@ -24,12 +24,13 @@ class HomeController extends Controller
     {
         return view('dashboard', [
             'title' => 'Dashboard',
-            'students' => Student::all(),
-            'teachers' => Teacher::all(),
-            'classrooms' => Classroom::all(),
-            'studies' => Study::all(),
-            'majors' => Major::all(),
-            'rooms' => Room::all(),
+            'student' => $student,
+            // 'students' => Student::all(),
+            // 'teachers' => Teacher::all(),
+            // 'classrooms' => Classroom::all(),
+            // 'studies' => Study::all(),
+            // 'majors' => Major::all(),
+            // 'rooms' => Room::all(),
         ]);
     }
 
@@ -50,12 +51,13 @@ class HomeController extends Controller
     {
         return view('dashboard_teacher', [
             'title' => 'Dashboard',
-            'students' => Student::all(),
-            'teachers' => Teacher::all(),
+            'teacher' => $teacher,
+            // 'students' => Student::all(),
+            // 'teachers' => Teacher::all(),
             'classrooms' => Classroom::all(),
-            'studies' => Study::all(),
-            'majors' => Major::all(),
-            'rooms' => Room::all(),
+            // 'studies' => Study::all(),
+            // 'majors' => Major::all(),
+            // 'rooms' => Room::all(),
         ]);
     }
 

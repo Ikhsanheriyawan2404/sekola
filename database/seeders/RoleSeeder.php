@@ -24,7 +24,7 @@ class RoleSeeder extends Seeder
             'guard_name' => 'web'
         ]);
 
-        Role::create([
+        $teacher = Role::create([
             'name' => 'Guru',
             'guard_name' => 'web'
         ]);
@@ -111,6 +111,10 @@ class RoleSeeder extends Seeder
 
         $student->givePermissionTo([
             'dashboard-student',
+        ]);
+
+        $teacher->givePermissionTo([
+            'dashboard-teacher',
         ]);
     }
 }

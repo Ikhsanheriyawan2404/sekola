@@ -28,6 +28,7 @@ class TeacherRequest extends FormRequest
             'gender' => ['required'],
             'photo' => 'image|mimes:jpg,jpeg,png|max:2058',
             'studies' => 'required|array',
+            'email' => 'required',
         ];
     }
 }

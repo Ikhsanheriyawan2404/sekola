@@ -26,7 +26,17 @@
         </li>
         <li class="nav-item menu-open">
             @can('dashboard-student')
-            <a href="" class="nav-link {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('student.dashboard', auth()->user()->student->id) }}" class="nav-link {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
+                </p>
+            </a>
+            @endcan
+        </li>
+        <li class="nav-item menu-open">
+            @can('dashboard-teacher')
+            <a href="{{ route('teacher.dashboard', auth()->user()->teacher->id) }}" class="nav-link {{ request()->routeIs('teacher.dashboard') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard

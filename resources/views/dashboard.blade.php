@@ -93,6 +93,61 @@
                 </ul>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-widget widget-user-2">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-primary">
+                        <div class="widget-user-image">
+                        <img class="img-circle elevation-2" src="{{ $student->takeImage }}" alt="User Avatar">
+                        </div>
+                        <!-- /.widget-user-image -->
+                        <h3 class="widget-user-username">{{ $student->name }}</h3>
+                        <h5 class="widget-user-desc">{{ $student->classroom->name }}</h5>
+                    </div>
+                    <div class="card-footer p-0">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">NIP :
+                                {{ $student->nisn }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Jenis Kelamin :
+                                {{ $student->gender == 'L' ? 'Laki-Laki' : 'Perempuan'}}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Agama :
+                                {{ $student->religion }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Tanggal Lahir :
+                                {{ date("d-m-Y", strtotime($student->date_of_birth)) }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Alamat :
+                                {{ $student->address }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Email :
+                                {{ $student->email }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">No HP :
+                                {{ $student->phone }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="{{ route('users.show', $student->id) }}" class="btn btn-primary mb-3 float-right">Edit Password <i class="fa fa-pencil-alt"></i></a>
+            </div>
+        </div>
     </div><!-- /.container-fluid -->
 </section>
 @endsection
