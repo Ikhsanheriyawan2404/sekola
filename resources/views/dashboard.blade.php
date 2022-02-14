@@ -22,79 +22,41 @@
 
 <section class="content">
     <div class="container-fluid">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Jadwal Pelajaran</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <table class="table table-bordered">
-                <thead>
-                    <tr>
-                    <th style="width: 10px">No</th>
-                    <th>Hari</th>
-                    <th>Mata Pelajaran</th>
-                    <th>Jam Pelajaran</th>
-                    <th>Ruang</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>1.</td>
-                    <td>Update software</td>
-                    <td>
-                        <div class="progress progress-xs">
-                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-danger">55%</span></td>
-                    </tr>
-                    <tr>
-                    <td>2.</td>
-                    <td>Clean database</td>
-                    <td>
-                        <div class="progress progress-xs">
-                        <div class="progress-bar bg-warning" style="width: 70%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-warning">70%</span></td>
-                    </tr>
-                    <tr>
-                    <td>3.</td>
-                    <td>Cron job running</td>
-                    <td>
-                        <div class="progress progress-xs progress-striped active">
-                        <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-primary">30%</span></td>
-                    </tr>
-                    <tr>
-                    <td>4.</td>
-                    <td>Fix and squish bugs</td>
-                    <td>
-                        <div class="progress progress-xs progress-striped active">
-                        <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                    </td>
-                    <td><span class="badge bg-success">90%</span></td>
-                    </tr>
-                </tbody>
-                </table>
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                </ul>
-            </div>
-        </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Jadwal Pelajaran {{ $student->classroom->name }}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">No</th>
+                                    <th>Hari</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th>Jam Pelajaran</th>
+                                    <th>Ruang</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($schedules->where('classroom_id', $student->classroom_id) as $schedule)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $schedule->day }}</td>
+                                    <td>{{ $schedule->study->name }} <i class="text-muted">({{ $schedule->teacher->name }})</i></td>
+                                    <td>{{ date('H:i', strtotime($schedule->start)) }} - {{ date('H:i', strtotime($schedule->finished)) }}</td>
+                                    <td>{{ $schedule->room->name }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <div class="col-md-6">
                 <div class="card card-widget widget-user-2">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header bg-primary">
@@ -146,6 +108,39 @@
                     </div>
                 </div>
                 <a href="{{ route('users.show', $student->id) }}" class="btn btn-primary mb-3 float-right">Edit Password <i class="fa fa-pencil-alt"></i></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Pelajaran {{ $student->classroom->name }}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">No</th>
+                                    <th>Mata Pelajaran</th>
+                                    <th class="text-center" style="width: 100px;"><i class="fa fa-cogs"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($classroom->where('classroom_id', $student->classroom_id) as $schedule)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $schedule->study->name }}</td>
+                                    <td>
+                                        <a href="" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
             </div>
         </div>
     </div><!-- /.container-fluid -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Schedule;
 use App\Models\{Student, Teacher, Classroom, Study, Major, Room, Setting};
 
 class HomeController extends Controller
@@ -25,12 +26,7 @@ class HomeController extends Controller
         return view('dashboard', [
             'title' => 'Dashboard',
             'student' => $student,
-            // 'students' => Student::all(),
-            // 'teachers' => Teacher::all(),
-            // 'classrooms' => Classroom::all(),
-            // 'studies' => Study::all(),
-            // 'majors' => Major::all(),
-            // 'rooms' => Room::all(),
+            'schedules' => Schedule::all(),
         ]);
     }
 
@@ -52,12 +48,7 @@ class HomeController extends Controller
         return view('dashboard_teacher', [
             'title' => 'Dashboard',
             'teacher' => $teacher,
-            // 'students' => Student::all(),
-            // 'teachers' => Teacher::all(),
-            'classrooms' => Classroom::all(),
-            // 'studies' => Study::all(),
-            // 'majors' => Major::all(),
-            // 'rooms' => Room::all(),
+            'classrooms' => Classroom::all()
         ]);
     }
 

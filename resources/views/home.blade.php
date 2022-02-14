@@ -53,6 +53,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
           </div>
         </form>
+
+
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            <li class="nav-item">
+                <form action="{{ route('logout', []) }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-sm">Keluar</button>
+                </form>
+            </li>
+        </ul>
       </div>
 
     </div>
