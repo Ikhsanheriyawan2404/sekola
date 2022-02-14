@@ -26,7 +26,7 @@
         </li>
         <li class="nav-item menu-open">
             @can('dashboard-student')
-            <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+            <a href="" class="nav-link {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard

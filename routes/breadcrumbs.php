@@ -8,9 +8,19 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
-// Home
+// Home Student
+Breadcrumbs::for('home_student', function (BreadcrumbTrail $trail) {
+    $trail->push('Home', route('student.dashboard'));
+});
+
+// Home Teacher
+Breadcrumbs::for('home_teacher', function (BreadcrumbTrail $trail) {
+    $trail->push('Home', route('teacher.dashboard'));
+});
+
+// Home Admin
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
-    $trail->push('Home', route('home'));
+    $trail->push('Home', route('admin.dashboard'));
 });
 
 // Home > Siswa

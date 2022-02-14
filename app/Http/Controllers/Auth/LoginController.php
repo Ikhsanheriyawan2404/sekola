@@ -46,10 +46,10 @@ class LoginController extends Controller
             return redirect()->route('admin.dashboard');
         } else if ($user->hasRole('Guru')) {
             Alert::success('Selamat', 'Kamu berhasil login');
-            return redirect()->route('teacher.dashboard');
+            return redirect()->route('teacher.dashboard', $user->teacher->id);
         } else if ($user->hasRole('Siswa')) {
             Alert::success('Selamat', 'Kamu berhasil login');
-            return redirect()->route('student.dashboard');
+            return redirect()->route('student.dashboard', $user->student->id);
         }
     }
 

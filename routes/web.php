@@ -15,7 +15,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SettingController;
 
 // Auth::routes(['register' => false]);
-Route::get('kontol', [HomeController::class,  'index']);
+Route::get('home', [HomeController::class,  'index']);
 Route::get('', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
@@ -23,7 +23,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
     Route::get('/teacher/dashboard/{teacher:id}', [HomeController::class, 'teacher'])->name('teacher.dashboard');
-    Route::get('/student/dashboard', [HomeController::class, 'home'])->name('home');
+    Route::get('/student/dashboard/{student:id}', [HomeController::class, 'student'])->name('student.dashboard');
     Route::resources(['users' => UserController::class]);
     Route::put('users/{user:id}/edit_password', [UserController::class, 'editPassword'])->name('edit.password');
     Route::resources(['roles' => RoleController::class]);

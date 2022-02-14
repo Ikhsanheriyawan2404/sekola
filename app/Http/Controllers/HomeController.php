@@ -6,6 +6,12 @@ use App\Models\{Student, Teacher, Classroom, Study, Major, Room, Setting};
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:dashboard-admin', ['only' => ['admin']]);
+        $this->middleware('permission:dashboard-student', ['only' => ['student']]);
+        $this->middleware('permission:dashboard-teacher', ['only' => ['teacher']]);
+    }
     public function index()
     {
         return view('home', [
@@ -14,7 +20,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function home()
+    public function student(Student $student)
     {
         return view('dashboard', [
             'title' => 'Dashboard',
@@ -40,7 +46,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function teacher()
+    public function teacher(Teacher $teacher)
     {
         return view('dashboard_teacher', [
             'title' => 'Dashboard',
