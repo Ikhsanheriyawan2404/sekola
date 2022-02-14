@@ -19,5 +19,5 @@ class Module extends Model
     public function study()
     {
         return $this->belongsTo(Study::class);
-    }v
+    }
 }
