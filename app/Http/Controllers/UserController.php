@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,10 +28,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(User $user)
-    {
-        return response()->json($user);
-    }
+    // public function show(User $user)
+    // {
+    //     return response()->json($user);
+    // }
 
     public function create()
     {
@@ -60,8 +61,31 @@ class UserController extends Controller
         ]);
 
         $user->assignRole($request['roles']);
-        toast('Data pelanggan berhasil dibuat!','success');
+        toast('Data pengguna berhasil dibuat!','success');
         return redirect()->route('users.index');
+    }
+
+    public function show(User $user)
+    {
+        return view('users.show', [
+            'title' => 'Profil saya',
+            'user' => $user,
+            'student' => Student::where('id', $user->id),
+        ]);
+    }
+
+    public function editPassword(User $user)
+    {
+        request()->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user->update([
+            'password' => Hash::make(request('password')),
+        ]);
+
+        toast('Password user berhasil diubah!', 'success');
+        return redirect()->back();
     }
 
     public function edit(User $user)
@@ -86,6 +110,7 @@ class UserController extends Controller
             'email' => request('email'),
             'address' => request('address'),
         ]);
+
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
         $user->assignRole(request('roles'));
         toast('Data pelanggan berhasil diubah!','success');

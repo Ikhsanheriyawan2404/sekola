@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\{Study, Teacher};
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\TeacherRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -77,6 +79,14 @@ class TeacherController extends Controller
 
         $teacher->studies()->sync(request('studies'));
 
+        $user = User::create([
+            'name' => $teacher['name'],
+            'email' => $teacher['email'],
+            'password' => Hash::make($teacher['nip'],),
+        ]);
+
+        $user->assignRole('Guru');
+
         toast('Data guru berhasil dibuat!','success');
         return redirect()->route('teachers.index');
     }
@@ -90,7 +100,7 @@ class TeacherController extends Controller
         ]);
     }
 
-    public function update(TeacherRequest $request, Teacher $teacher    )
+    public function update(TeacherRequest $request, Teacher $teacher)
     {
         $request->validated();
 

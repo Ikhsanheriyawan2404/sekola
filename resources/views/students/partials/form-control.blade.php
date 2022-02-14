@@ -59,24 +59,6 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="name">Nomor telepon <span class="text-danger">*</span></label>
-                <input type="number" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Masukan nomor telepon" value="{{ $student->phone ?? old('phone') }}">
-                @error('phone')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            {{-- <div class="form-group">
-                <label for="email">Alamat email</label>
-                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="cth: user@mail.test" value="{{ $student->name ?? old('email') }}">
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div> --}}
-            <div class="form-group">
                 <label for="address">Alamat tempat tinggal</label>
                 <textarea name="address" class="form-control @error('address') is-invalid @enderror">{{ $student->address ?? old('address') }}</textarea>
                 @error('address')
@@ -109,6 +91,24 @@
                     @endforeach
                 </select>
                 @error('classroom_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="name">Nomor telepon <span class="text-danger">*</span></label>
+                <input type="number" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Masukan nomor telepon" value="{{ $student->phone ?? old('phone') }}">
+                @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="email">Alamat email</label>
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="cth: user@mail.test" value="{{ $student->email ?? old('email') }}">
+                @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

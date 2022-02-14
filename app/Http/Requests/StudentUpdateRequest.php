@@ -31,6 +31,7 @@ class StudentUpdateRequest extends FormRequest
             'date_of_birth' => ['required'],
             'image' => 'image|mimes:jpg,jpeg,png|max:2058',
             'phone' => ['required', 'max:255'],
+            'email' => ['required', 'max:255'],
             'classroom_id' => ['required'],
         ];
     }

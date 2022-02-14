@@ -14,14 +14,19 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-        Student::create([
-            'name' => 'Ikhsan Heriyawan',
-            'nisn' => '240416',
-            'gender' => 'L',
-            'religion' => 'Islam',
-            'classroom_id' => 1,
-            'date_of_birth' => '2001-02-19',
-            'phone' => '082117088123',
-        ]);
+        // $student = Student::create([
+        //     'name' => 'Ikhsan Heriyawan',
+        //     'nisn' => '240416',
+        //     'gender' => 'L',
+        //     'religion' => 'Islam',
+        //     'classroom_id' => 1,
+        //     'date_of_birth' => '2001-02-19',
+        //     'phone' => '082117088123',
+        //     'email' => 'ikhsan@gmail.com',
+        // ]);
+
+        // User::create([
+        //     'name' => $student['name'],
+        // ]);
     }
 }

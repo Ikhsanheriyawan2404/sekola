@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             SettingSeeder::class,
         ]);
-        \App\Models\Student::factory(50)->create();
+        // \App\Models\Student::factory(50)->create();
     }
 }

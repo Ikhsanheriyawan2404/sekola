@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\{Student, Classroom};
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\{StudentStoreRequest, StudentUpdateRequest};
@@ -73,21 +75,29 @@ class StudentController extends Controller
 
     public function store(StudentStoreRequest $request)
     {
-
         $request->validated();
 
-        Student::create([
+        $student = Student::create([
             'name' => request('name'),
             'nisn' => request('nisn'),
             'gender' => request('gender'),
             'religion' => request('religion'),
             'date_of_birth' => request('date_of_birth'),
             'phone' => request('phone'),
+            'email' => request('email'),
             'image' => request('image') ? request()->file('image')->store('img/students') : null,
             'address' => request('address'),
             'classroom_id' => request('classroom_id'),
         ]);
 
+        $user = User::create([
+            'name' => $student['name'],
+            'email' => $student['email'],
+            'password' => Hash::make($student['nisn']),
+            'student_id' => $student['id'],
+        ]);
+
+        $user->assignRole('Siswa');
 
         toast('Data siswa berhasil dibuat!','success');
         return redirect()->route('students.index');
@@ -122,6 +132,7 @@ class StudentController extends Controller
             'religion' => request('religion'),
             'date_of_birth' => request('date_of_birth'),
             'phone' => request('phone'),
+            'email' => request('email'),
             'image' => $image,
             'address' => request('address'),
             'classroom_id' => request('classroom_id'),
