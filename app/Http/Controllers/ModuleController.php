@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Module, Study, Classroom};
+use Illuminate\Support\Facades\Storage;
 
 class ModuleController extends Controller
 {
@@ -54,6 +55,15 @@ class ModuleController extends Controller
         ]);
 
         toast('Modul berhasil ditambahkan!', 'success');
+        return redirect()->back();
+    }
+
+    public function destroy(Module $module)
+    {
+        Storage::delete($module->modul);
+        $module->delete();
+
+        toast('Data siswa berhasil dihapus!','success');
         return redirect()->back();
     }
 }

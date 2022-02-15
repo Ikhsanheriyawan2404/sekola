@@ -38,7 +38,9 @@
                                     <th>Deskripsi</th>
                                     <th>Bahan Ajar</th>
                                     <th>Referensi</th>
-                                    <th style="width: 100px" class="text-center"><i class="fa fa-cogs"></i></th>
+                                    <th class="text-center">
+                                        <i class="fa fa-cogs"></i>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,9 +51,13 @@
                                     <td>{{ $module->description }}</td>
                                     <td><a href="/storage/{{ $module->modul }}">{{ str_replace("file/", "", $module->modul) }}</a></td>
                                     <td>{{ $module->reference }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('modules.edit', $module->id) }}" class="btn btn-sm btn-primary my-2"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="{{ route('modules.destroy', $module->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                    <td class="justify-content-center">
+                                        <a href="{{ route('modules.edit', $module->id) }}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-pencil-alt"></i></a>
+                                        <form action="{{ route('modules.destroy', $module->id) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah yakin ingin menghapus ini!?')"><i class="fa fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
