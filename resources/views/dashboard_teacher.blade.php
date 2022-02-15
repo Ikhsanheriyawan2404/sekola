@@ -36,7 +36,7 @@
                                 <th style="width: 10px">No</th>
                                 <th>Kelas</th>
                                 <th>Mata Pelajaran</th>
-                                <th style="width: 150px" class="text-center"><i class="fa fa-cogs"></i></th>
+                                <th style="width: 200px" class="text-center"><i class="fa fa-cogs"></i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +46,8 @@
                                 <td>{{ $schedule->classroom->name }}</td>
                                 <td>{{ $schedule->study->name }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('modules.create',[ $schedule->study->id, $schedule->classroom->id]) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
+                                    <a href="{{ route('modules.show', $schedule->study->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat</a>
+                                    <a href="{{ route('modules.create',[$schedule->study->id, $schedule->classroom->id]) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -36,8 +36,15 @@ Route::middleware('auth')->group(function () {
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
-    Route::resources(['modules' => ModuleController::class]);
-    Route::get('modules/create/{study:id}/{id}', [ModuleController::class, 'create'])->name('modules.create');
+    Route::get('modules/{study:id}/show', [ModuleController::class, 'show'])->name('modules.show');
+
+    Route::prefix('modules')->group(function () {
+        Route::get('{module:id}/edit', [ModuleController::class, 'edit'])->name('modules.edit');
+        Route::put('{module:id}/', [ModuleController::class, 'update'])->name('modules.update');
+        Route::delete('{module:id}/', [ModuleController::class, 'destroy'])->name('modules.destroy');
+        Route::get('create/{study:id}/{id}', [ModuleController::class, 'create'])->name('modules.create');
+        Route::post('', [ModuleController::class, 'store'])->name('modules.store');
+    });
 
     Route::get('setting_school', [SettingController::class, 'index'])->name('settings.index');
     Route::put('setting_school/{setting:id}', [SettingController::class, 'update'])->name('settings.update');

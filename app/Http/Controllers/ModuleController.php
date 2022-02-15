@@ -6,6 +6,15 @@ use App\Models\{Module, Study, Classroom};
 
 class ModuleController extends Controller
 {
+    public function show(Study $study)
+    {
+        return view('modules.show', [
+            'title' => 'Detail Materi',
+            'study' => $study,
+            'modules' => Module::all(),
+        ]);
+    }
+
     public function create(Study $study, $id)
     {
         $classroom = Classroom::find($id);
