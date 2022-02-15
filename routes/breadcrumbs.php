@@ -113,6 +113,22 @@ Breadcrumbs::for('edit_schedule', function (BreadcrumbTrail $trail, $schedule) {
 //     $trail->push("Show", route('schedules.show', $classroom));
 // });
 
+// Home > Modul
+Breadcrumbs::for('modules', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Modul', route('modules.index'));
+});
+// Home > Modul > [Create]
+Breadcrumbs::for('create_module', function (BreadcrumbTrail $trail) {
+    $trail->parent('modules');
+    $trail->push('Tambah Modul', route('modules.create'));
+});
+// Home > Modul > [Edit]
+Breadcrumbs::for('edit_module', function (BreadcrumbTrail $trail, $module) {
+    $trail->parent('modules');
+    $trail->push("Edit : {$module->name}", route('modules.edit', $module));
+});
+
 // Home > Users
 Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

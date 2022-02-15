@@ -45,6 +45,16 @@
             @endcan
         </li>
         <li class="nav-item">
+            {{-- @can('module-list') --}}
+            <a href="{{ route('modules.index') }}" class="nav-link {{ request()->routeIs('modules.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                    Modul
+                </p>
+            </a>
+            {{-- @endcan --}}
+        </li>
+        <li class="nav-item">
             @can('schedule-list')
             <a href="{{ route('schedules.index') }}" class="nav-link {{ request()->routeIs('schedules.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-clock"></i>

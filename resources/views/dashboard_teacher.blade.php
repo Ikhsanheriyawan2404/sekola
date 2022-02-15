@@ -47,7 +47,7 @@
                                 <td>{{ $classroom->name }}</td>
                                 <td class="text-center">
                                     <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Lihat</a>
-                                    <a href="" class="btn btn-primary btn-sm">Tambah Modul</a>
+                                    <a href="{{ route('modules.create', []) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
                                 </td>
                             </tr>
                             @endforeach

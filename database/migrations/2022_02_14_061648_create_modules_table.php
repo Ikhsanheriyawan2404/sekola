@@ -19,12 +19,15 @@ class CreateModulesTable extends Migration
             $table->string('topic')->nullable();
             $table->text('description')->nullable();
             $table->string('modul')->nullable();
+            $table->string('reference')->nullable();
             $table->unsignedBigInteger('studies_id');
             $table->unsignedBigInteger('classroom_id');
+            $table->unsignedBigInteger('teacher_id');
             $table->timestamps();
 
             $table->foreign('studies_id')->references('id')->on('studies')->onDelete('CASCADE');
             $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('CASCADE');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('CASCADE');
         });
     }
 

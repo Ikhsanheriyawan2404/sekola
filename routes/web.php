@@ -1,18 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudyController;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\SettingController;
 
 // Auth::routes(['register' => false]);
 Route::get('home', [HomeController::class,  'index']);
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
+    Route::resources(['modules' => ModuleController::class]);
 
     Route::get('setting_school', [SettingController::class, 'index'])->name('settings.index');
     Route::put('setting_school/{setting:id}', [SettingController::class, 'update'])->name('settings.update');

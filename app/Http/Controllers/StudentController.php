@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\{Student, Classroom};
+use App\Models\{User, Student, Classroom};
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
