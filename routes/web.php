@@ -1,18 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\MajorController;
-use App\Http\Controllers\StudyController;
-use App\Http\Controllers\ModuleController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController};
 use App\Http\Controllers\Auth\LoginController;
 
 // Auth::routes(['register' => false]);
