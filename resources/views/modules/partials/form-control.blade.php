@@ -2,6 +2,8 @@
 <div class="card-body">
     <div class="row">
         <div class="col-lg-6">
+            <input type="hidden" name="study_id" value="{{ $study->id }}">
+            <input type="hidden" name="classroom_id" value="{{ $classroom->id }}">
             <div class="form-group">
                 <label for="title">Judul <span class="text-danger">*</span></label>
                 <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Masukan judul" value="{{ $module->title ?? old('title') }}">

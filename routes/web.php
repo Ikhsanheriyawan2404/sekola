@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
     Route::resources(['modules' => ModuleController::class]);
-    Route::get('modules/create/{study:id}/{classroom:id}', [ModuleController::class, 'create'])->name('modules.create');
+    Route::get('modules/create/{study:id}/{id}', [ModuleController::class, 'create'])->name('modules.create');
 
     Route::get('setting_school', [SettingController::class, 'index'])->name('settings.index');
     Route::put('setting_school/{setting:id}', [SettingController::class, 'update'])->name('settings.update');

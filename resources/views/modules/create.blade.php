@@ -1,6 +1,7 @@
 @extends('layouts.app', compact('title'))
 
 @section('content')
+@include('sweetalert::alert')
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -11,7 +12,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">{{ Breadcrumbs::render('create_module') }}</li>
+            {{-- <li class="breadcrumb-item active">{{ Breadcrumbs::render('create_module', $) }}</li> --}}
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -23,7 +24,7 @@
 <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Tambah Modul</h3>
+        <h3 class="card-title">Tambah Modul Kelas : {{ $classroom->name }} | Pelajaran : {{ $study->name }}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->

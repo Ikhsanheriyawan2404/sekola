@@ -50,6 +50,7 @@ class HomeController extends Controller
             'teacher' => $teacher,
             'classrooms' => Classroom::all(),
             'schedules' => Schedule::all(),
+            // 'studies' => Study::all(),
         ]);
     }
 

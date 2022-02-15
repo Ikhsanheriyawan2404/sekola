@@ -46,7 +46,7 @@
                                 <td>{{ $schedule->classroom->name }}</td>
                                 <td>{{ $schedule->study->name }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('modules.create', [$schedule->study->id, $schedule->classroom->id]) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
+                                    <a href="{{ route('modules.create',[ $schedule->study->id, $schedule->classroom->id]) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
                                 </td>
                             </tr>
                             @endforeach
