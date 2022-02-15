@@ -127,7 +127,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($classroom->where('classroom_id', $student->classroom_id) as $schedule)
+                                @foreach ($schedules->where('classroom_id', $student->classroom_id) as $schedule)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $schedule->study->name }}</td>
