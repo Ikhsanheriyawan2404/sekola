@@ -44,7 +44,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($modules as $module)
+                                @foreach ($modules->where('studies_id', $study->id) as $module)
                                 <tr>
                                     <td>{{ $module->title }}</td>
                                     <td>{{ $module->topic }}</td>
