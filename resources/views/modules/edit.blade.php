@@ -24,11 +24,11 @@
 <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Edit Modul Kelas : {{ $classroom->name }} | Pelajaran : {{ $study->name }}</h3>
+        <h3 class="card-title">Edit Modul Pelajaran : {{ $module->name }}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('modules.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('modules.update', $module->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             @include('modules.partials.form-control')
