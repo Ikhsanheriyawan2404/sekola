@@ -132,7 +132,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $schedule->study->name }}</td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat</a>
+                                        <a href="{{ route('modules.show', $schedule->study->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat</a>
                                     </td>
                                 </tr>
                                 @endforeach

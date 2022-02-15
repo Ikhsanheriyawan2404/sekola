@@ -37,7 +37,7 @@ class ModuleController extends Controller
         ]);
 
         if (request('modul')) {
-            $filename = request()->file('modul')->getClientOriginalName();
+            $filename = str_replace(' ', '', request()->file('modul')->getClientOriginalName());
             $file = request()->file('modul')->storeAs('file', $filename);
         } else {
             $file = null;
@@ -75,7 +75,7 @@ class ModuleController extends Controller
 
         if (request('modul')) {
             Storage::delete($module->modul);
-            $filename = request()->file('modul')->getClientOriginalName();
+            $filename = str_replace(' ', '', request()->file('modul')->getClientOriginalName());
             $file = request()->file('modul')->storeAs('file', $filename);
         } else if ($module->modul) {
             $file = $module->modul;
