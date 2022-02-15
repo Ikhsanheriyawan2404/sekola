@@ -48,7 +48,8 @@ class HomeController extends Controller
         return view('dashboard_teacher', [
             'title' => 'Dashboard',
             'teacher' => $teacher,
-            'classrooms' => Classroom::all()
+            'classrooms' => Classroom::all(),
+            'schedules' => Schedule::all(),
         ]);
     }
 

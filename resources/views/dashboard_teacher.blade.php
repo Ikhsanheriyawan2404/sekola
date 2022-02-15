@@ -26,7 +26,7 @@
             <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Kelas</h3>
+                        <h3 class="card-title">Mata Pelajaran</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -35,18 +35,17 @@
                             <tr>
                                 <th style="width: 10px">No</th>
                                 <th>Kelas</th>
-                                <th style="width: 200px" class="text-center"><i class="fa fa-cogs"></i></th>
-                                {{-- <th>Jam Pelajaran</th> --}}
-                                {{-- <th>Ruang</th> --}}
+                                <th>Mata Pelajaran</th>
+                                <th style="width: 150px" class="text-center"><i class="fa fa-cogs"></i></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($classrooms->where('teacher_id', $teacher->id) as $classroom)
+                            @foreach ($schedules->where('teacher_id', $teacher->id) as $schedule)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $classroom->name }}</td>
+                                <td>{{ $schedule->classroom->name }}</td>
+                                <td>{{ $schedule->study->name }}</td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Lihat</a>
                                     <a href="{{ route('modules.create', []) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
                                 </td>
                             </tr>
@@ -59,7 +58,39 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Kelas</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">No</th>
+                                <th>Kelas</th>
+                                <th style="width: 100px" class="text-center"><i class="fa fa-cogs"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($classrooms->where('teacher_id', $teacher->id) as $classroom)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $classroom->name }}</td>
+                                <td class="text-center">
+                                    <a href"" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <div class="col-md-6">
                 <div class="card card-widget widget-user-2">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header bg-primary">
