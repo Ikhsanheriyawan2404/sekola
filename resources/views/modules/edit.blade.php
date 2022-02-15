@@ -24,12 +24,13 @@
 <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Tambah Modul Kelas : {{ $classroom->name }} | Pelajaran : {{ $study->name }}</h3>
+        <h3 class="card-title">Edit Modul Kelas : {{ $classroom->name }} | Pelajaran : {{ $study->name }}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
         <form action="{{ route('modules.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             @include('modules.partials.form-control')
         </form>
     </div>
@@ -43,6 +44,7 @@
     <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script>
         $(document).ready(function() {
+
             bsCustomFileInput.init();
 
             $(document).on('submit', 'form', function() {

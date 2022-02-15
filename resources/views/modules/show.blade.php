@@ -29,8 +29,8 @@
                         <h3 class="card-title">Modul {{ $study->name }}</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <table class="table table-bordered table-responsive">
+                    <div class="card-body table-responsive">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Judul</th>
@@ -51,7 +51,7 @@
                                     <td>{{ $module->description }}</td>
                                     <td><a href="/storage/{{ $module->modul }}">{{ str_replace("file/", "", $module->modul) }}</a></td>
                                     <td>{{ $module->reference }}</td>
-                                    <td class="justify-content-center">
+                                    <td class="d-flex justify-content-center">
                                         <a href="{{ route('modules.edit', $module->id) }}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-pencil-alt"></i></a>
                                         <form action="{{ route('modules.destroy', $module->id) }}" method="post" enctype="multipart/form-data">
                                             @csrf
