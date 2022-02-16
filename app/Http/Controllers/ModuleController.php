@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
 use Illuminate\Support\Facades\Storage;
-use App\Models\{Module, Study, Classroom};
+use App\Models\{Module, Study, Classroom, Teacher};
 
 class ModuleController extends Controller
 {
@@ -44,15 +43,15 @@ class ModuleController extends Controller
     {
         request()->validate([
             'title' => 'required',
-            'modul' => 'file|mimes:pdf,docx,pptx,xlsx|max:4096',
+            'file' => 'file|mimes:pdf,docx,pptx,xlsx|max:4096',
             'study_id' => 'required',
             'classroom_id' => 'required',
             'teacher_id' => 'required',
         ]);
 
-        if (request('modul')) {
-            $filename = str_replace(' ', '', request()->file('modul')->getClientOriginalName());
-            $file = request()->file('modul')->storeAs('file', $filename);
+        if (request('file')) {
+            $filename = str_replace(' ', '', request()->file('file')->getClientOriginalName());
+            $file = request()->file('file')->storeAs('file', $filename);
         } else {
             $file = null;
         }
@@ -61,10 +60,10 @@ class ModuleController extends Controller
             'title' => request('title'),
             'topic' => request('topic'),
             'description' => request('description'),
-            'modul' => $file,
+            'file' => $file,
             'reference' => request('reference'),
             'teacher_id' => request('teacher_id'),
-            'studies_id' => request('study_id'),
+            'study_id' => request('study_id'),
             'classroom_id' => request('classroom_id'),
         ]);
 
@@ -75,7 +74,6 @@ class ModuleController extends Controller
     public function edit(Module $module, $id)
     {
         $teacher = Teacher::find($id);
-        // dd($teacher);
         if ($teacher->id == auth()->user()->teacher_id) {
             return view('modules.edit', [
                 'title' => 'Edit Modul',
@@ -91,15 +89,15 @@ class ModuleController extends Controller
     {
         request()->validate([
             'title' => 'required',
-            'modul' => 'file|mimes:pdf,docx,pptx,xlsx|max:4096',
+            'file' => 'file|mimes:pdf,docx,pptx,xlsx|max:4096',
         ]);
 
-        if (request('modul')) {
-            Storage::delete($module->modul);
-            $filename = str_replace(' ', '', request()->file('modul')->getClientOriginalName());
-            $file = request()->file('modul')->storeAs('file', $filename);
-        } else if ($module->modul) {
-            $file = $module->modul;
+        if (request('file')) {
+            Storage::delete($module->file);
+            $filename = str_replace(' ', '', request()->file('file')->getClientOriginalName());
+            $file = request()->file('file')->storeAs('file', $filename);
+        } else if ($module->file) {
+            $file = $module->file;
         } else {
             $file = null;
         }
@@ -108,7 +106,7 @@ class ModuleController extends Controller
             'title' => request('title'),
             'topic' => request('topic'),
             'description' => request('description'),
-            'modul' => $file,
+            'file' => $file,
             'reference' => request('reference'),
         ]);
 
@@ -118,7 +116,7 @@ class ModuleController extends Controller
 
     public function destroy(Module $module)
     {
-        Storage::delete($module->modul);
+        Storage::delete($module->file);
         $module->delete();
 
         toast('Data siswa berhasil dihapus!','success');

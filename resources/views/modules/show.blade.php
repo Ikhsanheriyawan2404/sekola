@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                @foreach ($modules->where('studies_id', $study->id) as $module)
+                @foreach ($modules->where('study_id', $study->id) as $module)
 
                 <div class="card card-primary card-outline collapsed-card">
                     <div class="card-header d-flex p-0">
@@ -46,7 +46,7 @@
                             <li class="nav-item"><a class="nav-link active" href="#{{ strtok($module->topic, " ") }}" data-toggle="tab">Topik</a></li>
                             <li class="nav-item"><a class="nav-link" href="#{{ strtok($module->description, " ") }}" data-toggle="tab">Description</a></li>
                             <li class="nav-item"><a class="nav-link" href="#{{
-                            strtok(str_replace("file/", "", $module->modul), ".")
+                            strtok(str_replace("file/", "", $module->file), ".")
                             }}" data-toggle="tab">Bahan Ajar</a></li>
                             <li class="nav-item"><a class="nav-link" href="#{{ strtok($module->reference, " ") }}" data-toggle="tab">Referensi</a></li>
 
@@ -71,8 +71,8 @@
                             </div>
                             <!-- /.tab-pane -->
                             <div class="tab-pane" id="{{
-                                strtok(str_replace("file/", "", $module->modul), ".") }}">
-                                <a href="/storage/{{ $module->modul }}">{{ str_replace("file/", "", $module->modul) }}</a>
+                                strtok(str_replace("file/", "", $module->file), ".") }}">
+                                <a href="/storage/{{ $module->file }}">{{ str_replace("file/", "", $module->file) }}</a>
                             </div>
                             <!-- /.tab-pane -->
                             <div class="tab-pane" id="{{ strtok($module->reference, " ") }}">

@@ -36,9 +36,9 @@
             <div class="form-group">
                 <label for="customFile">File pembelajaran</span></label>
                 <div class="custom-file">
-                    <input type="file" name="modul" class="custom-file-input @error('modul') is-invalid @enderror" id="customFile">
+                    <input type="file" name="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile">
                     <label class="custom-file-label" for="customFile">Pilih file</label>
-                    @error('modul')
+                    @error('file')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
