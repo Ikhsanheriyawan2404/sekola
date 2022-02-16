@@ -28,11 +28,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('modules')->group(function () {
         Route::post('', [ModuleController::class, 'store'])->name('modules.store');
-        Route::get('create/{study:id}/{id}', [ModuleController::class, 'create'])->name('modules.create');
+        Route::get('create/{study:id}/{id}/{teacher:id}', [ModuleController::class, 'create'])->name('modules.create');
         Route::get('{study:id}/show', [ModuleController::class, 'show'])->name('modules.show');
         Route::put('{module:id}', [ModuleController::class, 'update'])->name('modules.update');
         Route::delete('{module:id}', [ModuleController::class, 'destroy'])->name('modules.destroy');
-        Route::get('{module:id}/edit', [ModuleController::class, 'edit'])->name('modules.edit');
+        Route::get('{module:id}/{id}/edit', [ModuleController::class, 'edit'])->name('modules.edit');
     });
 
     Route::get('setting_school', [SettingController::class, 'index'])->name('settings.index');

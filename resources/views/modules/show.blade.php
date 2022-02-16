@@ -39,7 +39,7 @@
                     <div class="card-header d-flex p-0">
                         <h3 class="card-title p-3">{{ $module->title }}
                             @can('module-edit')
-                            <a href="{{ route('modules.edit', $module->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
+                            <a href="{{ route('modules.edit', [$module->id, $module->teacher_id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
                             @endcan
                         </h3>
                         <ul class="nav nav-pills ml-auto p-2">
