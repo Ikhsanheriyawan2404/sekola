@@ -9,13 +9,13 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 // Home Student
-Breadcrumbs::for('home_student', function (BreadcrumbTrail $trail) {
-    $trail->push('Home', route('student.dashboard'));
+Breadcrumbs::for('home_student', function (BreadcrumbTrail $trail, $student) {
+    $trail->push('Home', route('student.dashboard', $student));
 });
 
 // Home Teacher
-Breadcrumbs::for('home_teacher', function (BreadcrumbTrail $trail) {
-    $trail->push('Home', route('teacher.dashboard'));
+Breadcrumbs::for('home_teacher', function (BreadcrumbTrail $trail, $teacher) {
+    $trail->push('Home', route('teacher.dashboard', $teacher));
 });
 
 // Home Admin
@@ -134,6 +134,7 @@ Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Pengguna', route('users.index'));
 });
+
 // Home > Users > [Create]
 Breadcrumbs::for('create_user', function (BreadcrumbTrail $trail) {
     $trail->parent('users');

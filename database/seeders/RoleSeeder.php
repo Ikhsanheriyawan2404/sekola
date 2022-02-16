@@ -110,11 +110,13 @@ class RoleSeeder extends Seeder
         ]);
 
         $student->givePermissionTo([
+            'user-list',
             'dashboard-student',
             'module-list',
         ]);
 
         $teacher->givePermissionTo([
+            'user-list',
             'dashboard-teacher',
             'module-create',
             'module-edit',
