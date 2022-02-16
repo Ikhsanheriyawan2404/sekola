@@ -45,14 +45,14 @@
             @endcan
         </li>
         <li class="nav-item">
-            {{-- @can('module-list') --}}
-            <a href="" class="nav-link {{ request()->routeIs('modules.*') ? 'active' : '' }}">
+            @can('module-list')
+            <a href="{{ route('modules.index', auth()->user()->student_id) }}" class="nav-link {{ request()->routeIs('modules.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                     Modul
                 </p>
             </a>
-            {{-- @endcan --}}
+            @endcan
         </li>
         <li class="nav-item">
             @can('schedule-list')

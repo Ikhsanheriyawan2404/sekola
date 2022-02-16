@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::resources(['schedules' => ScheduleController::class]);
 
     Route::prefix('modules')->group(function () {
+        Route::get('{student:id}', [ModuleController::class, 'index'])->name('modules.index');
         Route::post('', [ModuleController::class, 'store'])->name('modules.store');
         Route::get('create/{study:id}/{id}/{teacher:id}', [ModuleController::class, 'create'])->name('modules.create');
         Route::get('{study:id}/show', [ModuleController::class, 'show'])->name('modules.show');

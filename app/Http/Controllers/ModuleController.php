@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Storage;
-use App\Models\{Module, Study, Classroom, Teacher};
+use App\Models\{Module, Study, Classroom, Student, Teacher};
 
 class ModuleController extends Controller
 {
@@ -14,6 +15,17 @@ class ModuleController extends Controller
         $this->middleware('permission:module-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:module-delete', ['only' => ['destroy']]);
     }
+
+    public function index(Student $student)
+    {
+        return view('modules.index', [
+            'title' => 'Materi Mata Pelajaran',
+            'student' => $student,
+            'classrooms' => Classroom::all(),
+            'schedules' => Schedule::all(),
+        ]);
+    }
+
     public function show(Study $study)
     {
         return view('modules.show', [
@@ -52,7 +64,6 @@ class ModuleController extends Controller
         if (request('file')) {
             $filename = str_replace(' ', '', request()->file('file')->getClientOriginalName());
             $file = request()->file('file')->storeAs('file', $filename);
-            // dd($file);
         } else {
             $file = null;
         }
