@@ -81,10 +81,11 @@
                                 class="nav-link"
                                 href=
                                 "#@php
-                                $url = $module->reference;
-                                $values = parse_url($url);
-                                $host = explode('.',$values['host']);
-                                echo $host[0] . $module->id;
+                                $values = parse_url($module->reference);
+                                // if ($values['host'] !== NULL) {
+                                    // $host = explode('.',$values['host']);
+                                    // echo $host[0] . $module->id;
+                                // }
                                 @endphp"
                                 data-toggle="tab">
                                     Referensi
@@ -124,10 +125,13 @@
                             <div
                             class="tab-pane"
                             id="@php
-                            $url = $module->reference;
-                            $values = parse_url($url);
-                            $host = explode('.',$values['host']);
-                            echo $host[0] . $module->id;
+                            $values = parse_url($module->reference);
+                            dd(in_array(array(), $values));
+                            // dd($values);
+                            // if ($values['host'] !== NULL) {
+                                // $host = explode('.',$values['host']);
+                                // echo $host[0] . $module->id;
+                            // }
                             @endphp">
                                 {{ $module->reference }}
                             </div>
