@@ -32,6 +32,7 @@ class PermissionSeeder extends Seeder
             'teacher-create',
             'teacher-edit',
             'teacher-delete',
+            'classroom-show',
             'classroom-list',
             'classroom-create',
             'classroom-edit',
