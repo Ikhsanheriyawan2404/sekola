@@ -146,7 +146,7 @@
                 $.get("/classrooms/show/students" +'/' + studentId, function (data) {
                     $('#modal-lg').modal('show');
                     $('#studentId').val(data.id);
-                    $('#modal-title').html(`Siswa Kelas : ${data}`);
+                    $('#modal-title').html(`Murid Saya`);
                     let siswa = '';
                     if (data) {
                         $.each(data,function(index, val){
@@ -163,7 +163,7 @@
                         $("#students").html(siswa);
                     }
                 })
-           });
+            });
 
            $('body').on('click', '#deleteClassroom', function () {
 

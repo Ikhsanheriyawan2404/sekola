@@ -84,7 +84,11 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $classroom->name }}</td>
                                 <td class="text-center">
-                                    <a href"" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Lihat</a>
+                                    {{-- <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Lihat</a> --}}
+                                    <a href="javascript:void(0)" data-id="{{ $classroom->id }}" id="showStudents" class="btn btn-sm btn-primary mr-2">
+                                        <i class="fas fa-eye"></i>
+                                        Lihat
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -135,4 +139,74 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
+<!-- MODAL -->
+<div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-title">Siswa</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div>
+                <input type="hidden" name="studentId" id="studentId">
+                <div class="modal-body">
+                    <table id="data-table" class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Agama</th>
+                                <th>No HP</th>
+                                <th>Foto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-right">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+@endsection
+
+@section('custom-scripts')
+    <script>
+        $(function () {
+            $('body').on('click', '#showStudents', function () {
+                var studentId = $(this).data('id');
+                $.get("/classrooms/show/students" +'/' + studentId, function (data) {
+                    $('#modal-lg').modal('show');
+                    $('#studentId').val(data.id);
+                    $('#modal-title').html(`Murid Saya`);
+                    let siswa = '';
+                    if (data) {
+                        $.each(data,function(index, val){
+                            siswa += "<tr>";
+                                siswa += `<td>${val.name}</td>`;
+                                siswa += `<td>${val.gender}</td>`;
+                                siswa += `<td>${val.religion}</td>`;
+                                siswa += `<td>${val.phone}</td>`;
+                                siswa += `<td>
+                                    <img class="img-fluid" style="max-height: 50px;overflow:hidden;" src="/storage/${val.image}" id="photo">
+                                        </td>`;
+                            siswa+="</tr>";
+                        });
+                        $("#students").html(siswa);
+                    }
+                })
+            });
+        });
+    </script>
 @endsection
