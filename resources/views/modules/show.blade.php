@@ -35,7 +35,7 @@
             <div class="col-md-12">
                 @foreach ($modules->where('study_id', $study->id) as $module)
 
-                <div class="card card-primary card-outline collapsed-card">
+                <div class="card card-primary card-outline">
                     <div class="card-header d-flex p-0">
                         <h3 class="card-title p-3">{{ $module->title }}
                             @can('module-edit')
@@ -43,42 +43,96 @@
                             @endcan
                         </h3>
                         <ul class="nav nav-pills ml-auto p-2">
-                            <li class="nav-item"><a class="nav-link active" href="#{{ strtok($module->topic, " ") }}" data-toggle="tab">Topik</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#{{ strtok($module->description, " ") }}" data-toggle="tab">Description</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#{{
-                            strtok(str_replace("file/", "", $module->file), ".")
-                            }}" data-toggle="tab">Bahan Ajar</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#{{ strtok($module->reference, " ") }}" data-toggle="tab">Referensi</a></li>
+                            <li class="nav-item">
+                                <a
+                                class="nav-link active"
+                                href=
+                                "#{{ strtok($module->topic, " ") }}{{ $module->id }}"
+                                data-toggle="tab">
+                                    Topik
+                                </a>
+                            </li>
+                            <!-- TOPIC -->
 
                             <li class="nav-item">
-                                <div class="card-tools nav-link">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
+                                <a
+                                class="nav-link"
+                                href=
+                                "#{{ strtok($module->description, " ") }}{{ $module->id }}"
+                                data-toggle="tab">
+                                    Description
+                                </a>
                             </li>
+                            <!-- DESCRIPTION -->
+
+                            <li class="nav-item">
+                                <a
+                                class="nav-link"
+                                href=
+                                "#{{ strtok(str_replace("file/", "", $module->file), ".") }}{{ $module->id }}"
+                                data-toggle="tab">
+                                    Bahan Ajar
+                                </a>
+                            </li>
+                            <!-- FILE MODUL -->
+
+                            <li class="nav-item">
+                                <a
+                                class="nav-link"
+                                href=
+                                "#@php
+                                $url = $module->reference;
+                                $values = parse_url($url);
+                                $host = explode('.',$values['host']);
+                                echo $host[0] . $module->id;
+                                @endphp"
+                                data-toggle="tab">
+                                    Referensi
+                                </a>
+                            </li>
+                            <!-- LINK REFERENCE -->
+
                         </ul>
                         <!-- /.card-tools -->
                     </div><!-- /.card-header -->
 
                     <div class="card-body">
                         <div class="tab-content">
-                            <div class="tab-pane active" id="{{ strtok($module->topic, " ") }}">
+                            <div
+                            class="tab-pane active"
+                            id="{{ strtok($module->topic, " ") }}{{ $module->id }}">
                                 {{ $module->topic }}
                             </div>
-                            <!-- /.tab-pane -->
-                            <div class="tab-pane" id="{{ strtok($module->description, " ") }}">
+                            <!-- /.tab-pane TOPIC -->
+
+                            <div
+                            class="tab-pane"
+                            id="{{ strtok($module->description, " ") }}{{ $module->id }}">
                                 {{ $module->description }}
                             </div>
-                            <!-- /.tab-pane -->
-                            <div class="tab-pane" id="{{
-                                strtok(str_replace("file/", "", $module->file), ".") }}">
-                                <a href="/storage/{{ $module->file }}">{{ str_replace("file/", "", $module->file) }}</a>
+                            <!-- /.tab-pane DESCRIPTION -->
+
+                            <div
+                            class="tab-pane"
+                            id="{{ strtok(str_replace("file/", "", $module->file), ".") }}{{ $module->id }}">
+                                <a href="/storage/{{ $module->file }}">
+                                    {{ str_replace("file/", "", $module->file) }}
+                                </a>
                             </div>
-                            <!-- /.tab-pane -->
-                            <div class="tab-pane" id="{{ strtok($module->reference, " ") }}">
+                            <!-- /.tab-pane FILE MODUL -->
+
+                            <div
+                            class="tab-pane"
+                            id="@php
+                            $url = $module->reference;
+                            $values = parse_url($url);
+                            $host = explode('.',$values['host']);
+                            echo $host[0] . $module->id;
+                            @endphp">
                                 {{ $module->reference }}
                             </div>
-                            <!-- /.tab-pane -->
+                            <!-- /.tab-pane LINK REFERENCE -->
+
                         </div>
                     <!-- /.tab-content -->
                     </div><!-- /.card-body -->

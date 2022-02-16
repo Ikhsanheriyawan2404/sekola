@@ -52,6 +52,7 @@ class ModuleController extends Controller
         if (request('file')) {
             $filename = str_replace(' ', '', request()->file('file')->getClientOriginalName());
             $file = request()->file('file')->storeAs('file', $filename);
+            // dd($file);
         } else {
             $file = null;
         }
