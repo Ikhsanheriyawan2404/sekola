@@ -12,7 +12,13 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">{{ Breadcrumbs::render('home') }}</a></li>
+            @can('dashboard-teacher')
+                <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}">Home</a></li>
+            @endcan
+            @can('dashboard-student')
+                <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}">Home</a></li>
+            @endcan
+            <li class="breadcrumb-item active">Lihat Modul</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -40,6 +46,13 @@
                         <h3 class="card-title p-3">{{ $module->title }}
                             @can('module-edit')
                             <a href="{{ route('modules.edit', [$module->id, $module->teacher_id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
+                            @endcan
+                            @can('module-delete')
+                            <a onclick="event.preventDefault();document.getElementById('delete-module').submit();" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
+                            <form id="delete-module" action="{{ route('modules.destroy', $module->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                             @endcan
                         </h3>
                         <ul class="nav nav-pills ml-auto p-2">

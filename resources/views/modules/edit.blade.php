@@ -12,7 +12,8 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            {{-- <li class="breadcrumb-item active">{{ Breadcrumbs::render('create_module', $) }}</li> --}}
+            <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}">Home</a></li>
+            <li class="breadcrumb-item active">Edit : {{ $module->title }}</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->

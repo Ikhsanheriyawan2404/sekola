@@ -80,7 +80,7 @@ class ModuleController extends Controller
         ]);
 
         toast('Modul berhasil ditambahkan!', 'success');
-        return redirect()->back();
+        return redirect()->route('teacher.dashboard', auth()->user()->teacher_id);
     }
 
     public function edit(Module $module, $id)
@@ -123,7 +123,7 @@ class ModuleController extends Controller
         ]);
 
         toast('Modul berhasil diedit!', 'success');
-        return redirect()->back();
+        return redirect()->route('teacher.dashboard', auth()->user()->teacher_id);
     }
 
     public function destroy(Module $module)

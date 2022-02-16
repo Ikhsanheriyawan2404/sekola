@@ -36,7 +36,8 @@
         </li>
         <li class="nav-item menu-open">
             @can('dashboard-teacher')
-            <a href="{{ route('teacher.dashboard', auth()->user()->teacher->id) }}" class="nav-link {{ request()->routeIs('teacher.dashboard') ? 'active' : '' }}">
+            <a href="{{ route('teacher.dashboard', auth()->user()->teacher->id) }}" class="nav-link
+                {{ request()->routeIs('teacher.dashboard') || request()->routeIs('modules.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -46,7 +47,7 @@
         </li>
         <li class="nav-item">
             @can('module-list')
-            <a href="{{ route('modules.index', auth()->user()->student_id) }}" class="nav-link {{ request()->routeIs('modules.*') ? 'active' : '' }}">
+            <a href="{{ route('modules.index', auth()->user()->student_id) }}" class="nav-link {{ request()->routeIs('modules.index') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                     Modul
