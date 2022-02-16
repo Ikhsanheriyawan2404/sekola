@@ -56,6 +56,10 @@ class PermissionSeeder extends Seeder
             'dashboard-admin',
             'dashboard-teacher',
             'dashboard-student',
+            'module-list',
+            'module-create',
+            'module-edit',
+            'module-delete',
          ];
 
          foreach ($permissions as $permission) {
