@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label for="reference">Link referensi</label>
-                <input type="text" name="reference" class="form-control @error('reference') is-invalid @enderror" placeholder="Masukan reference" value="{{ $module->reference ?? old('reference') }}">
+                <input type="url" name="reference" class="form-control @error('reference') is-invalid @enderror" placeholder="Masukan reference" value="{{ $module->reference ?? old('reference') }}">
                 @error('reference')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
