@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ModuleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:module-list|module-create|module-edit|module-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:module-create', ['only' => ['create','store']]);
+        $this->middleware('permission:module-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:module-delete', ['only' => ['destroy']]);
+    }
     public function show(Study $study)
     {
         return view('modules.show', [
