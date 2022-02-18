@@ -6,6 +6,7 @@ use App\Models\Quiz;
 use App\Models\Study;
 use App\Models\Classroom;
 use App\Http\Requests\QuizStoreRequest;
+use App\Http\Requests\QuizUpdateRequest;
 use App\Models\Teacher;
 
 class QuizController extends Controller
@@ -48,5 +49,37 @@ class QuizController extends Controller
 
         toast('Data ulangan berhasil ditambahkan!', 'success');
         return redirect()->route('quizzes.index', auth()->user()->teacher_id);
+    }
+
+    public function edit(Quiz $quiz)
+    {
+        return view('quizzes.edit', [
+            'title' => 'Edit Ulangan',
+            'quiz' => $quiz,
+        ]);
+    }
+
+    public function update(QuizUpdateRequest $request, Quiz $quiz)
+    {
+        $request->validated();
+
+        $quiz->update([
+            'title' => request('title'),
+            'date' => request('date'),
+            'start' => request('start'),
+            'finished' => request('finished'),
+            'time' => request('time'),
+            'number_of_questions' => request('number_of_questions'),
+        ]);
+
+        toast('Data ulangan berhasil diedit!', 'success');
+        return redirect()->route('quizzes.index', auth()->user()->teacher_id);
+    }
+
+    public function destroy(Quiz $quiz)
+    {
+        $quiz->delete();
+        toast('Ulangan berhasil dihapus!', 'success');
+        return redirect()->back();
     }
 }

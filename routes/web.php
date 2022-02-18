@@ -27,10 +27,14 @@ Route::middleware('auth')->group(function () {
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
     // Route::resources(['quizzes' => QuizController::class]);
+
     Route::prefix('quizzes')->group(function () {
         Route::get('{teacher:id}', [QuizController::class, 'index'])->name('quizzes.index');
         Route::get('create/{study:id}/{id}', [QuizController::class, 'create'])->name('quizzes.create');
+        Route::get('{quiz:id}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
+        Route::put('{quiz:id}', [QuizController::class, 'update'])->name('quizzes.update');
         Route::post('', [QuizController::class, 'store'])->name('quizzes.store');
+        Route::delete('{quiz:id}', [QuizController::class, 'destroy'])->name('quizzes.destroy');
     });
     Route::prefix('questions')->group(function () {
         Route::get('create/{quiz:id}', [QuestionController::class, 'create'])->name('questions.create');

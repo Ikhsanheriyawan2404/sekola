@@ -23,11 +23,11 @@
 <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Tambah Ulangan</h3>
+        <h3 class="card-title">Edit Ulangan : {{ $quiz->title }}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ route('quizzes.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('quizzes.update', $quiz->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             @include('quizzes.partials.form-control')

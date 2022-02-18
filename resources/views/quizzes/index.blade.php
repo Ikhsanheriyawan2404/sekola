@@ -58,8 +58,12 @@
                                     <td>
                                         <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>Tambah soal</a>
                                         <a href="{{ route('modules.show', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('modules.show', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                                        <a href="{{ route('modules.show', $quiz->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                        <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('apakah yakin ingin menghapus ini!?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

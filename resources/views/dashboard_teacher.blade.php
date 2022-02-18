@@ -51,6 +51,9 @@
                                     $schedule->study->id,
                                     $schedule->classroom->id,
                                     $schedule->teacher->id ]) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
+                                    <a href="{{ route('quizzes.create', [
+                                    $schedule->study->id,
+                                    $schedule->classroom->id]) }}" class="btn btn-primary btn-sm">Tambah Ulangan</a>
                                 </td>
                             </tr>
                             @endforeach
