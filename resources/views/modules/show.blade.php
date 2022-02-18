@@ -16,7 +16,7 @@
                 <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}">Home</a></li>
             @endcan
             @can('dashboard-student')
-                <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('student.dashboard', auth()->user()->student_id) }}">Home</a></li>
             @endcan
             <li class="breadcrumb-item active">Lihat Modul</li>
         </ol>
