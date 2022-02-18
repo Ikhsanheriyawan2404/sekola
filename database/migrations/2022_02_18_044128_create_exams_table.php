@@ -14,8 +14,18 @@ class CreateExamsTable extends Migration
     public function up()
     {
         Schema::create('exams', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('quiz_id');
+            $table->unsignedBigInteger('question_id');
+            $table->string('answer');
+            $table->enum('answered', ['yes', 'no']);
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('CASCADE');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('CASCADE');
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('CASCADE');
+
         });
     }
 
