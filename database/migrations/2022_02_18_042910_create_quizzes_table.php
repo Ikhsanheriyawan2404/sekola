@@ -20,9 +20,9 @@ class CreateQuizzesTable extends Migration
             $table->time('start');
             $table->time('finished');
             $table->time('time');
-            $table->number('number_of_questions');
+            $table->string('number_of_questions');
             $table->string('status')->default(1);
-            $table->unsignedBigInteger('tacher_id');
+            $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('study_id');
             $table->timestamps();
 
