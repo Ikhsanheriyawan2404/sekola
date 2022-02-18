@@ -1,7 +1,6 @@
 @extends('layouts.app', compact('title'))
 
 @section('content')
-@include('sweetalert::alert')
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -23,7 +22,7 @@
 <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Tambah Ulangan</h3>
+        <h3 class="card-title">Tambah Ulangan Kelas : {{ $classroom->name }} | Pelajaran : {{ $study->name }}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
