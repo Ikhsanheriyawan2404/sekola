@@ -26,6 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
     Route::resources(['quizzes' => QuizController::class]);
+    Route::prefix('quizzes')->group(function () {
+        Route::get('create/{study:id}/{id}', [QuizController::class, 'create'])->name('quizzes.create');
+        // Route::post
+    });
 
     Route::prefix('modules')->group(function () {
         Route::get('{student:id}', [ModuleController::class, 'index'])->name('modules.index');

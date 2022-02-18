@@ -19,14 +19,16 @@ class CreateQuizzesTable extends Migration
             $table->date('date');
             $table->time('start');
             $table->time('finished');
-            $table->time('time');
+            $table->string('time');
             $table->string('number_of_questions');
             $table->string('status')->default(1);
             $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('classroom_id');
             $table->unsignedBigInteger('study_id');
             $table->timestamps();
 
             $table->foreign('study_id')->references('id')->on('studies')->onDelete('CASCADE');
+            $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('CASCADE');
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('CASCADE');
         });
     }
