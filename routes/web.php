@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController};
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController};
 
 // Auth::routes(['register' => false]);
 Route::get('home', [HomeController::class,  'index']);
@@ -29,6 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('quizzes')->group(function () {
         Route::get('{teacher:id}', [QuizController::class, 'index'])->name('quizzes.index');
         Route::get('create/{study:id}/{id}', [QuizController::class, 'create'])->name('quizzes.create');
+    });
+    Route::prefix('questions')->group(function () {
+        Route::get('create/{quiz:id}', [QuestionController::class, 'create'])->name('questions.create');
+        Route::post('', [QuestionController::class, 'store'])->name('questions.store');
+        // Route::get('{teacher:id}', [QuizController::class, 'index'])->name('quizzes.index');
     });
 
     Route::prefix('modules')->group(function () {

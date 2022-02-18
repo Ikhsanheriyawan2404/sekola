@@ -41,7 +41,7 @@
                                     <th>Waktu Pelaksanaan</th>
                                     <th>Jumlah Soal</th>
                                     <th>Status</th>
-                                    <th class="text-center" style="width: 100px;"><i class="fa fa-cogs"></i></th>
+                                    <th class="text-center" style="width: 150px;"><i class="fa fa-cogs"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,6 +56,8 @@
                                     <td>{{ $quiz->number_of_questions }}</td>
                                     <td>{{ $quiz->status == '1' ? 'Aktif' : 'Tidak aktif' }}</td>
                                     <td>
+                                        <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>Tambah soal</a>
+                                        <a href="{{ route('modules.show', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('modules.show', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
                                         <a href="{{ route('modules.show', $quiz->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>
