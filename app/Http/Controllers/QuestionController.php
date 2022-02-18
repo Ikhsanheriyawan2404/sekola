@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Choice;
 use App\Models\Quiz;
+use App\Models\Choice;
 use App\Models\Question;
+use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -16,9 +17,9 @@ class QuestionController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        request()->validate([
+        $request->validate([
             'quiz_id' => 'required',
             'question' => 'required',
             'answer' => 'required',
@@ -32,15 +33,17 @@ class QuestionController extends Controller
             'image' => request('image'),
         ]);
 
-        if (count(request('choice')) > 0) {
-            foreach (request('choice') as $item) {
+        if (count($request->choice) > 0) {
+            foreach ($request->choice as $item => $v) {
                 $data = [
                     'question_id' => $question->id,
-                    'choice' => request('choice')['item'],
+                    'choice' => $request->choice[$item],
                 ];
                 $choice = Choice::create($data);
             }
-            dd($choice);
         }
+
+        toast('Soal berhasil ditambahkan!', 'success');
+        return redirect()->route('quizzes.index', auth()->user()->teacher_id);
     }
 }

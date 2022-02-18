@@ -47,6 +47,6 @@ class QuizController extends Controller
         ]);
 
         toast('Data ulangan berhasil ditambahkan!', 'success');
-        return redirect()->route('quizzes.index');
+        return redirect()->route('quizzes.index', auth()->user()->teacher_id);
     }
 }

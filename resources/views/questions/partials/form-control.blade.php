@@ -1,6 +1,7 @@
 <div class="card-body">
     <div class="row">
         <div class="col-lg-6">
+            <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
             <div class="form-group">
                 <label for="question">Pertanyaan <span class="text-danger">*</span></label>
                 <input type="text" name="question" class="form-control @error('question') is-invalid @enderror" placeholder="Masukan pertanyaan" value="{{ $quiz->question ?? old('question') }}">
@@ -45,7 +46,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="option">Opsi 1 <span class="text-danger">*</span></label>
-                <input type="text" name="option" class="form-control @error('option') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $quiz->option ?? old('option') }}">
+                <input type="text" name="choice[]" class="form-control @error('option') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $quiz->option ?? old('option') }}">
                 @error('option')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -54,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label for="option">Opsi 2 <span class="text-danger">*</span></label>
-                <input type="text" name="option" class="form-control @error('option') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $quiz->option ?? old('option') }}">
+                <input type="text" name="choice[]" class="form-control @error('option') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $quiz->option ?? old('option') }}">
                 @error('option')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -63,7 +64,7 @@
             </div>
             <div class="form-group">
                 <label for="option">Opsi 3 <span class="text-danger">*</span></label>
-                <input type="text" name="option" class="form-control @error('option') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $quiz->option ?? old('option') }}">
+                <input type="text" name="choice[]" class="form-control @error('option') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $quiz->option ?? old('option') }}">
                 @error('option')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -72,7 +73,7 @@
             </div>
             <div class="form-group">
                 <label for="option">Opsi 4 <span class="text-danger">*</span></label>
-                <input type="text" name="option" class="form-control @error('option') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $quiz->option ?? old('option') }}">
+                <input type="text" name="choice[]" class="form-control @error('option') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $quiz->option ?? old('option') }}">
                 @error('option')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
