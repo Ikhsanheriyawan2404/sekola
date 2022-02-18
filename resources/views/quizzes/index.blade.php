@@ -26,7 +26,7 @@
             <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Ulangan </h3>
+                        <h3 class="card-title">Ulangan</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -34,6 +34,7 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">No</th>
+                                    <th>(Kelas) Mata Pelajaran</th>
                                     <th>Judul</th>
                                     <th>Tanggal</th>
                                     <th>Jam mulai - selesai</th>
@@ -44,9 +45,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($quizzes as $quiz)
+                                @foreach ($quizzes->where('teacher_id', $teacher->id) as $quiz)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>({{ $quiz->classroom->name }}) {{ $quiz->study->name }}</td>
                                     <td>{{ $quiz->title }}</td>
                                     <td>{{ date('d-m-Y', strtotime($quiz->date)) }}</td>
                                     <td>{{ date('H:m', strtotime($quiz->start)) }} - {{ date('H:m', strtotime($quiz->finished)) }}</td>

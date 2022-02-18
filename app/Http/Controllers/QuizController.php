@@ -6,13 +6,15 @@ use App\Models\Quiz;
 use App\Models\Study;
 use App\Models\Classroom;
 use App\Http\Requests\QuizStoreRequest;
+use App\Models\Teacher;
 
 class QuizController extends Controller
 {
-    public function index()
+    public function index(Teacher $teacher)
     {
         return view('quizzes.index', [
             'title' => 'Quiz',
+            'teacher' => $teacher,
             'quizzes' => Quiz::all(),
         ]);
     }

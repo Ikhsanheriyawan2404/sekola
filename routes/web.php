@@ -25,10 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
-    Route::resources(['quizzes' => QuizController::class]);
+    // Route::resources(['quizzes' => QuizController::class]);
     Route::prefix('quizzes')->group(function () {
+        Route::get('{teacher:id}', [QuizController::class, 'index'])->name('quizzes.index');
         Route::get('create/{study:id}/{id}', [QuizController::class, 'create'])->name('quizzes.create');
-        // Route::post
     });
 
     Route::prefix('modules')->group(function () {
