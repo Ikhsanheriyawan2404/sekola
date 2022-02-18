@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController};
+use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController};
 use App\Http\Controllers\Auth\LoginController;
 
 // Auth::routes(['register' => false]);
@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
+    Route::resources(['quizzes' => QuizController::class]);
 
     Route::prefix('modules')->group(function () {
         Route::get('{student:id}', [ModuleController::class, 'index'])->name('modules.index');
