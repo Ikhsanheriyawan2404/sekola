@@ -14,8 +14,15 @@ class CreateResultsTable extends Migration
     public function up()
     {
         Schema::create('results', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('quiz_id');
+            $table->string('correct');
+            $table->string('wrong');
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('CASCADE');
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('CASCADE');
         });
     }
 
