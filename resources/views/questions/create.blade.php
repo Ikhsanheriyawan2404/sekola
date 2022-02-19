@@ -40,12 +40,19 @@
     <!-- bs-custom-file-input -->
     <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script>
-        $(document).ready(function() {
-            bsCustomFileInput.init();
-
-            $(document).on('submit', 'form', function() {
-                $('button').attr('disabled', 'disabled');
+        $('.choice').on('change',function(){
+            var arr = [];
+            $siblings = $(this).siblings();
+            $.each($siblings, function (i, key) {
+            arr.push($(key).val());
             });
+            if ($.inArray($(this).val(), arr) !== -1)
+            {
+                alert("duplicate has been found");
+            }
         });
+    </script>
+    <script>
+
     </script>
 @endsection

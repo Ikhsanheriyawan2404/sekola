@@ -23,6 +23,7 @@ class QuestionController extends Controller
             'quiz_id' => 'required',
             'question' => 'required',
             'answer' => 'required',
+            'choice' => 'required|unique:choices,choice',
         ]);
 
         $question = Question::create([
@@ -34,16 +35,29 @@ class QuestionController extends Controller
         ]);
 
         if (count($request->choice) > 0) {
-            foreach ($request->choice as $item => $v) {
+            foreach ($request->choice as $index => $item) {
+                request()->validate([
+                    'choice' => 'required|unique:choices,choice',
+                ]);
+
                 $data = [
                     'question_id' => $question->id,
-                    'choice' => $request->choice[$item],
+                    'choice' => $request->choice[$index],
                 ];
-                $choice = Choice::create($data);
+
+                Choice::create($data);
             }
         }
 
         toast('Soal berhasil ditambahkan!', 'success');
         return redirect()->route('quizzes.index', auth()->user()->teacher_id);
+    }
+
+    public function edit(Question $question)
+    {
+        return view('questions.edit', [
+            'title' => 'Edit Soal',
+            'question' => $question,
+        ]);
     }
 }
