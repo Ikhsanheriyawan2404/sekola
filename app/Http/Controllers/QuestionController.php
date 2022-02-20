@@ -22,6 +22,7 @@ class QuestionController extends Controller
             'quiz_id' => 'required',
             'question' => 'required',
             'answer' => 'required',
+            'image' => 'image|mimes:jpg,jpeg,png|max:2058',
         ]);
 
         $question = Question::create([
@@ -29,7 +30,7 @@ class QuestionController extends Controller
             'question' => request('question'),
             'answer' => request('answer'),
             'note' => request('note'),
-            'image' => request('image'),
+            'image' => request('image') ? request()->file('image')->store('img/questions') : null,
         ]);
 
         if (count(request('choice')) > 0) {
@@ -38,7 +39,6 @@ class QuestionController extends Controller
                     'question_id' => $question->id,
                     'choice' => request('choice')[$index],
                 ];
-
                 Choice::create($data);
             }
         }

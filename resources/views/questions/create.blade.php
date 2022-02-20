@@ -34,7 +34,7 @@
                         <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                         <div class="form-group">
                             <label for="question">Pertanyaan <span class="text-danger">*</span></label>
-                            <input type="text" name="question" class="form-control @error('question') is-invalid @enderror" placeholder="Masukan pertanyaan" value="{{ $question->question ?? old('question') }}">
+                            <input type="text" name="question" class="form-control @error('question') is-invalid @enderror" placeholder="Masukan pertanyaan" value="{{ old('question') }}" required>
                             @error('question')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -42,8 +42,30 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="note">Catatan</label>
+                            <input type="text" name="note" class="form-control @error('note') is-invalid @enderror" placeholder="Masukan catatan jika diperlukan" value="{{ old('note') }}">
+                            @error('note')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="customFile">Gambar <small>(tidak wajib)</small></label>
+
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile">
+                                <label class="custom-file-label" for="customFile">Pilih foto</label>
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="answer">Jawaban benar <span class="text-danger">*</span></label>
-                            <select name="answer" id="answer" class="form-control select2 @error('answer') is-invalid @enderror" style="width: 100%;">
+                            <select name="answer" id="answer" class="form-control select2 @error('answer') is-invalid @enderror" style="width: 100%;" required>
                                 <option selected disabled>Pilih jawaban</option>
                                 <option id="choice1"></option>
                                 <option id="choice2"></option>
@@ -56,33 +78,11 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="note">Catatan</label>
-                            <input type="text" name="note" class="form-control @error('note') is-invalid @enderror" placeholder="Masukan catatan jika diperlukan" value="{{ $question->note ?? old('note') }}">
-                            @error('note')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="customFile">Gambar <span>(tidak wajib)</span></label>
-
-                            <div class="custom-file">
-                                <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile">
-                                <label class="custom-file-label" for="customFile">Pilih foto</label>
-                                @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="choice">Opsi 1 <span class="text-danger">*</span></label>
-                            <input type="text" name="choice[]" id="choice1" class="form-control @error('choice') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $question->choice ?? old('choice') }}">
+                            <input type="text" name="choice[]" id="choice1" class="form-control @error('choice') is-invalid @enderror" placeholder="Masukan jawaban" required>
                             @error('choice')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-group">
                             <label for="choice">Opsi 2 <span class="text-danger">*</span></label>
-                            <input type="text" name="choice[]" id="choice2" class="form-control @error('choice') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $question->choice ?? old('choice') }}">
+                            <input type="text" name="choice[]" id="choice2" class="form-control @error('choice') is-invalid @enderror" placeholder="Masukan jawaban" required>
                             @error('choice')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="form-group">
                             <label for="choice">Opsi 3 <span class="text-danger">*</span></label>
-                            <input type="text" name="choice[]" id="choice3" class="form-control @error('choice') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $question->choice ?? old('choice') }}">
+                            <input type="text" name="choice[]" id="choice3" class="form-control @error('choice') is-invalid @enderror" placeholder="Masukan jawaban" required>
                             @error('choice')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -109,7 +109,7 @@
                         </div>
                         <div class="form-group">
                             <label for="choice">Opsi 4 <span class="text-danger">*</span></label>
-                            <input type="text" name="choice[]" id="choice4" class="form-control @error('choice') is-invalid @enderror" placeholder="Masukan jawaban" value="{{ $question->choice ?? old('choice') }}">
+                            <input type="text" name="choice[]" id="choice4" class="form-control @error('choice') is-invalid @enderror" placeholder="Masukan jawaban" required>
                             @error('choice')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -136,11 +136,13 @@
     <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
     <script>
+
         /* event listener */
-        document.getElementsByName("choice[]")[0].addEventListener('change', fillOption1);
-        document.getElementsByName("choice[]")[1].addEventListener('change', fillOption2);
-        document.getElementsByName("choice[]")[2].addEventListener('change', fillOption3);
-        document.getElementsByName("choice[]")[3].addEventListener('change', fillOption4);
+        document.getElementsByName("choice[]")[0].addEventListener('input', fillOption1);
+        document.getElementsByName("choice[]")[1].addEventListener('input', fillOption2);
+        document.getElementsByName("choice[]")[2].addEventListener('input', fillOption3);
+        document.getElementsByName("choice[]")[3].addEventListener('input', fillOption4);
+
 
         function fillOption1 () {
             choice1 = document.getElementById('choice1');
@@ -161,5 +163,9 @@
             choice4 = document.getElementById('choice4');
             choice4.innerHTML = this.value
         }
+
+        $(document).on('submit', 'form', function() {
+            $('button').attr('disabled', 'disabled');
+        });
 </script>
 @endsection
