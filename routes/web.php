@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('questions')->group(function () {
         Route::get('create/{quiz:id}', [QuestionController::class, 'create'])->name('questions.create');
         Route::post('', [QuestionController::class, 'store'])->name('questions.store');
-        Route::get('{question:id}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
+        Route::get('{quiz:id}/{question:id}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
     });
 
     Route::prefix('modules')->group(function () {

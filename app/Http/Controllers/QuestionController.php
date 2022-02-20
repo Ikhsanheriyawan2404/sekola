@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Quiz;
 use App\Models\Choice;
 use App\Models\Question;
-use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -17,13 +16,12 @@ class QuestionController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
+        request()->validate([
             'quiz_id' => 'required',
             'question' => 'required',
             'answer' => 'required',
-            'choice' => 'required|unique:choices,choice',
         ]);
 
         $question = Question::create([
@@ -34,15 +32,11 @@ class QuestionController extends Controller
             'image' => request('image'),
         ]);
 
-        if (count($request->choice) > 0) {
-            foreach ($request->choice as $index => $item) {
-                request()->validate([
-                    'choice' => 'required|unique:choices,choice',
-                ]);
-
+        if (count(request('choice')) > 0) {
+            foreach (request('choice') as $index => $value) {
                 $data = [
                     'question_id' => $question->id,
-                    'choice' => $request->choice[$index],
+                    'choice' => request('choice')[$index],
                 ];
 
                 Choice::create($data);
@@ -53,10 +47,12 @@ class QuestionController extends Controller
         return redirect()->route('quizzes.index', auth()->user()->teacher_id);
     }
 
-    public function edit(Question $question)
+    public function edit(Quiz $quiz, Question $question)
     {
+        // dd($question->find(3)->choices()->get());
         return view('questions.edit', [
             'title' => 'Edit Soal',
+            'quiz' => $quiz,
             'question' => $question,
         ]);
     }
