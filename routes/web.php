@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('quizzes')->group(function () {
         Route::get('{teacher:id}', [QuizController::class, 'index'])->name('quizzes.index');
         Route::get('create/{study:id}/{id}', [QuizController::class, 'create'])->name('quizzes.create');
+        Route::get('{quiz:id}/show', [QuizController::class, 'show'])->name('quizzes.show');
         Route::get('{quiz:id}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
         Route::put('{quiz:id}', [QuizController::class, 'update'])->name('quizzes.update');
         Route::post('', [QuizController::class, 'store'])->name('quizzes.store');

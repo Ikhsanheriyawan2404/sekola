@@ -8,6 +8,14 @@ use App\Models\Question;
 
 class QuestionController extends Controller
 {
+    // public function show(Quiz $quiz)
+    // {
+    //     return view('quizzes.show', [
+    //         'title' => 'Show Quiz',
+    //         'quiz' => $quiz,
+    //     ]);
+    // }
+
     public function create(Quiz $quiz)
     {
         return view('questions.create', [

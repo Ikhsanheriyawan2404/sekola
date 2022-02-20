@@ -7,10 +7,21 @@ use App\Models\Study;
 use App\Models\Classroom;
 use App\Http\Requests\QuizStoreRequest;
 use App\Http\Requests\QuizUpdateRequest;
+use App\Models\Question;
 use App\Models\Teacher;
 
 class QuizController extends Controller
 {
+    public function show(Quiz $quiz)
+    {
+        $questions = Question::where('quiz_id', $quiz->id)->get();
+        return view('quizzes.show', [
+            'title' => 'Show Quiz',
+            'quiz' => $quiz,
+            'questions' => $questions,
+        ]);
+    }
+
     public function index(Teacher $teacher)
     {
         return view('quizzes.index', [

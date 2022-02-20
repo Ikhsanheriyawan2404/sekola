@@ -57,7 +57,7 @@
                                     <td>{{ $quiz->status == '1' ? 'Aktif' : 'Tidak aktif' }}</td>
                                     <td>
                                         <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>Tambah soal</a>
-                                        <a href="{{ route('modules.show', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('quizzes.show', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
                                         <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
                                             @csrf
