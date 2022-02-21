@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController};
@@ -42,6 +43,11 @@ Route::middleware('auth')->group(function () {
         Route::post('', [QuestionController::class, 'store'])->name('questions.store');
         Route::get('{quiz:id}/{question:id}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
         Route::delete('{question:id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
+    });
+
+    Route::prefix('exams')->group(function () {
+        Route::get('{quiz:id}', [ExamController::class, 'show'])->name('exams.show');
+        Route::post('', [ExamController::class, 'store'])->name('exams.store');
     });
 
     Route::prefix('modules')->group(function () {
