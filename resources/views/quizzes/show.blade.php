@@ -55,7 +55,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <button class="btn btn-primary">Save</button>
                             </div>
                         </div>
                         @endforeach

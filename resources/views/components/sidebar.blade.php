@@ -56,14 +56,14 @@
             @endcan
         </li>
         <li class="nav-item">
-            {{-- @can('-list') --}}
+            @can('-list')
             <a href="{{ route('quizzes.index', auth()->user()->teacher_id) }}" class="nav-link {{ request()->routeIs('quizzes.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                     Quiz
                 </p>
             </a>
-            {{-- @endcan --}}
+            @endcan
         </li>
         <li class="nav-item">
             @can('schedule-list')

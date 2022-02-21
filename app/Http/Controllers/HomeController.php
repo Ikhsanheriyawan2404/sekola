@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quiz;
 use App\Models\Schedule;
 use App\Models\{Student, Teacher, Classroom, Study, Major, Room, Setting};
 
@@ -23,9 +24,11 @@ class HomeController extends Controller
 
     public function student(Student $student)
     {
+        $quizzes = Quiz::all();
         return view('dashboard', [
             'title' => 'Dashboard',
             'student' => $student,
+            'quizzes' => $quizzes,
             'schedules' => Schedule::all(),
         ]);
     }

@@ -143,6 +143,51 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Ulangan</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">No</th>
+                                    <th>(Kelas) Mata Pelajaran</th>
+                                    <th>Judul</th>
+                                    <th>Tanggal</th>
+                                    <th>Jam mulai - selesai</th>
+                                    <th>Waktu Pelaksanaan</th>
+                                    <th>Jumlah Soal</th>
+                                    <th>Status</th>
+                                    <th class="text-center" style="width: 150px;"><i class="fa fa-cogs"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($quizzes as $quiz)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>({{ $quiz->classroom->name }}) {{ $quiz->study->name }}</td>
+                                    <td>{{ $quiz->title }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($quiz->date)) }}</td>
+                                    <td>{{ date('H:m', strtotime($quiz->start)) }} - {{ date('H:m', strtotime($quiz->finished)) }}</td>
+                                    <td>{{ $quiz->time }} Menit</td>
+                                    <td>{{ $quiz->number_of_questions }}</td>
+                                    <td>{{ $quiz->status == '1' ? 'Aktif' : 'Tidak aktif' }}</td>
+                                    <td>
+                                        <button class="btn btn-primary">Start</button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
     </div><!-- /.container-fluid -->
 </section>
 @endsection
