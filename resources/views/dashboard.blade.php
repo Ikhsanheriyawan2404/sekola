@@ -161,12 +161,11 @@
                                     <th>Jam mulai - selesai</th>
                                     <th>Waktu Pelaksanaan</th>
                                     <th>Jumlah Soal</th>
-                                    <th>Status</th>
                                     <th class="text-center" style="width: 150px;"><i class="fa fa-cogs"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($quizzes as $quiz)
+                                @foreach ($quizzes->where('status', '1') as $quiz)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>({{ $quiz->classroom->name }}) {{ $quiz->study->name }}</td>
@@ -175,7 +174,6 @@
                                     <td>{{ date('H:m', strtotime($quiz->start)) }} - {{ date('H:m', strtotime($quiz->finished)) }}</td>
                                     <td>{{ $quiz->time }} Menit</td>
                                     <td>{{ $quiz->number_of_questions }}</td>
-                                    <td>{{ $quiz->status == '1' ? 'Aktif' : 'Tidak aktif' }}</td>
                                     <td>
                                         <a href="{{ route('exams.show', $quiz->id) }}" class="btn btn-primary">Start</a>
                                     </td>

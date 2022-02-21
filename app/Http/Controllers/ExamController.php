@@ -15,11 +15,15 @@ class ExamController extends Controller
     public function show(Quiz $quiz)
     {
         $questions = Question::inRandomOrder()->where('quiz_id', $quiz->id)->get();
-        return view('exams.show', [
-            'title' => 'Start exam',
-            'quiz' => $quiz,
-            'questions' => $questions,
-        ]);
+        if ($quiz->status == '1') {
+            return view('exams.show', [
+                'title' => 'Start exam',
+                'quiz' => $quiz,
+                'questions' => $questions,
+            ]);
+        } else {
+            abort(403, 'THIS QUIZ HAS NOT BEEN ACTIVATED. TELL YOUR TEACHER!');
+        }
     }
 
     public function store()
