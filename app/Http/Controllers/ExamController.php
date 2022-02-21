@@ -22,7 +22,6 @@ class ExamController extends Controller
     public function store()
     {
         $userId = auth()->user()->student_id;
-        $date =date('Y-m-d');
         $yes = 0;
         $no = 0;
         $data = request()->all();
@@ -61,7 +60,6 @@ class ExamController extends Controller
 
         $res->student_id= $userId;
         $res->quiz_id = request('quiz_id');
-        // $res->date = $date;
         $res->correct = $yes;
         $res->wrong = $no;
         $res->save();

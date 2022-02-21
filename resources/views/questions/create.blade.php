@@ -136,6 +136,8 @@
     <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
     <script>
+        // inisialisasi plugin custom file bootstrap
+        bsCustomFileInput.init();
 
         /* event listener */
         document.getElementsByName("choice[]")[0].addEventListener('input', fillOption1);

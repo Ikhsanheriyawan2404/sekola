@@ -29,8 +29,8 @@ class QuestionController extends Controller
     {
         request()->validate([
             'quiz_id' => 'required',
-            'question' => 'required',
-            'answer' => 'required',
+            'question' => 'required|max:255',
+            'answer' => 'required|max:255',
             'image' => 'image|mimes:jpg,jpeg,png|max:2058',
         ]);
 
@@ -58,7 +58,6 @@ class QuestionController extends Controller
 
     public function edit(Quiz $quiz, Question $question)
     {
-        // dd($question->find(3)->choices()->get());
         return view('questions.edit', [
             'title' => 'Edit Soal',
             'quiz' => $quiz,

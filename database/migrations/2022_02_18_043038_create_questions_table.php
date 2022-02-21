@@ -19,7 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->string('question');
             $table->string('answer');
             $table->string('image')->nullable();
-            $table->string('note')->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
 
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('CASCADE');

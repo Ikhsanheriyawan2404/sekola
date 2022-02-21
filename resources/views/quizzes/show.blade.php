@@ -38,10 +38,10 @@
                             @endif
                             <p>Catatan : {{ $question->note }}</p>
                             <label>{{ $loop->iteration }}. {{ $question->question }}
-                                <button onclick="event.preventDefault();document.getElementById('delete').submit();" class="btn btn-xs btn-danger">
+                                <button onclick="event.preventDefault();document.getElementById('delete{{ $question->id }}').submit();" class="btn btn-xs btn-danger">
                                     <i class="fa fa-trash"></i>
                                 </button>
-                                <form id="delete" action="{{ route('questions.destroy', $question->id) }}" method="post">
+                                <form id="delete{{ $question->id }}" action="{{ route('questions.destroy', $question->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                 </form>

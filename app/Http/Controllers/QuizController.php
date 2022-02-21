@@ -14,7 +14,7 @@ class QuizController extends Controller
 {
     public function show(Quiz $quiz)
     {
-        $questions = Question::inRandomOrder()->where('quiz_id', $quiz->id)->get();
+        $questions = Question::where('quiz_id', $quiz->id)->get();
         return view('quizzes.show', [
             'title' => 'Show Quiz',
             'quiz' => $quiz,

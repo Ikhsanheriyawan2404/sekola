@@ -18,7 +18,7 @@ class CreateExamsTable extends Migration
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('quiz_id');
             $table->unsignedBigInteger('question_id');
-            $table->string('answer');
+            $table->string('answer')->nullable();
             $table->enum('answered', ['yes', 'no']);
             $table->timestamps();
 
