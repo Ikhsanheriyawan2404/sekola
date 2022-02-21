@@ -35,8 +35,8 @@
                     <div class="col-md-12">
                         @foreach ($questions as $key => $question)
                         <div class="mb-4">
-                            <input type="text" name="question_id{{ $key+1 }}" value="{{ $question->id }}">
-                            <input type="text" name="answer{{$key+1}}">
+                            <input type="hidden" name="question_id{{ $key+1 }}" value="{{ $question->id }}">
+                            <input type="hidden" name="answer{{$key+1}}">
                             @if($question->image)
                             <img class="img-fluid" width="400px" src="/storage/{{ $question->image }}">
                             @endif
@@ -57,8 +57,8 @@
                         </div>
                         @endforeach
 
-                        <input type="text" name="index" value="{{ $key+1 }}">
-                        <input type="text" name="quiz_id" value="{{ $quiz->id }}">
+                        <input type="hidden" name="index" value="{{ $key+1 }}">
+                        <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                     </div>
                 </div>
             </div>
