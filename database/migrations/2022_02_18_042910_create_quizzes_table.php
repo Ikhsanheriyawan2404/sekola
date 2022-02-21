@@ -21,7 +21,7 @@ class CreateQuizzesTable extends Migration
             $table->time('finished');
             $table->string('time');
             $table->string('number_of_questions');
-            $table->string('status')->default(1);
+            $table->string('status')->default(0);
             $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('classroom_id');
             $table->unsignedBigInteger('study_id');
