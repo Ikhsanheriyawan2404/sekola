@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exam;
-use App\Models\Quiz;
-use App\Models\Result;
-use App\Models\Question;
+use App\Models\{Exam, Quiz, Result, Question};
 
 class ExamController extends Controller
 {
@@ -28,8 +25,8 @@ class ExamController extends Controller
     public function store()
     {
         $userId = auth()->user()->student_id;
-        $yes = 0;
-        $no = 0;
+        $correctAnswer = 0;
+        $wrongAnswer = 0;
         $data = request()->all();
 
         for($i=1; $i <= request('index'); $i++)
@@ -41,33 +38,27 @@ class ExamController extends Controller
                 if ($question->answer == $data['answer'.$i]) {
                     $result[$data['question_id'.$i]] = 'yes';
                     $exam->answered = "yes";
-                    $yes++;
+                    $correctAnswer++;
                 } else {
                     $result[$data['question_id'.$i]] = 'no';
                     $exam->answered = "no";
-                    $no++;
+                    $wrongAnswer++;
                 }
 
                 $exam->student_id = $userId;
                 $exam->quiz_id = $question->quiz_id;
                 $exam->question_id = $data['question_id'.$i];
                 $exam->answer = $data['answer'.$i];
-                // dd($exam);
                 $exam->save();
             }
         }
 
-        if ($res = Result::where('student_id', $userId)->where('quiz_id', request('quiz_id'))->first())
-        {
-
-        } else {
-            $res=new Result;
-        }
+        $res = Result::where('student_id', $userId)->where('quiz_id', request('quiz_id'))->first();
 
         $res->student_id= $userId;
         $res->quiz_id = request('quiz_id');
-        $res->correct = $yes;
-        $res->wrong = $no;
+        $res->correct = $correctAnswer;
+        $res->wrong = $wrongAnswer;
         $res->save();
 
         toast('Ulangan berhasil diselesaikan!', 'success');

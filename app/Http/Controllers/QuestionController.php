@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quiz;
-use App\Models\Choice;
-use App\Models\Question;
+use App\Models\{Quiz, Question, Choice};
 use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
