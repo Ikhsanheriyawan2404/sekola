@@ -12,14 +12,12 @@ use App\Models\Teacher;
 
 class QuizController extends Controller
 {
-    public function show(Quiz $quiz)
+    public function __construct()
     {
-        $questions = Question::where('quiz_id', $quiz->id)->get();
-        return view('quizzes.show', [
-            'title' => 'Show Quiz',
-            'quiz' => $quiz,
-            'questions' => $questions,
-        ]);
+        $this->middleware('permission:quiz-list|quiz-create|quiz-edit|quiz-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:quiz-create', ['only' => ['create','store']]);
+        $this->middleware('permission:quiz-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:quiz-delete', ['only' => ['destroy']]);
     }
 
     public function index(Teacher $teacher)
@@ -28,6 +26,16 @@ class QuizController extends Controller
             'title' => 'Quiz',
             'teacher' => $teacher,
             'quizzes' => Quiz::all(),
+        ]);
+    }
+
+    public function show(Quiz $quiz)
+    {
+        $questions = Question::where('quiz_id', $quiz->id)->get();
+        return view('quizzes.show', [
+            'title' => 'Show Quiz',
+            'quiz' => $quiz,
+            'questions' => $questions,
         ]);
     }
 

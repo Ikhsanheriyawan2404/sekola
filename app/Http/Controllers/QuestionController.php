@@ -9,13 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
 {
-    // public function show(Quiz $quiz)
-    // {
-    //     return view('quizzes.show', [
-    //         'title' => 'Show Quiz',
-    //         'quiz' => $quiz,
-    //     ]);
-    // }
+    public function __construct()
+    {
+        $this->middleware('permission:question-create', ['only' => ['create','store']]);
+        $this->middleware('permission:question-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:question-delete', ['only' => ['destroy']]);
+    }
 
     public function create(Quiz $quiz)
     {

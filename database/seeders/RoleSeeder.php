@@ -115,6 +115,9 @@ class RoleSeeder extends Seeder
             'dashboard-student',
             'user-show',
             'module-list',
+            'exam-list',
+            'exam-create',
+
         ]);
 
         $teacher->givePermissionTo([
@@ -124,6 +127,13 @@ class RoleSeeder extends Seeder
             'module-create',
             'module-edit',
             'module-delete',
+            'quiz-list',
+            'quiz-create',
+            'quiz-edit',
+            'quiz-delete',
+            'question-create',
+            'question-edit',
+            'question-delete',
         ]);
     }
 }

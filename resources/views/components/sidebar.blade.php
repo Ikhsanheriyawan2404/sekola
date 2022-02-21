@@ -56,7 +56,7 @@
             @endcan
         </li>
         <li class="nav-item">
-            @can('-list')
+            @can('quiz-list')
             <a href="{{ route('quizzes.index', auth()->user()->teacher_id) }}" class="nav-link {{ request()->routeIs('quizzes.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-book"></i>
                 <p>

@@ -9,6 +9,12 @@ use App\Models\Question;
 
 class ExamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:exam-list|exam-create|exam-edit|exam-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:exam-create', ['only' => ['create','store']]);
+    }
+
     public function show(Quiz $quiz)
     {
         $questions = Question::inRandomOrder()->where('quiz_id', $quiz->id)->get();

@@ -177,7 +177,7 @@
                                     <td>{{ $quiz->number_of_questions }}</td>
                                     <td>{{ $quiz->status == '1' ? 'Aktif' : 'Tidak aktif' }}</td>
                                     <td>
-                                        <button class="btn btn-primary">Start</button>
+                                        <a href="{{ route('exams.show', $quiz->id) }}" class="btn btn-primary">Start</a>
                                     </td>
                                 </tr>
                                 @endforeach
