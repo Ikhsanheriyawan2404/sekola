@@ -96,4 +96,14 @@ class QuizController extends Controller
         toast('Ulangan berhasil dihapus!', 'success');
         return redirect()->back();
     }
+
+    public function changeStatus(Quiz $quiz)
+    {
+        $quiz->update([
+            'status' => request('status'),
+        ]);
+
+        toast('Status ulangan berhasil diubah!', 'success');
+        return redirect()->back();
+    }
 }

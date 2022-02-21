@@ -54,7 +54,18 @@
                                     <td>{{ date('H:m', strtotime($quiz->start)) }} - {{ date('H:m', strtotime($quiz->finished)) }}</td>
                                     <td>{{ $quiz->time }} Menit</td>
                                     <td>{{ $quiz->number_of_questions }}</td>
-                                    <td>{{ $quiz->status == '1' ? 'Aktif' : 'Tidak aktif' }}</td>
+                                    <td>
+                                        <form action="{{ route('quizzes.status', $quiz->id) }}" method="post">
+                                            @csrf
+                                            @if ($quiz->status == '1')
+                                                <input type="hidden" name="status" value="0">
+                                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button>
+                                            @elseif ($quiz->status == '0')
+                                                <input type="hidden" name="status" value="1">
+                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                                            @endif
+                                        </form>
+                                    </td>
                                     <td>
                                         <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>Tambah soal</a>
                                         <a href="{{ route('quizzes.show', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
