@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Quiz;
 use App\Models\Choice;
 use App\Models\Question;
+use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
 {
@@ -63,5 +64,13 @@ class QuestionController extends Controller
             'quiz' => $quiz,
             'question' => $question,
         ]);
+    }
+
+    public function destroy(Question $question)
+    {
+        Storage::delete($question->image);
+        $question->delete();
+        toast('Soal berhasil dihapus!', 'success');
+        return redirect()->back();
     }
 }

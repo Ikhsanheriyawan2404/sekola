@@ -1,6 +1,7 @@
 @extends('layouts.app', compact('title'))
 
 @section('content')
+@include('sweetalert::alert')
 
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -32,16 +33,29 @@
                     <div class="col-md-12">
                         @foreach ($questions as $question)
                         <div class="mb-4">
-                            <label>{{ $loop->iteration }}. {{ $question->question }}</label>
+                            @if($question->image)
+                            <img class="img-fluid" width="400px" src="/storage/{{ $question->image }}">
+                            @endif
+                            <p>Catatan : {{ $question->note }}</p>
+                            <label>{{ $loop->iteration }}. {{ $question->question }}
+                                <button onclick="event.preventDefault();document.getElementById('delete').submit();" class="btn btn-xs btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                <form id="delete" action="{{ route('questions.destroy', $question->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </label>
                             <div class="container">
                                 @foreach ($question->choices as $choice)
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="radio1">
-                                        <label class="form-check-label">{{ $choice->choice }}</label>
+                                        <label class="form-check-label {{ $question->answer == $choice->choice  ? 'text-success' : '' }}">{{ $choice->choice }}</label>
                                     </div>
                                 </div>
                                 @endforeach
+                                <button class="btn btn-primary">Save</button>
                             </div>
                         </div>
                         @endforeach

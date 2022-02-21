@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::get('create/{quiz:id}', [QuestionController::class, 'create'])->name('questions.create');
         Route::post('', [QuestionController::class, 'store'])->name('questions.store');
         Route::get('{quiz:id}/{question:id}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
+        Route::delete('{question:id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
     });
 
     Route::prefix('modules')->group(function () {
