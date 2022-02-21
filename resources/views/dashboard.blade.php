@@ -161,6 +161,7 @@
                                     <th>Jam mulai - selesai</th>
                                     <th>Waktu Pelaksanaan</th>
                                     <th>Jumlah Soal</th>
+                                    <th>Hasil</th>
                                     <th class="text-center" style="width: 150px;"><i class="fa fa-cogs"></i></th>
                                 </tr>
                             </thead>
@@ -175,7 +176,16 @@
                                     <td>{{ $quiz->time }} Menit</td>
                                     <td>{{ $quiz->number_of_questions }}</td>
                                     <td>
-                                        <a href="{{ route('exams.show', $quiz->id) }}" class="btn btn-primary">Start</a>
+                                        @foreach ($quiz->results as $result)
+                                            {{ $result->correct }} / {{ $quiz->number_of_questions }}
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @if ($results->where('student_id', auth()
+                                            ->user()->student_id)
+                                            ->where('quiz_id', $quiz->id)->first() === null)
+                                            <a type="button" href="{{ route('exams.show', $quiz->id) }}" class="btn btn-primary">Start</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

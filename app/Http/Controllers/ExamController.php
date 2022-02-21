@@ -15,7 +15,8 @@ class ExamController extends Controller
     public function show(Quiz $quiz)
     {
         $questions = Question::inRandomOrder()->where('quiz_id', $quiz->id)->get();
-        if ($quiz->status == '1') {
+        $result = Result::where('student_id', auth()->user()->student_id)->where('quiz_id', $quiz->id)->exists();
+        if ($quiz->status == '1' && !$result) {
             return view('exams.show', [
                 'title' => 'Start exam',
                 'quiz' => $quiz,
@@ -57,13 +58,12 @@ class ExamController extends Controller
             }
         }
 
-        $res = Result::where('student_id', $userId)->where('quiz_id', request('quiz_id'))->first();
-
-        $res->student_id= $userId;
-        $res->quiz_id = request('quiz_id');
-        $res->correct = $correctAnswer;
-        $res->wrong = $wrongAnswer;
-        $res->save();
+        Result::create([
+            'student_id' => $userId,
+            'quiz_id' => request('quiz_id'),
+            'correct' => $correctAnswer,
+            'wrong' => $wrongAnswer,
+        ]);
 
         toast('Ulangan berhasil diselesaikan!', 'success');
         return redirect()->route('student.dashboard', auth()->user()->student_id);
