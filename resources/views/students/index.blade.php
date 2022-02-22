@@ -117,7 +117,7 @@
                         <label for="customFile">Masukan file excel <span class="text-danger">*</span></label>
                         <div class="custom-file">
                             <input type="file" name="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile" required>
-                            <label class="custom-file-label" for="customFile">Pilih foto</label>
+                            <label class="custom-file-label" for="customFile">Pilih file</label>
                             @error('file')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

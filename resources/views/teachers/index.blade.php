@@ -13,7 +13,6 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            {{-- <li class="breadcrumb-item"><a href="#">{{ Breadcrumbs::render('home') }}</a></li> --}}
             <li class="breadcrumb-item active">{{ Breadcrumbs::render('teachers') }}</li>
         </ol>
         </div><!-- /.col -->
@@ -25,11 +24,12 @@
 <div class="container-fluid mb-3 d-flex justify-content-end">
     <div class="row">
         <div class="col-12">
-            {{-- @can('item-create') --}}
-                <a href="{{ route('teachers.create') }}" class="btn btn-sm btn-primary">Tambah</a>
-                <a href="{{ route('teachers.create') }}" class="btn btn-sm btn-primary">Impor</a>
-                <a href="{{ route('teachers.create') }}" class="btn btn-sm btn-primary">Ekspor</a>
-            {{-- @endcan --}}
+            @can('teacher-create')
+                <a href="{{ route('teachers.create') }}" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
+                <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#importExcel">Impor <i class="fa fa-file-import"></i></a>
+                <a href="{{ route('teachers.export') }}" class="btn btn-sm btn-success" target="_blank">Ekspor <i class="fa fa-file-export"></i></a>
+                <a href="{{ route('teachers.printpdf') }}" class="btn btn-sm btn-danger">Print PDF <i class="fa fa-file-pdf"></i></a>
+            @endcan
         </div>
     </div>
 </div>
@@ -89,6 +89,46 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<!-- MODAL IMPORT EXCEL -->
+<div class="modal fade" id="importExcel">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form action="{{ route('teachers.import') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-title">Import Excel</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <label for="customFile">Masukan file excel <span class="text-danger">*</span></label>
+                        <div class="custom-file">
+                            <input type="file" name="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile" required>
+                            <label class="custom-file-label" for="customFile">Pilih file</label>
+                            @error('file')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-right">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+    <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal import excel -->
 
 @endsection
 
