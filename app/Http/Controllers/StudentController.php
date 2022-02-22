@@ -174,7 +174,7 @@ class StudentController extends Controller
     {
         $students = Student::all();
         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('pdf', compact('students'))->setPaper('a4', 'landscape');
+        $pdf->loadView('students.pdf', compact('students'))->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
 }

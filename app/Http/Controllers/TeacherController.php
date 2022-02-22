@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Exports\TeacherExport;
+use App\Imports\TeacherImport;
 use App\Models\{Study, Teacher};
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -139,7 +141,7 @@ class TeacherController extends Controller
 
     public function export()
     {
-        return Excel::download(new TeacherExport, 'student.xlsx');
+        return Excel::download(new TeacherExport, 'teacher.xlsx');
     }
 
     public function import()
@@ -158,7 +160,7 @@ class TeacherController extends Controller
     {
         $teachers = Teacher::all();
         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('pdf', compact('teachers'))->setPaper('a4', 'landscape');
+        $pdf->loadView('teachers.pdf', compact('teachers'))->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
 }

@@ -15,7 +15,11 @@ class TeacherImport implements ToModel
     public function model(array $row)
     {
         return new Teacher([
-            //
+            'name' => $row[0],
+            'nip' => $row[1],
+            'gender' => $row[2],
+            'phone' => $row[3],
+            'email' => $row[4],
         ]);
     }
 }
