@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Result;
+use Yajra\DataTables\Facades\DataTables;
 use App\Models\{Quiz, Question, Study, Classroom, Teacher};
 use App\Http\Requests\{QuizStoreRequest, QuizUpdateRequest};
 
@@ -105,5 +107,15 @@ class QuizController extends Controller
 
         toast('Status ulangan berhasil diubah!', 'success');
         return redirect()->back();
+    }
+
+    public function result(Quiz $quiz)
+    {
+        $results = Result::where('quiz_id', $quiz->id)->get();
+        return view('quizzes.result', [
+            'title' => 'Hasil ujian',
+            'quiz' => $quiz,
+            'results' => $results,
+        ]);
     }
 }

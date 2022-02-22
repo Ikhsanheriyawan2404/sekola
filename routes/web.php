@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
         Route::post('', [QuizController::class, 'store'])->name('quizzes.store');
         Route::delete('{quiz:id}', [QuizController::class, 'destroy'])->name('quizzes.destroy');
         Route::post('{quiz:id}/status', [QuizController::class, 'changeStatus'])->name('quizzes.status');
+        Route::get('{quiz:id}/result', [QuizController::class, 'result'])->name('quizzes.result');
     });
     Route::prefix('questions')->group(function () {
         Route::get('create/{quiz:id}', [QuestionController::class, 'create'])->name('questions.create');

@@ -11,9 +11,9 @@ class Result extends Model
 
     protected $fillable = ['student_id', 'quiz_id', 'correct', 'wrong'];
 
-    public function user()
+    public function student()
     {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(Student::class);
     }
 
     public function quiz()
