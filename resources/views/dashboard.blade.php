@@ -177,7 +177,7 @@
                                     <td>{{ $quiz->number_of_questions }}</td>
                                     <td>
                                         @foreach ($quiz->results as $result)
-                                            {{ $result->correct }} / {{ $quiz->number_of_questions }}
+                                            {{ 100 / $quiz->questions->count() * $result->correct }}
                                         @endforeach
                                     </td>
                                     <td>
