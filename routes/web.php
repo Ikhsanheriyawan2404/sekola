@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resources(['roles' => RoleController::class]);
     Route::get('students/export', [StudentController::class, 'export'])->name('students.export');
     Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
+    Route::get('students/printpdf', [StudentController::class, 'printPDF'])->name('students.printpdf');
     Route::resources(['students' => StudentController::class]);
     Route::resources(['teachers' => TeacherController::class]);
     Route::resources(['majors' => MajorController::class]);

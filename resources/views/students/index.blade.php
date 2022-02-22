@@ -28,7 +28,7 @@
                 <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
                 <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#importExcel">Impor <i class="fa fa-file-import"></i></a>
                 <a href="{{ route('students.export') }}" class="btn btn-sm btn-success" target="_blank">Ekspor <i class="fa fa-file-export"></i></a>
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-danger">Ekspor PDF <i class="fa fa-file-pdf"></i></a>
+                <a href="{{ route('students.printpdf') }}" class="btn btn-sm btn-danger">Ekspor PDF <i class="fa fa-file-pdf"></i></a>
             @endcan
         </div>
     </div>

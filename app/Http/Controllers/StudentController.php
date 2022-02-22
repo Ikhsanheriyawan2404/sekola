@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\PDF;
 use App\Exports\StudentExport;
 use App\Imports\StudentImport;
 use Illuminate\Support\Facades\Hash;
@@ -167,5 +168,13 @@ class StudentController extends Controller
 
         toast('Data siswa berhasil diimport!', 'success');
         return redirect()->route('students.index');
+    }
+
+    public function printPDF()
+    {
+        $students = Student::all();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('pdf', compact('students'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }
