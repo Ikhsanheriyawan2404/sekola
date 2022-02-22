@@ -16,9 +16,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
     Route::get('/teacher/dashboard/{teacher:id}', [HomeController::class, 'teacher'])->name('teacher.dashboard');
     Route::get('/student/dashboard/{student:id}', [HomeController::class, 'student'])->name('student.dashboard');
+
     Route::resources(['users' => UserController::class]);
     Route::put('users/{user:id}/edit_password', [UserController::class, 'editPassword'])->name('edit.password');
+
     Route::resources(['roles' => RoleController::class]);
+    Route::get('students/export', [StudentController::class, 'export'])->name('students.export');
     Route::resources(['students' => StudentController::class]);
     Route::resources(['teachers' => TeacherController::class]);
     Route::resources(['majors' => MajorController::class]);

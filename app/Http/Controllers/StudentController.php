@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{User, Student, Classroom};
+use App\Exports\StudentExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\{User, Student, Classroom};
 use App\Http\Requests\{StudentStoreRequest, StudentUpdateRequest};
 
 class StudentController extends Controller
@@ -147,5 +149,10 @@ class StudentController extends Controller
         $student->delete();
         toast('Data siswa berhasil dihapus!','success');
         return redirect()->route('students.index');
+    }
+
+    public function export()
+    {
+        return Excel::download(new StudentExport, 'student.xlsx');
     }
 }

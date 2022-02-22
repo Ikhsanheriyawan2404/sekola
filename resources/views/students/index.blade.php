@@ -27,7 +27,7 @@
             @can('student-create')
                 <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
                 <a href="{{ route('students.create') }}" class="btn btn-sm btn-success">Impor <i class="fa fa-file-import"></i></a>
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-success">Ekspor <i class="fa fa-file-export"></i></a>
+                <a href="{{ route('students.export') }}" class="btn btn-sm btn-success" target="_blank">Ekspor <i class="fa fa-file-export"></i></a>
                 <a href="{{ route('students.create') }}" class="btn btn-sm btn-danger">Ekspor PDF <i class="fa fa-file-pdf"></i></a>
             @endcan
         </div>
