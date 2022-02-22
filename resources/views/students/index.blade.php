@@ -26,7 +26,7 @@
         <div class="col-12">
             @can('student-create')
                 <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-success">Impor <i class="fa fa-file-import"></i></a>
+                <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#importExcel">Impor <i class="fa fa-file-import"></i></a>
                 <a href="{{ route('students.export') }}" class="btn btn-sm btn-success" target="_blank">Ekspor <i class="fa fa-file-export"></i></a>
                 <a href="{{ route('students.create') }}" class="btn btn-sm btn-danger">Ekspor PDF <i class="fa fa-file-pdf"></i></a>
             @endcan
@@ -98,6 +98,46 @@
 </div>
 <!-- /.modal -->
 
+<!-- MODAL IMPORT EXCEL -->
+<div class="modal fade" id="importExcel">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form action="{{ route('students.import') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-title">Import Excel</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <label for="customFile">Masukan file excel <span class="text-danger">*</span></label>
+                        <div class="custom-file">
+                            <input type="file" name="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile" required>
+                            <label class="custom-file-label" for="customFile">Pilih foto</label>
+                            @error('file')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-right">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+    <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal import excel -->
+
 @endsection
 
 @section('custom-styles')
@@ -122,8 +162,11 @@
     <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+    <!-- bs-custom-file-input -->
+    <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <script>
         $(function () {
+            bsCustomFileInput.init();
 
             let table = $('#data-table').DataTable({
                 processing: true,

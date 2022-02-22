@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Exports\StudentExport;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\StudentImport;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\{User, Student, Classroom};
@@ -154,5 +155,17 @@ class StudentController extends Controller
     public function export()
     {
         return Excel::download(new StudentExport, 'student.xlsx');
+    }
+
+    public function import()
+    {
+        request()->validate([
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        Excel::import(new StudentImport, request()->file('file')->store('file'));
+
+        toast('Data siswa berhasil diimport!', 'success');
+        return redirect()->route('students.index');
     }
 }
