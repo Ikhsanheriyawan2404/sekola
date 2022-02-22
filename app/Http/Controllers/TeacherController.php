@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\{Study, Teacher};
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\TeacherRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -134,5 +135,30 @@ class TeacherController extends Controller
         $teacher->delete();
         toast('Data jurusan berhasil dihapus!','success');
         return redirect()->route('majors.index');
+    }
+
+    public function export()
+    {
+        return Excel::download(new TeacherExport, 'student.xlsx');
+    }
+
+    public function import()
+    {
+        request()->validate([
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        Excel::import(new TeacherImport, request()->file('file')->store('file'));
+
+        toast('Data guru berhasil diimport!', 'success');
+        return redirect()->route('teachers.index');
+    }
+
+    public function printPDF()
+    {
+        $teachers = Teacher::all();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('pdf', compact('teachers'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }
