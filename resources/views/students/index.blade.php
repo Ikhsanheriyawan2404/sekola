@@ -24,11 +24,12 @@
 <div class="container-fluid mb-3 d-flex justify-content-end">
     <div class="row">
         <div class="col-12">
-            {{-- @can('item-create') --}}
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Tambah</a>
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Impor</a>
-                <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Ekspor</a>
-            {{-- @endcan --}}
+            @can('student-create')
+                <a href="{{ route('students.create') }}" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
+                <a href="{{ route('students.create') }}" class="btn btn-sm btn-success">Impor <i class="fa fa-file-import"></i></a>
+                <a href="{{ route('students.create') }}" class="btn btn-sm btn-success">Ekspor <i class="fa fa-file-export"></i></a>
+                <a href="{{ route('students.create') }}" class="btn btn-sm btn-danger">Ekspor PDF <i class="fa fa-file-pdf"></i></a>
+            @endcan
         </div>
     </div>
 </div>
