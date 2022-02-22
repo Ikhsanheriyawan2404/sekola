@@ -24,6 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::get('students/export', [StudentController::class, 'export'])->name('students.export');
     Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
     Route::get('students/printpdf', [StudentController::class, 'printPDF'])->name('students.printpdf');
+    Route::get('teachers/export', [TeacherController::class, 'export'])->name('teachers.export');
+    Route::post('teachers/import', [TeacherController::class, 'import'])->name('teachers.import');
+    Route::get('teachers/printpdf', [TeacherController::class, 'printPDF'])->name('teachers.printpdf');
     Route::resources(['students' => StudentController::class]);
     Route::resources(['teachers' => TeacherController::class]);
     Route::resources(['majors' => MajorController::class]);
@@ -32,7 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
-    // Route::resources(['quizzes' => QuizController::class]);
 
     Route::prefix('quizzes')->group(function () {
         Route::get('{teacher:id}', [QuizController::class, 'index'])->name('quizzes.index');
