@@ -36,7 +36,8 @@
                         <th>NISN</th>
                         <th>Kelas</th>
                         <th>Jenis Kelamin</th>
-                        <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
+                        <th>Agama</th>
+                        <th class="text-center" style="width: 20%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,11 +45,12 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $student->name }}</td>
-                        <td>{{ $student->classroom->name }}</td>
                         <td>{{ $student->nisn }}</td>
+                        <td>{{ $student->classroom->name }}</td>
                         <td>{{ $student->gender }}</td>
-                        <td>
-                            <a href="{{ route('students.restore', $student->id) }}" class="btn btn-success btn-sm">Restore <i class="fa fa-restore"></i></a>
+                        <td>{{ $student->religion }}</td>
+                        <td class="d-flex justify-content-center">
+                            <a href="{{ route('students.restore', $student->id) }}" class="btn btn-success btn-sm mr-2">Restore <i class="fa fa-trash-restore"></i></a>
                             <form action="{{ route('students.deletePermanent', $student->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
