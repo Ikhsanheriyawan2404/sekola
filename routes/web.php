@@ -32,9 +32,18 @@ Route::middleware('auth')->group(function () {
         Route::get('students', [StudentController::class, 'trash'])->name('students.trash');
         Route::get('students/restore/{id}', [StudentController::class, 'restore'])->name('students.restore');
         Route::delete('students/delete/{id}', [StudentController::class, 'deletePermanent'])->name('students.deletePermanent');
-        Route::get('teachers', [StudentController::class, 'trash'])->name('teachers.trash');
-        Route::get('teachers/restore/{id}', [StudentController::class, 'restore'])->name('teachers.restore');
-        Route::delete('teachers/delete/{id}', [StudentController::class, 'deletePermanent'])->name('teachers.deletePermanent');
+        Route::get('teachers', [TeacherController::class, 'trash'])->name('teachers.trash');
+        Route::get('teachers/restore/{id}', [TeacherController::class, 'restore'])->name('teachers.restore');
+        Route::delete('teachers/delete/{id}', [TeacherController::class, 'deletePermanent'])->name('teachers.deletePermanent');
+        Route::get('classrooms', [ClassroomController::class, 'trash'])->name('classrooms.trash');
+        Route::get('classrooms/restore/{id}', [ClassroomController::class, 'restore'])->name('classrooms.restore');
+        Route::delete('classrooms/delete/{id}', [ClassroomController::class, 'deletePermanent'])->name('classrooms.deletePermanent');
+        Route::get('studies', [StudyController::class, 'trash'])->name('studies.trash');
+        Route::get('studies/restore/{id}', [StudyController::class, 'restore'])->name('studies.restore');
+        Route::delete('studies/delete/{id}', [StudyController::class, 'deletePermanent'])->name('studies.deletePermanent');
+        Route::get('schedules', [ScheduleController::class, 'trash'])->name('schedules.trash');
+        Route::get('schedules/restore/{id}', [ScheduleController::class, 'restore'])->name('schedules.restore');
+        Route::delete('schedules/delete/{id}', [ScheduleController::class, 'deletePermanent'])->name('schedules.deletePermanent');
     });
 
     Route::resources(['students' => StudentController::class]);

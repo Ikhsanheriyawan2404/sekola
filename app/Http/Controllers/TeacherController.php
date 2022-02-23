@@ -143,7 +143,7 @@ class TeacherController extends Controller
     {
         $teachers = Teacher::onlyTrashed()->get();
     	return view('teachers.trash', [
-            'title' => 'Data Sampah Siswa',
+            'title' => 'Data Sampah Guru',
             'teachers' => $teachers,
         ]);
     }

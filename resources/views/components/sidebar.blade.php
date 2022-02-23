@@ -158,7 +158,7 @@
                 </li>
                 <li class="nav-item">
                     @can('teacher-list')
-                    <a href="{{ route('teachers.index') }}" class="nav-link {{ request()->routeIs('teachers.index') ? 'active' : '' }}">
+                    <a href="{{ route('teachers.trash') }}" class="nav-link {{ request()->routeIs('teachers.trash') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-graduation-cap"></i>
                     <p>
                         Data Guru
@@ -168,7 +168,7 @@
                 </li>
                 <li class="nav-item">
                     @can('classroom-list')
-                    <a href="{{ route('classrooms.index') }}" class="nav-link {{ request()->routeIs('classrooms.*') ? 'active' : '' }}">
+                    <a href="{{ route('classrooms.trash') }}" class="nav-link {{ request()->routeIs('classrooms.trash') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chalkboard"></i>
                         <p>
                             Data Kelas
@@ -178,7 +178,7 @@
                 </li>
                 <li class="nav-item">
                     @can('studies-list')
-                    <a href="{{ route('studies.index') }}" class="nav-link {{ request()->routeIs('studies.*') ? 'active' : '' }}">
+                    <a href="{{ route('studies.trash') }}" class="nav-link {{ request()->routeIs('studies.trash') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book-open"></i>
                         <p>
                             Data Mapel
@@ -188,7 +188,7 @@
                 </li>
                 <li class="nav-item">
                     @can('schedule-list')
-                    <a href="{{ route('schedules.index') }}" class="nav-link {{ request()->routeIs('schedules.*') ? 'active' : '' }}">
+                    <a href="{{ route('schedules.trash') }}" class="nav-link {{ request()->routeIs('schedules.trash') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-clock"></i>
                         <p>
                             Jadwal

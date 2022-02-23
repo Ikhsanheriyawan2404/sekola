@@ -24,7 +24,7 @@
     @include('components.alerts')
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Data Siswa</h3>
+            <h3 class="card-title">Data Guru</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -33,23 +33,25 @@
                     <tr>
                         <th style="width: 1%">No.</th>
                         <th>Nama</th>
-                        <th>NISN</th>
-                        <th>Kelas</th>
+                        <th>NIP</th>
                         <th>Jenis Kelamin</th>
-                        <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
+                        <th>No HP</th>
+                        <th>Email</th>
+                        <th class="text-center" style="width: 20%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($students as $student)
+                    @foreach ($teachers as $teacher)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $student->name }}</td>
-                        <td>{{ $student->classroom->name }}</td>
-                        <td>{{ $student->nisn }}</td>
-                        <td>{{ $student->gender }}</td>
-                        <td>
-                            <a href="{{ route('students.restore', $student->id) }}" class="btn btn-success btn-sm">Restore <i class="fa fa-restore"></i></a>
-                            <form action="{{ route('students.deletePermanent', $student->id) }}" method="post">
+                        <td>{{ $teacher->name }}</td>
+                        <td>{{ $teacher->nip }}</td>
+                        <td>{{ $teacher->gender }}</td>
+                        <td>{{ $teacher->phone }}</td>
+                        <td>{{ $teacher->email }}</td>
+                        <td class="d-flex justify-content-center">
+                            <a href="{{ route('teachers.restore', $teacher->id) }}" class="btn btn-success btn-sm mr-2">Restore <i class="fa fa-trash-restore"></i></a>
+                            <form action="{{ route('teachers.deletePermanent', $teacher->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" onclick="return confirm('Apakah yakin ingin menghapus data ini permanen?')" class="btn btn-danger btn-sm">Hapus <i class="fa fa-trash"></i></button>
