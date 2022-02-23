@@ -32,6 +32,9 @@ Route::middleware('auth')->group(function () {
         Route::get('students', [StudentController::class, 'trash'])->name('students.trash');
         Route::get('students/restore/{id}', [StudentController::class, 'restore'])->name('students.restore');
         Route::delete('students/delete/{id}', [StudentController::class, 'deletePermanent'])->name('students.deletePermanent');
+        Route::get('teachers', [StudentController::class, 'trash'])->name('teachers.trash');
+        Route::get('teachers/restore/{id}', [StudentController::class, 'restore'])->name('teachers.restore');
+        Route::delete('teachers/delete/{id}', [StudentController::class, 'deletePermanent'])->name('teachers.deletePermanent');
     });
 
     Route::resources(['students' => StudentController::class]);
