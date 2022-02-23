@@ -105,4 +105,30 @@ class StudyController extends Controller
     {
         $study->delete();
     }
+
+    public function trash()
+    {
+        $studies = Study::onlyTrashed()->get();
+    	return view('studies.trash', [
+            'title' => 'Trash Mata Pelajaran',
+            'studies' => $studies,
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $study = Study::onlyTrashed()->where('id', $id);
+        $study->restore();
+        toast('Data mapel berhasil dipulihkan!', 'success');
+    	return redirect()->back();
+    }
+
+    public function deletePermanent($id)
+    {
+        $study = Study::onlyTrashed()->where('id', $id);
+    	$study->forceDelete();
+
+        toast('Data mapel berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
+    }
 }

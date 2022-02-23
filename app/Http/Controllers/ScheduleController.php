@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use App\Http\Requests\ScheduleRequest;
-
 use App\Http\Requests\ScheduleRequest;
 use App\Models\{Classroom, Room, Schedule, Study, Teacher};
 use Yajra\DataTables\Facades\DataTables;
@@ -119,6 +117,31 @@ class ScheduleController extends Controller
         $schedule->delete();
         toast('Data jadwal berhasil dihapus!','success');
         return back();
+    }
 
+    public function trash()
+    {
+        $schedules = Schedule::onlyTrashed()->get();
+    	return view('schedules.trash', [
+            'title' => 'Trash Jadwal',
+            'schedules' => $schedules,
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $schedule = Schedule::onlyTrashed()->where('id', $id);
+        $schedule->restore();
+        toast('Data jadwal berhasil dipulihkan!', 'success');
+    	return redirect()->back();
+    }
+
+    public function deletePermanent($id)
+    {
+        $schedule = Schedule::onlyTrashed()->where('id', $id);
+    	$schedule->forceDelete();
+
+        toast('Data jadwal berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
     }
 }

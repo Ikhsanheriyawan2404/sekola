@@ -125,4 +125,30 @@ class ClassroomController extends Controller
         $student = Student::get()->where('classroom_id', $id);
         return response()->json($student);
     }
+
+    public function trash()
+    {
+        $classrooms = Classroom::onlyTrashed()->get();
+    	return view('classrooms.trash', [
+            'title' => 'Trash Kelas',
+            'classrooms' => $classrooms,
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $classroom = Classroom::onlyTrashed()->where('id', $id);
+        $classroom->restore();
+        toast('Data kelas berhasil dipulihkan!', 'success');
+    	return redirect()->back();
+    }
+
+    public function deletePermanent($id)
+    {
+        $classroom = Classroom::onlyTrashed()->where('id', $id);
+    	$classroom->forceDelete();
+
+        toast('Data kelas berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
+    }
 }
