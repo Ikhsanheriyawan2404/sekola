@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Barryvdh\DomPDF\PDF;
 use App\Exports\StudentExport;
 use App\Imports\StudentImport;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use App\Models\{User, Student, Classroom};
+use App\Models\{User, Student, Classroom, Teacher};
 use App\Http\Requests\{StudentStoreRequest, StudentUpdateRequest};
 
 class StudentController extends Controller
@@ -151,6 +150,32 @@ class StudentController extends Controller
         $student->delete();
         toast('Data siswa berhasil dihapus!','success');
         return redirect()->route('students.index');
+    }
+
+    public function trash()
+    {
+        $students = Student::onlyTrashed()->get();
+    	return view('students.trash', [
+            'title' => 'Data Sampah Siswa',
+            'students' => $students,
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $student = Student::onlyTrashed()->where('id', $id);
+        $student->restore();
+        toast('Data siswa berhasil dipulihkan!', 'success');
+    	return redirect()->back();
+    }
+
+    public function deletePermanent($id)
+    {
+        $student = Student::onlyTrashed()->where('id', $id);
+    	$student->forceDelete();
+
+        toast('Data siswa berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
     }
 
     public function export()

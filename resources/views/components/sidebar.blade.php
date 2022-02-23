@@ -135,22 +135,29 @@
             </a>
             @endcan
         </li>
-        {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-poll"></i>
-            <p>
-                Vote
-            </p>
-            </a>
-        </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-graduation-cap"></i>
+            @can('student-list')
+            <a class="nav-link {{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-recycle"></i>
             <p>
-                Absensi
+                Sampah
+                <i class="right fas fa-angle-left"></i>
             </p>
             </a>
-        </li> --}}
+            @endcan
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    @can('student-list')
+                    <a href="{{ route('students.trash') }}" class="nav-link {{ request()->routeIs('students.trash') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                        Data Siswa
+                    </p>
+                    </a>
+                    @endcan
+                </li>
+            </ul>
+        </li>
         <li class="nav-item">
             @can('user-list')
             <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'active' : '' }}">

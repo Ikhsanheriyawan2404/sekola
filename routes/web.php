@@ -27,6 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::get('teachers/export', [TeacherController::class, 'export'])->name('teachers.export');
     Route::post('teachers/import', [TeacherController::class, 'import'])->name('teachers.import');
     Route::get('teachers/printpdf', [TeacherController::class, 'printPDF'])->name('teachers.printpdf');
+
+    Route::get('trash/students', [StudentController::class, 'trash'])->name('students.trash');
+    Route::get('trash/students/restore/{id}', [StudentController::class, 'restore'])->name('students.restore');
+    Route::delete('trash/students/delete/{id}', [StudentController::class, 'deletePermanent'])->name('students.deletePermanent');
+
     Route::resources(['students' => StudentController::class]);
     Route::resources(['teachers' => TeacherController::class]);
     Route::resources(['majors' => MajorController::class]);

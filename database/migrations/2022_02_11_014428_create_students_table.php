@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->string('email');
             $table->text('address')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('CASCADE');
         });
