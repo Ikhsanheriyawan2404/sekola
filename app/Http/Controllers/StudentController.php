@@ -156,7 +156,7 @@ class StudentController extends Controller
     {
         $students = Student::onlyTrashed()->get();
     	return view('students.trash', [
-            'title' => 'Data Sampah Siswa',
+            'title' => 'Trash Siswa',
             'students' => $students,
         ]);
     }

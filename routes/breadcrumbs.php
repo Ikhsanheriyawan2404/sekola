@@ -179,3 +179,29 @@ Breadcrumbs::for('settings', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Info Sekolah', route('settings.index'));
 });
+
+// Breadcrumbs Trash
+Breadcrumbs::for('student_trash', function (BreadcrumbTrail $trail) {
+    $trail->parent('students');
+    $trail->push('Trash Siswa', route('students.index'));
+});
+
+Breadcrumbs::for('teacher_trash', function (BreadcrumbTrail $trail) {
+    $trail->parent('teachers');
+    $trail->push('Trash Guru', route('teachers.index'));
+});
+
+Breadcrumbs::for('classroom_trash', function (BreadcrumbTrail $trail) {
+    $trail->parent('classrooms');
+    $trail->push('Trash Kelas', route('classrooms.index'));
+});
+
+Breadcrumbs::for('study_trash', function (BreadcrumbTrail $trail) {
+    $trail->parent('studies');
+    $trail->push('Trash Mata Pelajaran', route('studies.index'));
+});
+
+Breadcrumbs::for('schedule_trash', function (BreadcrumbTrail $trail) {
+    $trail->parent('schedules');
+    $trail->push('Trash Jadwal', route('schedules.index'));
+});
