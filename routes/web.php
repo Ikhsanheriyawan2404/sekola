@@ -28,9 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::post('teachers/import', [TeacherController::class, 'import'])->name('teachers.import');
     Route::get('teachers/printpdf', [TeacherController::class, 'printPDF'])->name('teachers.printpdf');
 
-    Route::get('trash/students', [StudentController::class, 'trash'])->name('students.trash');
-    Route::get('trash/students/restore/{id}', [StudentController::class, 'restore'])->name('students.restore');
-    Route::delete('trash/students/delete/{id}', [StudentController::class, 'deletePermanent'])->name('students.deletePermanent');
+    Route::prefix('trash')->group(function () {
+        Route::get('students', [StudentController::class, 'trash'])->name('students.trash');
+        Route::get('students/restore/{id}', [StudentController::class, 'restore'])->name('students.restore');
+        Route::delete('students/delete/{id}', [StudentController::class, 'deletePermanent'])->name('students.deletePermanent');
+    });
 
     Route::resources(['students' => StudentController::class]);
     Route::resources(['teachers' => TeacherController::class]);

@@ -11,7 +11,7 @@
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
@@ -149,10 +149,50 @@
                 <li class="nav-item">
                     @can('student-list')
                     <a href="{{ route('students.trash') }}" class="nav-link {{ request()->routeIs('students.trash') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-users"></i>
+                    <i class="nav-icon fas fa-user-graduate"></i>
                     <p>
                         Data Siswa
                     </p>
+                    </a>
+                    @endcan
+                </li>
+                <li class="nav-item">
+                    @can('teacher-list')
+                    <a href="{{ route('teachers.index') }}" class="nav-link {{ request()->routeIs('teachers.index') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-graduation-cap"></i>
+                    <p>
+                        Data Guru
+                    </p>
+                    </a>
+                    @endcan
+                </li>
+                <li class="nav-item">
+                    @can('classroom-list')
+                    <a href="{{ route('classrooms.index') }}" class="nav-link {{ request()->routeIs('classrooms.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chalkboard"></i>
+                        <p>
+                            Data Kelas
+                        </p>
+                    </a>
+                    @endcan
+                </li>
+                <li class="nav-item">
+                    @can('studies-list')
+                    <a href="{{ route('studies.index') }}" class="nav-link {{ request()->routeIs('studies.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-book-open"></i>
+                        <p>
+                            Data Mapel
+                        </p>
+                    </a>
+                    @endcan
+                </li>
+                <li class="nav-item">
+                    @can('schedule-list')
+                    <a href="{{ route('schedules.index') }}" class="nav-link {{ request()->routeIs('schedules.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-clock"></i>
+                        <p>
+                            Jadwal
+                        </p>
                     </a>
                     @endcan
                 </li>
