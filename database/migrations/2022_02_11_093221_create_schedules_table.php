@@ -23,6 +23,7 @@ class CreateSchedulesTable extends Migration
             $table->time('start');
             $table->time('finished');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('CASCADE');
             $table->foreign('study_id')->references('id')->on('studies')->onDelete('CASCADE');

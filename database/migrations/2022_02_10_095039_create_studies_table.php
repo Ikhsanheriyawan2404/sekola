@@ -20,6 +20,7 @@ class CreateStudiesTable extends Migration
             $table->unsignedBigInteger('major_id');
             $table->enum('type', ['Umum', 'Kejuruan', 'Khusus']);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('major_id')->references('id')->on('majors')->onDelete('CASCADE');
         });

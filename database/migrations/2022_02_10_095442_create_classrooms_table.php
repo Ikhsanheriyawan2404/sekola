@@ -19,6 +19,7 @@ class CreateClassroomsTable extends Migration
             $table->unsignedBigInteger('major_id');
             $table->unsignedBigInteger('teacher_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('major_id')->references('id')->on('majors')->onDelete('CASCADE');
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('CASCADE');
