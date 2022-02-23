@@ -139,6 +139,32 @@ class TeacherController extends Controller
         return redirect()->route('majors.index');
     }
 
+    public function trash()
+    {
+        $teachers = Teacher::onlyTrashed()->get();
+    	return view('teachers.trash', [
+            'title' => 'Data Sampah Siswa',
+            'teachers' => $teachers,
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $teacher = Teacher::onlyTrashed()->where('id', $id);
+        $teacher->restore();
+        toast('Data guru berhasil dipulihkan!', 'success');
+    	return redirect()->back();
+    }
+
+    public function deletePermanent($id)
+    {
+        $teacher = Teacher::onlyTrashed()->where('id', $id);
+    	$teacher->forceDelete();
+
+        toast('Data guru berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
+    }
+
     public function export()
     {
         return Excel::download(new TeacherExport, 'teacher.xlsx');
