@@ -23,7 +23,7 @@ class ExamController extends Controller
                 'questions' => $questions,
             ]);
         } else {
-            abort(403, 'THIS QUIZ HAS NOT BEEN ACTIVATED. TELL YOUR TEACHER!');
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
         }
     }
 

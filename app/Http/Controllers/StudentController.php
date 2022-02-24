@@ -178,6 +178,15 @@ class StudentController extends Controller
     	return redirect()->back();
     }
 
+    public function deleteAll()
+    {
+        $student = Student::onlyTrashed();
+        $student->forceDelete();
+
+        toast('Semua data siswa berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
+    }
+
     public function export()
     {
         return Excel::download(new StudentExport, 'student.xlsx');
