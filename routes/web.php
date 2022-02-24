@@ -1,12 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ExamController;
-use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController};
+use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController, ExamController, QuestionController};
 
-// Auth::routes(['register' => false]);
 Route::get('home', [HomeController::class,  'index']);
 Route::get('', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
@@ -21,19 +18,23 @@ Route::middleware('auth')->group(function () {
     Route::put('users/{user:id}/edit_password', [UserController::class, 'editPassword'])->name('edit.password');
 
     Route::resources(['roles' => RoleController::class]);
+
     Route::get('students/export', [StudentController::class, 'export'])->name('students.export');
     Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
     Route::get('students/printpdf', [StudentController::class, 'printPDF'])->name('students.printpdf');
+    Route::resources(['students' => StudentController::class]);
+
     Route::get('teachers/export', [TeacherController::class, 'export'])->name('teachers.export');
     Route::post('teachers/import', [TeacherController::class, 'import'])->name('teachers.import');
     Route::get('teachers/printpdf', [TeacherController::class, 'printPDF'])->name('teachers.printpdf');
-
-    Route::resources(['students' => StudentController::class]);
     Route::resources(['teachers' => TeacherController::class]);
+
     Route::resources(['majors' => MajorController::class]);
     Route::resources(['rooms' => RoomController::class]);
+
     Route::resources(['classrooms' => ClassroomController::class]);
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');
+
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
 
@@ -48,6 +49,7 @@ Route::middleware('auth')->group(function () {
         Route::post('{quiz:id}/status', [QuizController::class, 'changeStatus'])->name('quizzes.status');
         Route::get('{quiz:id}/result', [QuizController::class, 'result'])->name('quizzes.result');
     });
+
     Route::prefix('questions')->group(function () {
         Route::get('create/{quiz:id}', [QuestionController::class, 'create'])->name('questions.create');
         Route::post('', [QuestionController::class, 'store'])->name('questions.store');
