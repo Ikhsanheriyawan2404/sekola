@@ -11,6 +11,11 @@ class Quiz extends Model
 
     protected $fillable = ['title', 'date', 'start', 'finished', 'time', 'number_of_questions', 'status', 'teacher_id', 'study_id', 'classroom_id'];
 
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+
     public function study()
     {
         return $this->belongsTo(Study::class);
