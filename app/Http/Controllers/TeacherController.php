@@ -165,6 +165,15 @@ class TeacherController extends Controller
     	return redirect()->back();
     }
 
+    public function deleteAll()
+    {
+        $teachers = Teacher::onlyTrashed();
+        $teachers->forceDelete();
+
+        toast('Semua data guru berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
+    }
+
     public function export()
     {
         return Excel::download(new TeacherExport, 'teacher.xlsx');

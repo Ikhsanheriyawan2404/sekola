@@ -151,4 +151,13 @@ class ClassroomController extends Controller
         toast('Data kelas berhasil dihapus permanen!', 'success');
     	return redirect()->back();
     }
+
+    public function deleteAll()
+    {
+        $classrooms = Classroom::onlyTrashed();
+        $classrooms->forceDelete();
+
+        toast('Semua data kelas berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
+    }
 }

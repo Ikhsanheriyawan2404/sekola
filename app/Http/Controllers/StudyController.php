@@ -131,4 +131,13 @@ class StudyController extends Controller
         toast('Data mapel berhasil dihapus permanen!', 'success');
     	return redirect()->back();
     }
+
+    public function deleteAll()
+    {
+        $studies = Study::onlyTrashed();
+        $studies->forceDelete();
+
+        toast('Semua data mapel berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
+    }
 }

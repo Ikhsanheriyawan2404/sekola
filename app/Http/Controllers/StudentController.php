@@ -180,8 +180,8 @@ class StudentController extends Controller
 
     public function deleteAll()
     {
-        $student = Student::onlyTrashed();
-        $student->forceDelete();
+        $students = Student::onlyTrashed();
+        $students->forceDelete();
 
         toast('Semua data siswa berhasil dihapus permanen!', 'success');
     	return redirect()->back();

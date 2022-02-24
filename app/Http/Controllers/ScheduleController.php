@@ -144,4 +144,13 @@ class ScheduleController extends Controller
         toast('Data jadwal berhasil dihapus permanen!', 'success');
     	return redirect()->back();
     }
+
+    public function deleteAll()
+    {
+        $schedules = Schedule::onlyTrashed();
+        $schedules->forceDelete();
+
+        toast('Semua data jadwal berhasil dihapus permanen!', 'success');
+    	return redirect()->back();
+    }
 }

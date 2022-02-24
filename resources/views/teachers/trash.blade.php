@@ -20,6 +20,18 @@
 </div>
 <!-- /.content-header -->
 
+<div class="container-fluid mb-3 d-flex justify-content-end">
+    <div class="row">
+        <div class="col-12">
+            <form action="{{ route('teachers.deleteAll') }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Apakah yakin ingin menghapus semua data secara permanen?')" class="btn btn-sm btn-danger">Hapus semua <i class="fa fa-trash"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     @include('components.alerts')
     <div class="card card-primary">
