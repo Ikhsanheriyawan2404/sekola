@@ -11,6 +11,9 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('quizzes.index', auth()->user()->teacher_id) }}">Quiz</a></li>
+            <li class="breadcrumb-item active">Tambah Quiz</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->

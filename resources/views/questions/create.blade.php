@@ -11,6 +11,9 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('quizzes.index', auth()->user()->teacher_id) }}">Quiz</a></li>
+            <li class="breadcrumb-item active">Tambah Soal</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -42,7 +45,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="note">Catatan</label>
+                            <label for="note">Catatan <small>(tidak wajib)</small></label>
                             <input type="text" name="note" class="form-control @error('note') is-invalid @enderror" placeholder="Masukan catatan jika diperlukan" value="{{ old('note') }}">
                             @error('note')
                                 <span class="invalid-feedback" role="alert">
@@ -64,7 +67,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="answer">Jawaban benar <span class="text-danger">*</span></label>
+                            <label for="answer">Jawaban benar <span class="text-danger">* <small>Jika jawaban benar kosong harap isi opsi jawaban terlebih dahulu</small></span></label>
                             <select name="answer" id="answer" class="form-control select2 @error('answer') is-invalid @enderror" style="width: 100%;" required>
                                 <option selected disabled>Pilih jawaban</option>
                                 <option id="choice1"></option>
@@ -139,13 +142,6 @@
         // inisialisasi plugin custom file bootstrap
         bsCustomFileInput.init();
 
-        /* event listener */
-        document.getElementsByName("choice[]")[0].addEventListener('input', fillOption1);
-        document.getElementsByName("choice[]")[1].addEventListener('input', fillOption2);
-        document.getElementsByName("choice[]")[2].addEventListener('input', fillOption3);
-        document.getElementsByName("choice[]")[3].addEventListener('input', fillOption4);
-
-
         function fillOption1 () {
             choice1 = document.getElementById('choice1');
             choice1.innerHTML = this.value
@@ -165,6 +161,12 @@
             choice4 = document.getElementById('choice4');
             choice4.innerHTML = this.value
         }
+
+        /* event listener */
+        document.getElementsByName("choice[]")[0].addEventListener('change', fillOption1);
+        document.getElementsByName("choice[]")[1].addEventListener('change', fillOption2);
+        document.getElementsByName("choice[]")[2].addEventListener('change', fillOption3);
+        document.getElementsByName("choice[]")[3].addEventListener('change', fillOption4);
 
         $(document).on('submit', 'form', function() {
             $('button').attr('disabled', 'disabled');

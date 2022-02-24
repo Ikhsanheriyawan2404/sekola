@@ -137,7 +137,7 @@
         </li>
         <li class="nav-item">
             @can('student-list')
-            <a class="nav-link {{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'active' : '' }}">
+            <a class="nav-link {{ request()->routeIs('trash.*') }}">
             <i class="nav-icon fas fa-recycle"></i>
             <p>
                 Sampah

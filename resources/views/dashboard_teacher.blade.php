@@ -30,13 +30,13 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
                                 <th style="width: 10px">No</th>
                                 <th>Kelas</th>
                                 <th>Mata Pelajaran</th>
-                                <th style="width: 200px" class="text-center"><i class="fa fa-cogs"></i></th>
+                                <th style="width: 400px" class="text-center"><i class="fa fa-cogs"></i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,14 +46,14 @@
                                 <td>{{ $schedule->classroom->name }}</td>
                                 <td>{{ $schedule->study->name }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('modules.show', $schedule->study->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat</a>
+                                    <a href="{{ route('modules.show', $schedule->study->id) }}" class="btn btn-sm btn-primary my-1"><i class="fa fa-eye"></i> Lihat</a>
                                     <a href="{{ route('modules.create', [
                                     $schedule->study->id,
                                     $schedule->classroom->id,
-                                    $schedule->teacher->id ]) }}" class="btn btn-primary btn-sm">Tambah Modul</a>
+                                    $schedule->teacher->id ]) }}" class="btn btn-primary btn-sm my-1">Tambah Modul</a>
                                     <a href="{{ route('quizzes.create', [
                                     $schedule->study->id,
-                                    $schedule->classroom->id]) }}" class="btn btn-primary btn-sm">Tambah Ulangan</a>
+                                    $schedule->classroom->id]) }}" class="btn btn-primary btn-sm my-1">Tambah Ulangan</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -155,8 +155,8 @@
             </div>
             <div>
                 <input type="hidden" name="studentId" id="studentId">
-                <div class="modal-body">
-                    <table id="data-table" class="table table-bordered table-striped">
+                <div class="modal-body table-responsive">
+                    <table id="data-table" class="table table-bordered table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
                                 <th>Nama</th>

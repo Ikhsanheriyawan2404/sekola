@@ -12,7 +12,8 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">{{ Breadcrumbs::render('home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}">Home</a></li>
+            <li class="breadcrumb-item active">Quiz</a></li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -30,7 +31,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover table-striped table-responsive">
                             <thead>
                                 <tr>
                                     <th style="width: 10px">No</th>
@@ -40,7 +41,7 @@
                                     <th>Jam mulai - selesai</th>
                                     <th>Waktu Pelaksanaan</th>
                                     <th>Jumlah Soal</th>
-                                    <th>Status</th>
+                                    <th style="width: 10px">Status <small>(tekan untuk mengubah)</small></th>
                                     <th class="text-center" style="width: 150px;"><i class="fa fa-cogs"></i></th>
                                 </tr>
                             </thead>
@@ -67,15 +68,17 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <a href="{{ route('quizzes.result', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>Lihat hasil</a>
-                                        <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>Tambah soal</a>
-                                        <a href="{{ route('quizzes.show', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                                        <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" onclick="return confirm('apakah yakin ingin menghapus ini!?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                                        </form>
+                                        <a href="{{ route('quizzes.result', $quiz->id) }}" class="btn btn-sm btn-primary my-1"><i class="fa fa-eye"></i>Lihat hasil</a>
+                                        <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary my-1"><i class="fa fa-eye"></i>Tambah soal</a>
+                                        <div class="d-flex">
+                                            <a href="{{ route('quizzes.show', $quiz->id) }}" class="btn btn-sm btn-primary my-1"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('quizzes.edit', $quiz->id) }}" class="btn btn-sm btn-primary my-1"><i class="fa fa-pencil-alt"></i></a>
+                                            <form action="{{ route('quizzes.destroy', $quiz->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('apakah yakin ingin menghapus ini!?')" class="btn btn-sm btn-danger my-1"><i class="fa fa-trash"></i></button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
