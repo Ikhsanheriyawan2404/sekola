@@ -29,6 +29,11 @@ class ExamController extends Controller
         }
     }
 
+    public function takeChoices()
+    {
+        session(['choices' => request('choice')]);
+    }
+
     public function store()
     {
         $userId = auth()->user()->student_id;
