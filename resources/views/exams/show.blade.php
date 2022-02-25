@@ -37,7 +37,7 @@
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Waktu
-                            <span class="badge badge-primary badge-pill js-timeout">{{ $quiz->time }}</span>
+                            <span class="badge badge-primary badge-pill js-timeout">{{ session('time') }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Mata Pelajaran
@@ -49,7 +49,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Waktu Mulai
-                            <span class="badge badge-primary badge-pill">{{ $quiz->start }}</span>
+                            <span class="badge badge-primary badge-pill">{{ ($quiz->start) }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Waktu Selesai

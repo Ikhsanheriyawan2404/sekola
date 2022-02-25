@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('exams')->group(function () {
-        Route::get('{quiz:id}', [ExamController::class, 'show'])->name('exams.show');
+        Route::get('{quiz:id}', [ExamController::class, 'show'])->block($lockSeconds = 10, $waitSeconds = 10)->name('exams.show');
         Route::post('', [ExamController::class, 'store'])->name('exams.store');
     });
 
