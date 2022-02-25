@@ -35,10 +35,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="index3.html" class="nav-link">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Contact</a>
+            @can('dashboard-student')
+            <a href="{{ route('student.dashboard', auth()->user()->student_id) }}" class="nav-link">Go To Dashboard</a>
+            @endcan
+            @can('dashboard-teacher')
+            <a href="{{ route('teacher.dashboard', auth()->user()->teacher_id) }}" class="nav-link">Go To Dashboard</a>
+            @endcan
+            @can('dashboard-admin')
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">Go To Dashboard</a>
+            @endcan
           </li>
         </ul>
 
@@ -76,7 +81,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"> {{ $school->school_name }}></h1>
+            <h1 class="m-0"> {{ $school->school_name }}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

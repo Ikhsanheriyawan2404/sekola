@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController, ExamController, QuestionController};
 
-Route::get('home', [HomeController::class,  'index']);
+Route::get('home', [HomeController::class,  'index'])->name('home');
 Route::get('', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
