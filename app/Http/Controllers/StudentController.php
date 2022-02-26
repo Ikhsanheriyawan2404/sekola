@@ -68,6 +68,9 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * @return json
+     */
     public function show(Student $student)
     {
         return response()->json($student);
