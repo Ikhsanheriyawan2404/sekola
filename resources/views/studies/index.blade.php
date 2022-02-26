@@ -64,7 +64,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 
 @section('custom-scripts')
@@ -74,56 +73,48 @@
 <script src="{{ asset('asset')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/jszip/jszip.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-    $(function () {
+$(function () {
 
-        let table = $('#data-table').DataTable({
-            processing: true,
-            serverSide: true,
-            responsive: true,
+    let table = $('#data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
 
-            ajax: "{{ route('studies.index') }}",
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'name', name: 'name'},
-                {data: 'major', name: 'major.name'},
-                {data: 'type', name: 'type'},
-                {data: 'action', name: 'action', orderable: true, searchable: true},
-            ]
-        });
-
-        $('body').on('click', '#deleteClassroom', function () {
-
-            var studyId = $(this).data("id");
-            confirm("Apakah yakin ingin menghapus data ini!?");
-
-            $.ajax({
-                url: `{{ route('studies.index') }}/${studyId}`,
-                type: "POST",
-                data: {
-                    'id': 'studyId',
-                    '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    alert(error);
-                }
-            });
-        });
-
+        ajax: "{{ route('studies.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'major', name: 'major.name'},
+            {data: 'type', name: 'type'},
+            {data: 'action', name: 'action', orderable: true, searchable: true},
+        ]
     });
+
+    $('body').on('click', '#deleteClassroom', function () {
+
+        var studyId = $(this).data("id");
+        confirm("Apakah yakin ingin menghapus data ini!?");
+
+        $.ajax({
+            url: `{{ route('studies.index') }}/${studyId}`,
+            type: "POST",
+            data: {
+                'id': 'studyId',
+                '_method': 'DELETE',
+                '_token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                table.draw();
+            },
+            error: function (data) {
+                alert(error);
+            }
+        });
+    });
+
+});
 </script>
 
 @endsection

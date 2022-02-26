@@ -12,7 +12,6 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            {{-- <li class="breadcrumb-item"><a href="#">{{ Breadcrumbs::render('home') }}</a></li> --}}
             <li class="breadcrumb-item active">{{ Breadcrumbs::render('users') }}</li>
         </ol>
         </div><!-- /.col -->
@@ -26,8 +25,6 @@
         <div class="col-12">
             @can('user-create')
             <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Tambah</a>
-            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Impor</a>
-            <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Ekspor</a>
             @endcan
         </div>
     </div>
@@ -117,44 +114,35 @@
 @section('custom-scripts')
 
 <script>
-    $(document).ready(function () {
+$(document).ready(function () {
 
-        function timeFormatter(dateTime){
-            var date = new Date(dateTime);
-            if (date.getHours()>=12){
-                var hour = parseInt(date.getHours()) - 12;
-                var amPm = "PM";
-            } else {
-                var hour = date.getHours();
-                var amPm = "AM";
-            }
-            var time = hour + ":" + date.getMinutes() + " " + amPm;
-            console.log(time);
-            return time;
+    function timeFormatter(dateTime){
+        var date = new Date(dateTime);
+        if (date.getHours()>=12){
+            var hour = parseInt(date.getHours()) - 12;
+            var amPm = "PM";
+        } else {
+            var hour = date.getHours();
+            var amPm = "AM";
         }
-
-        $('body').on('click', '#user_details', function () {
-            var user_id = $(this).data('id');
-            $.get("{{ route('users.index') }}" +'/' + user_id, function (data) {
-                $('#modal-default').modal('show');
-                $('.modal-title').html("Data Pengguna : " + data.name);
-                $('#name').html("Nama: " + data.name);
-                $('#email').html("Email: " + data.email);
-                $('#address').html("Alamat: " + data.address);
-                var time = new Date();
-                $('#address').html("Dibuat: " + timeFormatter(data.created_at));
-            })
-        });
-    });
-</script>
-<script>
-    function confirmAction()
-    {
-        let confirmAction = confirm("Apakah yakin ingin menghapus?");
-        if (confirmAction) {
-            document.getElementById('delete-form').submit();
-        }
+        var time = hour + ":" + date.getMinutes() + " " + amPm;
+        console.log(time);
+        return time;
     }
+
+    $('body').on('click', '#user_details', function () {
+        var user_id = $(this).data('id');
+        $.get("{{ route('users.index') }}" +'/' + user_id, function (data) {
+            $('#modal-default').modal('show');
+            $('.modal-title').html("Data Pengguna : " + data.name);
+            $('#name').html("Nama: " + data.name);
+            $('#email').html("Email: " + data.email);
+            $('#address').html("Alamat: " + data.address);
+            var time = new Date();
+            $('#address').html("Dibuat: " + timeFormatter(data.created_at));
+        })
+    });
+});
 </script>
 
 @endsection

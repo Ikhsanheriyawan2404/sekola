@@ -13,8 +13,8 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index']]);
-        $this->middleware('permission:user-show', ['only' => ['show']]);
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:user-show', ['only' => ['editUser']]);
         $this->middleware('permission:user-create', ['only' => ['create','store']]);
         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
@@ -29,10 +29,10 @@ class UserController extends Controller
         ]);
     }
 
-    // public function show(User $user)
-    // {
-    //     return response()->json($user);
-    // }
+    public function show(User $user)
+    {
+        return response()->json($user);
+    }
 
     public function create()
     {
@@ -66,7 +66,7 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function show(User $user)
+    public function editUser(User $user)
     {
         if ($user->id === auth()->user()->id) {
             return view('users.show', [

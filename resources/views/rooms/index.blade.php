@@ -93,7 +93,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 @section('custom-scripts')
 
@@ -102,106 +101,98 @@
 <script src="{{ asset('asset')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/jszip/jszip.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-    $(function () {
+$(function () {
 
-        let table = $('#data-table').DataTable({
-            processing: true,
-            serverSide: true,
-            responsive: true,
+    let table = $('#data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
 
-            ajax: "{{ route('rooms.index') }}",
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'name', name: 'name'},
-                {data: 'action', name: 'action', orderable: true, searchable: true},
-            ]
-        });
+        ajax: "{{ route('rooms.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'action', name: 'action', orderable: true, searchable: true},
+        ]
+    });
 
-        $('#createNewRoom').click(function () {
+    $('#createNewRoom').click(function () {
+        setTimeout(function () {
+            $('#name').focus();
+        }, 500);
+        $('#saveBtn').removeAttr('disabled');
+        $('#saveBtn').html("Tambah");
+        $('#roomId').val('');
+        $('#roomForm').trigger("reset");
+        $('#modal-title').html("Tambah Ruangan");
+        $('#modal-md').modal('show');
+    });
+
+    $('body').on('click', '#editRoom', function () {
+        var room_id = $(this).data('id');
+        $.get("{{ route('rooms.index') }}" +'/' + room_id +'/edit', function (data) {
+            $('#modal-md').modal('show');
             setTimeout(function () {
                 $('#name').focus();
             }, 500);
+            $('#modal-title').html(`Edit Ruangan`);
             $('#saveBtn').removeAttr('disabled');
-            $('#saveBtn').html("Tambah");
-            $('#roomId').val('');
-            $('#roomForm').trigger("reset");
-            $('#modal-title').html("Tambah Ruangan");
-            $('#modal-md').modal('show');
-        });
+            $('#saveBtn').html("Edit");
+            $('#roomId').val(data.id);
+            $('#name').val(data.name);
+        })
+    });
 
-        $('body').on('click', '#editRoom', function () {
-            var room_id = $(this).data('id');
-            $.get("{{ route('rooms.index') }}" +'/' + room_id +'/edit', function (data) {
-                $('#modal-md').modal('show');
-                setTimeout(function () {
-                    $('#name').focus();
-                }, 500);
-                $('#modal-title').html(`Edit Ruangan`);
-                $('#saveBtn').removeAttr('disabled');
-                $('#saveBtn').html("Edit");
-                $('#roomId').val(data.id);
-                $('#name').val(data.name);
-            })
-        });
+    $('#saveBtn').click(function (e) {
+        e.preventDefault();
 
-        $('#saveBtn').click(function (e) {
-            e.preventDefault();
-
-            $.ajax({
-                data: $('#roomForm').serialize(),
-                url: "{{ route('rooms.store') }}",
-                type: "POST",
-                // dataType: 'json',
-                success: function (data) {
-                    $('#roomForm').trigger("reset");
-                    $('#saveBtn').html('Loading ...');
-                    $('#saveBtn').attr('disabled', 'disabled');
-                    $('#modal-md').modal('hide');
-                    table.draw();
-                },
-                error: function (error) {
-                    console.log('Error:', error);
-                    $('#saveBtn').attr('disabled', 'disabled');
-                    $('#saveBtn').html('Error');
-                }
-            });
-        });
-
-        $('body').on('click', '#deleteRoom', function () {
-
-            var room_id = $(this).data("id");
-            let confirmation = confirm("Apakah yakin ingin menghapus data ini!?");
-
-            if (confirmation) {
-                $.ajax({
-                    url: `{{ route('rooms.index') }}/${room_id}`,
-                    type: "POST",
-                    data: {
-                        'id': 'room_id',
-                        '_method': 'DELETE',
-                        '_token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function (data) {
-                        table.draw();
-                    },
-                    error: function (data) {
-                        alert(error);
-                    }
-                });
+        $.ajax({
+            data: $('#roomForm').serialize(),
+            url: "{{ route('rooms.store') }}",
+            type: "POST",
+            // dataType: 'json',
+            success: function (data) {
+                $('#roomForm').trigger("reset");
+                $('#saveBtn').html('Loading ...');
+                $('#saveBtn').attr('disabled', 'disabled');
+                $('#modal-md').modal('hide');
+                table.draw();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+                $('#saveBtn').attr('disabled', 'disabled');
+                $('#saveBtn').html('Error');
             }
         });
-
     });
+
+    $('body').on('click', '#deleteRoom', function () {
+
+        var room_id = $(this).data("id");
+        let confirmation = confirm("Apakah yakin ingin menghapus data ini!?");
+
+        if (confirmation) {
+            $.ajax({
+                url: `{{ route('rooms.index') }}/${room_id}`,
+                type: "POST",
+                data: {
+                    'id': 'room_id',
+                    '_method': 'DELETE',
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    table.draw();
+                },
+                error: function (data) {
+                    alert(error);
+                }
+            });
+        }
+    });
+
+});
 </script>
 
 @endsection

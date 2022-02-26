@@ -136,7 +136,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 
 @section('custom-scripts')
@@ -150,60 +149,60 @@
 <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
 <script>
-    $(function () {
-        bsCustomFileInput.init();
+$(function () {
+    bsCustomFileInput.init();
 
-        let table = $('#data-table').DataTable({
-            processing: true,
-            serverSide: true,
-            responsive: true,
+    let table = $('#data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
 
-            ajax: "{{ route('teachers.index') }}",
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'name', name: 'name'},
-                {data: 'nip', name: 'nip'},
-                {data: 'gender', name: 'gender'},
-                {data: 'action', name: 'action', orderable: true, searchable: true},
-            ]
-        });
-
-        $('body').on('click', '#showItem', function () {
-            let teacherId = $(this).data('id');
-            let button = '';
-            $.get("{{ route('teachers.index') }}" +'/' + teacherId, function (data) {
-                $.each(data, function (index, val) {
-                    button += `<button class="btn btn-primary mr-2 mb-2">${val.name}</button>`;
-                });
-                $(".studies").html(button);
-                $('#modal-lg').modal('show');
-                $('#modal-title').html("Mata Pelajaran Guru");
-            })
-        });
-
-        $('body').on('click', '#deleteTeacher', function () {
-
-            var teacherId = $(this).data("id");
-            confirm("Apakah yakin ingin menghapus data ini!?");
-
-            $.ajax({
-                url: `{{ route('teachers.index') }}/${teacherId}`,
-                type: "POST",
-                data: {
-                    'id': 'teacherId',
-                    '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (data) {
-                    table.draw();
-                },
-                error: function (data) {
-                    alert(error);
-                }
-            });
-        });
-
+        ajax: "{{ route('teachers.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'nip', name: 'nip'},
+            {data: 'gender', name: 'gender'},
+            {data: 'action', name: 'action', orderable: true, searchable: true},
+        ]
     });
+
+    $('body').on('click', '#showItem', function () {
+        let teacherId = $(this).data('id');
+        let button = '';
+        $.get("{{ route('teachers.index') }}" +'/' + teacherId, function (data) {
+            $.each(data, function (index, val) {
+                button += `<button class="btn btn-primary mr-2 mb-2">${val.name}</button>`;
+            });
+            $(".studies").html(button);
+            $('#modal-lg').modal('show');
+            $('#modal-title').html("Mata Pelajaran Guru");
+        })
+    });
+
+    $('body').on('click', '#deleteTeacher', function () {
+
+        var teacherId = $(this).data("id");
+        confirm("Apakah yakin ingin menghapus data ini!?");
+
+        $.ajax({
+            url: `{{ route('teachers.index') }}/${teacherId}`,
+            type: "POST",
+            data: {
+                'id': 'teacherId',
+                '_method': 'DELETE',
+                '_token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                table.draw();
+            },
+            error: function (data) {
+                alert(error);
+            }
+        });
+    });
+
+});
 </script>
 
 @endsection

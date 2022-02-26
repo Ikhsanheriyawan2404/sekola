@@ -11,7 +11,6 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            {{-- <li class="breadcrumb-item"><a href="#">{{ Breadcrumbs::render('home') }}</a></li> --}}
             <li class="breadcrumb-item active">{{ Breadcrumbs::render('majors') }}</li>
         </ol>
         </div><!-- /.col -->
@@ -93,8 +92,8 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
+
 @section('custom-scripts')
 
 <!-- DataTables  & Plugins -->
@@ -102,112 +101,103 @@
 <script src="{{ asset('asset')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/jszip/jszip.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/pdfmake/pdfmake.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/pdfmake/vfs_fonts.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-    $(function () {
+$(function () {
 
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     }
-        // });
+    // Menampilkan data menggunakan datatables
+    let table = $('#data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
 
-        let table = $('#data-table').DataTable({
-            processing: true,
-            serverSide: true,
-            responsive: true,
+        ajax: "{{ route('majors.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'action', name: 'action', orderable: true, searchable: true},
+        ]
+    });
 
-            ajax: "{{ route('majors.index') }}",
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'name', name: 'name'},
-                {data: 'action', name: 'action', orderable: true, searchable: true},
-            ]
-        });
+    // Menampilkan modal tambah data
+    $('#createNewMajor').click(function () {
+        setTimeout(function () {
+            $('#name').focus();
+        }, 500);
+        $('#saveBtn').removeAttr('disabled');
+        $('#saveBtn').html("Tambah");
+        $('#majorId').val('');
+        $('#majorForm').trigger("reset");
+        $('#modal-title').html("Tambah Jurusan");
+        $('#modal-md').modal('show');
+    });
 
-        $('#createNewMajor').click(function () {
+    // Menampilkan modal edit data
+    $('body').on('click', '#editMajor', function () {
+        var major_id = $(this).data('id');
+        $.get("{{ route('majors.index') }}" +'/' + major_id +'/edit', function (data) {
+            $('#modal-md').modal('show');
             setTimeout(function () {
                 $('#name').focus();
             }, 500);
+            $('#modal-title').html(`Edit Jurusan`);
             $('#saveBtn').removeAttr('disabled');
-            $('#saveBtn').html("Tambah");
-            $('#majorId').val('');
-            $('#majorForm').trigger("reset");
-            $('#modal-title').html("Tambah Jurusan");
-            $('#modal-md').modal('show');
-        });
+            $('#saveBtn').html("Edit");
+            $('#majorId').val(data.id);
+            $('#name').val(data.name);
+        })
+    });
 
-        $('body').on('click', '#editMajor', function () {
-            var major_id = $(this).data('id');
-            $.get("{{ route('majors.index') }}" +'/' + major_id +'/edit', function (data) {
-                $('#modal-md').modal('show');
-                setTimeout(function () {
-                    $('#name').focus();
-                }, 500);
-                $('#modal-title').html(`Edit Jurusan`);
-                $('#saveBtn').removeAttr('disabled');
-                $('#saveBtn').html("Edit");
-                $('#majorId').val(data.id);
-                $('#name').val(data.name);
-            })
-        });
+    // Menyimpan atau mengedit data dengan ajax
+    $('#saveBtn').click(function (e) {
+        e.preventDefault();
 
-        $('#saveBtn').click(function (e) {
-            e.preventDefault();
-
-            $.ajax({
-                data: $('#majorForm').serialize(),
-                url: "{{ route('majors.store') }}",
-                type: "POST",
-                // dataType: 'json',
-                success: function (data) {
-                    $('#majorForm').trigger("reset");
-                    $('#saveBtn').html('Loading ...');
-                    $('#saveBtn').attr('disabled', 'disabled');
-                    $('#modal-md').modal('hide');
-                    table.draw();
-                },
-                error: function (error) {
-                    console.log('Error:', error);
-                    $('#saveBtn').attr('disabled', 'disabled');
-                    $('#saveBtn').html('Error');
-                }
-            });
-        });
-
-        $('body').on('click', '#deleteMajor', function () {
-
-            var major_id = $(this).data("id");
-            let confirmation = confirm("Apakah yakin ingin menghapus data ini!?");
-
-            if (confirmation) {
-                $.ajax({
-                    url: `{{ route('majors.index') }}/${major_id}`,
-                    type: "POST",
-                    data: {
-                        'id': 'major_id',
-                        '_method': 'DELETE',
-                        '_token': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function (data) {
-                        table.draw();
-                    },
-                    error: function (data) {
-                        alert(error);
-                    }
-                });
+        $.ajax({
+            data: $('#majorForm').serialize(),
+            url: "{{ route('majors.store') }}",
+            type: "POST",
+            // dataType: 'json',
+            success: function (data) {
+                $('#majorForm').trigger("reset");
+                $('#saveBtn').html('Loading ...');
+                $('#saveBtn').attr('disabled', 'disabled');
+                $('#modal-md').modal('hide');
+                table.draw();
+            },
+            error: function (error) {
+                console.log('Error:', error);
+                $('#saveBtn').attr('disabled', 'disabled');
+                $('#saveBtn').html('Error');
             }
         });
-
     });
+
+    // Menghapus data
+    $('body').on('click', '#deleteMajor', function () {
+
+        var major_id = $(this).data("id");
+        let confirmation = confirm("Apakah yakin ingin menghapus data ini!?");
+
+        if (confirmation) {
+            $.ajax({
+                url: `{{ route('majors.index') }}/${major_id}`,
+                type: "POST",
+                data: {
+                    'id': 'major_id',
+                    '_method': 'DELETE',
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    table.draw();
+                },
+                error: function (data) {
+                    alert(error);
+                }
+            });
+        }
+    });
+
+});
 </script>
 
 @endsection

@@ -23,9 +23,9 @@
 <div class="container-fluid mb-3 d-flex justify-content-end">
     <div class="row">
         <div class="col-12">
-            {{-- @can('item-create') --}}
+            @can('schedule-create')
                 <a href="{{ route('schedules.create') }}" class="btn btn-sm btn-primary">Tambah</a>
-            {{-- @endcan --}}
+            @endcan
         </div>
     </div>
 </div>
@@ -59,43 +59,35 @@
 @endsection
 
 @section('custom-styles')
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endsection
+
 @section('custom-scripts')
 
-    <!-- DataTables  & Plugins -->
-    <script src="{{ asset('asset')}}/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/jszip/jszip.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('asset')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
-    <script>
-        $(function () {
+<script>
+    $(function () {
 
-            let table = $('#data-table').DataTable({
-                processing: true,
-                serverSide: true,
-                responsive: true,
+        let table = $('#data-table').DataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
 
-                ajax: "{{ route('schedules.index') }}",
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'name', name: 'name'},
-                    {data: 'action', name: 'action', orderable: true, searchable: true},
-                ]
-            });
+            ajax: "{{ route('schedules.index') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'name', name: 'name'},
+                {data: 'action', name: 'action', orderable: true, searchable: true},
+            ]
         });
-    </script>
+    });
+</script>
 
 @endsection

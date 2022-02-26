@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quiz;
-use App\Models\Result;
-use App\Models\Schedule;
-use App\Models\{Student, Teacher, Classroom, Study, Major, Room, Setting};
+use App\Models\{Student, Teacher, Classroom, Study, Major, Room, Setting, Schedule, Result, Quiz};
 
 class HomeController extends Controller
 {
@@ -15,6 +12,8 @@ class HomeController extends Controller
         $this->middleware('permission:dashboard-student', ['only' => ['student']]);
         $this->middleware('permission:dashboard-teacher', ['only' => ['teacher']]);
     }
+
+    // Home
     public function index()
     {
         return view('home', [
@@ -23,6 +22,7 @@ class HomeController extends Controller
         ]);
     }
 
+    // Dashboard untuk siswa
     public function student(Student $student)
     {
         $quizzes = Quiz::all();
@@ -36,6 +36,18 @@ class HomeController extends Controller
         ]);
     }
 
+    // Dashboard untuk guru
+    public function teacher(Teacher $teacher)
+    {
+        return view('dashboard_teacher', [
+            'title' => 'Dashboard',
+            'teacher' => $teacher,
+            'classrooms' => Classroom::all(),
+            'schedules' => Schedule::all(),
+        ]);
+    }
+
+    // Dashboard untuk admin & operator
     public function admin()
     {
         return view('dashboard_admin', [
@@ -48,15 +60,4 @@ class HomeController extends Controller
             'rooms' => Room::all(),
         ]);
     }
-
-    public function teacher(Teacher $teacher)
-    {
-        return view('dashboard_teacher', [
-            'title' => 'Dashboard',
-            'teacher' => $teacher,
-            'classrooms' => Classroom::all(),
-            'schedules' => Schedule::all(),
-        ]);
-    }
-
 }
