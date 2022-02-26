@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\{ClassroomStoreRequest, ClassroomUpdateRequest};
 use App\Models\{Classroom, Major, Teacher, Student};
 use Yajra\DataTables\Facades\DataTables;
 
@@ -69,13 +70,9 @@ class ClassroomController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(ClassroomStoreRequest $request)
     {
-        request()->validate([
-            'name' => 'required|max:255|unique:classrooms,name,',
-            'major_id' => 'required',
-            'teacher_id' => 'required',
-        ]);
+        $request->validated();
 
         Classroom::create([
             'name' => request('name'),
@@ -97,13 +94,9 @@ class ClassroomController extends Controller
         ]);
     }
 
-    public function update(Classroom $classroom)
+    public function update(Classroom $classroom,ClassroomUpdateRequest $request)
     {
-        request()->validate([
-            'name' => 'required|max:255|unique:classrooms,name,' . $classroom->id,
-            'major_id' => 'required',
-            'teacher_id' => 'required',
-        ]);
+        $request->validated();
 
         $classroom->update([
             'name' => request('name'),

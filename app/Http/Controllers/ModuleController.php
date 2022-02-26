@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\{ModuleStoreRequest, ModuleUpdateRequest};
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Storage;
 use App\Models\{Module, Study, Classroom, Student, Teacher};
@@ -51,15 +52,9 @@ class ModuleController extends Controller
         }
     }
 
-    public function store()
+    public function store(ModuleStoreRequest $request)
     {
-        request()->validate([
-            'title' => 'required',
-            'file' => 'file|mimes:pdf,docx,pptx,xlsx|max:4096',
-            'study_id' => 'required',
-            'classroom_id' => 'required',
-            'teacher_id' => 'required',
-        ]);
+        $request->validated();
 
         if (request('file')) {
             $filename = str_replace(' ', '', request()->file('file')->getClientOriginalName());
@@ -97,12 +92,9 @@ class ModuleController extends Controller
         }
     }
 
-    public function update(Module $module)
+    public function update(Module $module, ModuleUpdateRequest $request)
     {
-        request()->validate([
-            'title' => 'required',
-            'file' => 'file|mimes:pdf,docx,pptx,xlsx|max:4096',
-        ]);
+        $request->validated();
 
         if (request('file')) {
             Storage::delete($module->file);
