@@ -13,6 +13,9 @@ use App\Http\Requests\{StudentStoreRequest, StudentUpdateRequest};
 
 class StudentController extends Controller
 {
+    /**
+     * Membatasi user mengakses method dengan permissions
+     */
     public function __construct()
     {
         $this->middleware('permission:student-list|student-create|student-edit|student-delete', ['only' => ['index','show']]);
@@ -23,6 +26,10 @@ class StudentController extends Controller
 
     public function index()
     {
+        /**
+         * @return json
+         * Yajra datatables serverside
+         */
         if (request()->ajax()) {
             $students = Student::with('classroom')->latest()->get();
             return DataTables::of($students)
@@ -75,6 +82,9 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * Request validation berada di Requests\StudentStoreRequest
+     */
     public function store(StudentStoreRequest $request)
     {
         $request->validated();
@@ -92,6 +102,7 @@ class StudentController extends Controller
             'classroom_id' => request('classroom_id'),
         ]);
 
+        // Memasukan data siswa menjadi user
         $user = User::create([
             'name' => $student['name'],
             'email' => $student['email'],
@@ -99,8 +110,10 @@ class StudentController extends Controller
             'student_id' => $student['id'],
         ]);
 
+        // Menambahkan role siswa kepada data user
         $user->assignRole('Siswa');
 
+        // Laporan Sukses
         toast('Data siswa berhasil dibuat!','success');
         return redirect()->route('students.index');
     }
@@ -118,6 +131,7 @@ class StudentController extends Controller
     {
         $request->validated();
 
+        // Pengkodision upload gambar
         if (request('image')) {
             Storage::delete($student->image);
             $image = request()->file('image')->store('img/student');
@@ -152,6 +166,9 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
+    /**
+     * Halaman data trash siswa
+     */
     public function trash()
     {
         $students = Student::onlyTrashed()->get();
@@ -161,6 +178,9 @@ class StudentController extends Controller
         ]);
     }
 
+    /**
+     * Method untuk memulihkan data yang terhapus
+     */
     public function restore($id)
     {
         $student = Student::onlyTrashed()->where('id', $id);
@@ -169,6 +189,9 @@ class StudentController extends Controller
     	return redirect()->back();
     }
 
+    /**
+     * Method untuk menghapus data trash secara permanen
+     */
     public function deletePermanent($id)
     {
         $student = Student::onlyTrashed()->where('id', $id);
@@ -178,6 +201,9 @@ class StudentController extends Controller
     	return redirect()->back();
     }
 
+    /**
+     * Method untuk menghapus semua data trash secara permanen
+     */
     public function deleteAll()
     {
         $students = Student::onlyTrashed();
@@ -187,11 +213,19 @@ class StudentController extends Controller
     	return redirect()->back();
     }
 
+    /**
+     * Ekspor data ke file Excel
+     * @package Laravel Excel
+     */
     public function export()
     {
         return Excel::download(new StudentExport, 'student.xlsx');
     }
 
+    /**
+     * Impor data dengan file Excel
+     * @package Laravel Excel
+     */
     public function import()
     {
         request()->validate([
@@ -204,6 +238,10 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
+    /**
+     * Print laporan berupa PDF
+     * @package DomPDF
+     */
     public function printPDF()
     {
         $students = Student::all();

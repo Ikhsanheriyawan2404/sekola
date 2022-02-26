@@ -6,6 +6,8 @@
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>{{ $title ?? config('app.name') }}</title>
 
+@yield('custom-styles')
+
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
@@ -24,8 +26,6 @@
 {{-- <link rel="stylesheet" href="{{ asset('asset') }}/plugins/daterangepicker/daterangepicker.css"> --}}
 <!-- summernote -->
 {{-- <link rel="stylesheet" href="{{ asset('asset') }}/plugins/summernote/summernote-bs4.min.css"> --}}
-
-  @yield('custom-styles')
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -82,7 +82,7 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('asset') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
-<script src="{{ asset('asset') }}/plugins/chart.js/Chart.min.js"></script>
+{{-- <script src="{{ asset('asset') }}/plugins/chart.js/Chart.min.js"></script> --}}
 <!-- Sparkline -->
 {{-- <script src="{{ asset('asset') }}/plugins/sparklines/sparkline.js"></script> --}}
 <!-- JQVMap -->
