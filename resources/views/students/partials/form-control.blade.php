@@ -106,7 +106,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="email">Alamat email</label>
+                <label for="email">Alamat email <span class="text-danger">*</span></label>
                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="cth: user@mail.test" value="{{ $student->email ?? old('email') }}">
                 @error('email')
                     <span class="invalid-feedback" role="alert">

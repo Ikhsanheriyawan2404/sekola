@@ -18,9 +18,9 @@ class StudentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:student-list|student-create|student-edit|student-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:student-create', ['only' => ['create','store']]);
-        $this->middleware('permission:student-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:student-list|student-create|student-edit|student-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:student-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:student-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:student-delete', ['only' => ['destroy']]);
     }
 
@@ -33,18 +33,18 @@ class StudentController extends Controller
         if (request()->ajax()) {
             $students = Student::with('classroom')->latest()->get();
             return DataTables::of($students)
-                    ->addIndexColumn()
-                    ->addColumn('classroom', function(Student $student) {
-                        return $student->classroom->name;
-                    })
-                    ->editColumn('gender', function($request) {
-                        return $request->gender == 'L' ? 'Laki-Laki' : 'Perempuan';
-                    })
-                    ->addColumn('action', function($row){
-                        $btn =
+                ->addIndexColumn()
+                ->addColumn('classroom', function (Student $student) {
+                    return $student->classroom->name;
+                })
+                ->editColumn('gender', function ($request) {
+                    return $request->gender == 'L' ? 'Laki-Laki' : 'Perempuan';
+                })
+                ->addColumn('action', function ($row) {
+                    $btn =
                         '<div class="d-flex justify-content-between">
 
-                            <a href="javascript:void(0)" data-id="'.$row->id.'" id="showItem" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                            <a href="javascript:void(0)" data-id="' . $row->id . '" id="showItem" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
 
 
                            <a href=" ' . route('students.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
@@ -57,10 +57,10 @@ class StudentController extends Controller
                            </form>
                         </div>';
 
-                        return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
 
         return view('students.index', [
@@ -117,7 +117,7 @@ class StudentController extends Controller
         $user->assignRole('Siswa');
 
         // Laporan Sukses
-        toast('Data siswa berhasil dibuat!','success');
+        toast('Data siswa berhasil dibuat!', 'success');
         return redirect()->route('students.index');
     }
 
@@ -157,7 +157,7 @@ class StudentController extends Controller
             'classroom_id' => request('classroom_id'),
         ]);
 
-        toast('Data siswa berhasil diedit!','success');
+        toast('Data siswa berhasil diedit!', 'success');
         return redirect()->route('students.index');
     }
 
@@ -165,7 +165,7 @@ class StudentController extends Controller
     {
         Storage::delete($student->image);
         $student->delete();
-        toast('Data siswa berhasil dihapus!','success');
+        toast('Data siswa berhasil dihapus!', 'success');
         return redirect()->route('students.index');
     }
 
@@ -175,7 +175,7 @@ class StudentController extends Controller
     public function trash()
     {
         $students = Student::onlyTrashed()->get();
-    	return view('students.trash', [
+        return view('students.trash', [
             'title' => 'Trash Siswa',
             'students' => $students,
         ]);
@@ -189,7 +189,7 @@ class StudentController extends Controller
         $student = Student::onlyTrashed()->where('id', $id);
         $student->restore();
         toast('Data siswa berhasil dipulihkan!', 'success');
-    	return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -198,10 +198,10 @@ class StudentController extends Controller
     public function deletePermanent($id)
     {
         $student = Student::onlyTrashed()->where('id', $id);
-    	$student->forceDelete();
+        $student->forceDelete();
 
         toast('Data siswa berhasil dihapus permanen!', 'success');
-    	return redirect()->back();
+        return redirect()->back();
     }
 
     /**
@@ -213,7 +213,7 @@ class StudentController extends Controller
         $students->forceDelete();
 
         toast('Semua data siswa berhasil dihapus permanen!', 'success');
-    	return redirect()->back();
+        return redirect()->back();
     }
 
     /**
