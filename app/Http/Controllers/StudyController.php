@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\{StudyStoreRequest, StudyUpdateRequest};
 use App\Models\{Major, Study};
 use Yajra\DataTables\Facades\DataTables;
 
@@ -54,13 +55,9 @@ class StudyController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StudyStoreRequest $request)
     {
-        request()->validate([
-            'name' => 'required|max:255|unique:studies,name,',
-            'type' => 'required',
-            'major_id' => 'required',
-        ]);
+        $request->validated();
 
         Study::create([
             'name' => request('name'),
@@ -82,13 +79,9 @@ class StudyController extends Controller
         ]);
     }
 
-    public function update(Study $study)
+    public function update(Study $study, StudyUpdateRequest $request)
     {
-        request()->validate([
-            'name' => 'required|max:255|unique:studies,name,' . $study->id,
-            'type' => 'required',
-            'major_id' => 'required',
-        ]);
+        $request->validated();
 
         $study->update([
             'name' => request('name'),
