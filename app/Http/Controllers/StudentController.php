@@ -22,6 +22,8 @@ class StudentController extends Controller
         $this->middleware('permission:student-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:student-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:student-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:student-print', ['only' => ['export', 'import', 'printPDF',]]);
+        $this->middleware('permission:student-trash', ['only' => ['trash', 'restore', 'deletePermanent', 'deleteAll',]]);
     }
 
     public function index()

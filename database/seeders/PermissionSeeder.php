@@ -37,10 +37,10 @@ class PermissionSeeder extends Seeder
             'classroom-create',
             'classroom-edit',
             'classroom-delete',
-            'studies-list',
-            'studies-create',
-            'studies-edit',
-            'studies-delete',
+            'study-list',
+            'study-create',
+            'study-edit',
+            'study-delete',
             'major-list',
             'major-create',
             'major-edit',
@@ -71,10 +71,20 @@ class PermissionSeeder extends Seeder
             'question-delete',
             'exam-list',
             'exam-create',
-         ];
+            'student-trash',
+            'student-print',
+            'teacher-trash',
+            'teacher-print',
+            'classroom-trash',
+            'classroom-print',
+            'study-trash',
+            'study-print',
+            'schedule-trash',
+            'schedule-print',
+        ];
 
-         foreach ($permissions as $permission) {
-              Permission::create(['name' => $permission]);
-         }
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
     }
 }

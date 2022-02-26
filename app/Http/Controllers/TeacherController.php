@@ -19,6 +19,8 @@ class TeacherController extends Controller
         $this->middleware('permission:teacher-create', ['only' => ['create','store']]);
         $this->middleware('permission:teacher-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:teacher-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:teacher-print', ['only' => ['export', 'import', 'printPDF',]]);
+        $this->middleware('permission:teacher-trash', ['only' => ['trash', 'restore', 'deletePermanent', 'deleteAll',]]);
     }
 
     public function index()

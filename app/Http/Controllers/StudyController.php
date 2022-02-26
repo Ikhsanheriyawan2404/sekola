@@ -14,6 +14,8 @@ class StudyController extends Controller
         $this->middleware('permission:studies-create', ['only' => ['create','store']]);
         $this->middleware('permission:studies-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:studies-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:study-print', ['only' => ['export', 'import', 'printPDF',]]);
+        $this->middleware('permission:study-trash', ['only' => ['trash', 'restore', 'deletePermanent', 'deleteAll',]]);
     }
 
     public function index()

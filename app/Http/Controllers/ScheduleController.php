@@ -14,6 +14,8 @@ class ScheduleController extends Controller
         $this->middleware('permission:schedule-create', ['only' => ['create','store']]);
         $this->middleware('permission:schedule-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:schedule-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:schedule-print', ['only' => ['export', 'import', 'printPDF',]]);
+        $this->middleware('permission:schedule-trash', ['only' => ['trash', 'restore', 'deletePermanent', 'deleteAll',]]);
     }
 
     public function index()

@@ -15,6 +15,8 @@ class ClassroomController extends Controller
         $this->middleware('permission:classroom-create', ['only' => ['create','store']]);
         $this->middleware('permission:classroom-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:classroom-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:classroom-print', ['only' => ['export', 'import', 'printPDF',]]);
+        $this->middleware('permission:classroom-trash', ['only' => ['trash', 'restore', 'deletePermanent', 'deleteAll',]]);
     }
 
     public function index()
