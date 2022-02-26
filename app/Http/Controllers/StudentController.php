@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use App\Models\{User, Student, Classroom, Teacher};
+use App\Models\{User, Student, Classroom};
 use App\Http\Requests\{StudentStoreRequest, StudentUpdateRequest};
 
 class StudentController extends Controller
@@ -24,7 +24,7 @@ class StudentController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $students = Student::get();
+            $students = Student::latest()->get();
             return DataTables::of($students)
                     ->addIndexColumn()
                     ->addColumn('classroom', function(Student $student) {
