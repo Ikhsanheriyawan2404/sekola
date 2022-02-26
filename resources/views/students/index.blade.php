@@ -141,67 +141,69 @@
 @endsection
 
 @section('custom-styles')
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 @endsection
 @section('custom-scripts')
 
-    <!-- DataTables  & Plugins -->
-    <script src="{{ asset('asset')}}/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/jszip/jszip.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('asset')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+{{-- <script src="{{ asset('asset')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/jszip/jszip.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script> --}}
 
-    <!-- bs-custom-file-input -->
-    <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-    <script>
-        $(function () {
-            bsCustomFileInput.init();
+<!-- bs-custom-file-input -->
+<script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
-            let table = $('#data-table').DataTable({
-                processing: true,
-                serverSide: true,
-                responsive: true,
+<script>
+    $(function () {
+        bsCustomFileInput.init();
 
-                ajax: "{{ route('students.index') }}",
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'name', name: 'name'},
-                    {data: 'nisn', name: 'nisn'},
-                    {data: 'classroom', name: 'classroom.name'},
-                    {data: 'gender', name: 'gender'},
-                    {data: 'action', name: 'action', orderable: true, searchable: true},
-                ]
-            });
+        let table = $('#data-table').DataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
 
-            $('body').on('click', '#showItem', function () {
-                var studentId = $(this).data('id');
-                $.get("{{ route('students.index') }}" +'/' + studentId, function (data) {
-                    $('#modal-lg').modal('show');
-                    $('#modal-title').html("Detail Siswa");
-                    $('#studentId').val(data.id);
-                    $('.name').html('Nama : ' + data.name);
-                    $('.nisn').html('NISN : ' + data.nisn);
-                    $('.gender').html('Jenis Kelamin : ' + data.gender);
-                    $('.date_of_birth').html('Tanggal Lahir : ' + data.date_of_birth);
-                    $('.religion').html('Agama : ' + data.religion);
-                    $('.phone').html('No HP : ' + data.phone);
-                    $('.address').html('Alamat : ' + data.address);
-                    $('#image').attr("src", "/storage/" + data.image);
-                })
-           });
-
+            ajax: "{{ route('students.index') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'name', name: 'name'},
+                {data: 'nisn', name: 'nisn'},
+                {data: 'classroom', name: 'classroom.name'},
+                {data: 'gender', name: 'gender'},
+                {data: 'action', name: 'action', orderable: true, searchable: true},
+            ]
         });
-    </script>
+
+        $('body').on('click', '#showItem', function () {
+            var studentId = $(this).data('id');
+            $.get("{{ route('students.index') }}" +'/' + studentId, function (data) {
+                $('#modal-lg').modal('show');
+                $('#modal-title').html("Detail Siswa");
+                $('#studentId').val(data.id);
+                $('.name').html('Nama : ' + data.name);
+                $('.nisn').html('NISN : ' + data.nisn);
+                $('.gender').html('Jenis Kelamin : ' + data.gender);
+                $('.date_of_birth').html('Tanggal Lahir : ' + data.date_of_birth);
+                $('.religion').html('Agama : ' + data.religion);
+                $('.phone').html('No HP : ' + data.phone);
+                $('.address').html('Alamat : ' + data.address);
+                $('#image').attr("src", "/storage/" + data.image);
+            })
+        });
+
+    });
+</script>
 
 @endsection

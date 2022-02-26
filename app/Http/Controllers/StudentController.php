@@ -24,7 +24,7 @@ class StudentController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $students = Student::latest()->get();
+            $students = Student::with('classroom')->latest()->get();
             return DataTables::of($students)
                     ->addIndexColumn()
                     ->addColumn('classroom', function(Student $student) {
