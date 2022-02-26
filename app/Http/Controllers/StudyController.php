@@ -18,7 +18,7 @@ class StudyController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $study = Study::latest()->get();
+            $study = Study::with('major')->latest()->get();
             return DataTables::of($study)
                     ->addIndexColumn()
                     ->addColumn('major', function (Study $study) {
@@ -76,7 +76,7 @@ class StudyController extends Controller
     public function edit(Study $study)
     {
         return view('studies.edit', [
-            'title' => 'Edit Mata Pelajaran' . $study->name,
+            'title' => 'Edit Mata Pelajaran : ' . $study->name,
             'study' => $study,
             'majors' => Major::all(),
         ]);

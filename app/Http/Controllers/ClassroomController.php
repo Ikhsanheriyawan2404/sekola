@@ -19,7 +19,7 @@ class ClassroomController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $classrooms = Classroom::latest()->get();
+            $classrooms = Classroom::with('teacher', 'major')->latest()->get();
             return DataTables::of($classrooms)
                     ->addIndexColumn()
                     ->addColumn('teacher', function (Classroom $classroom) {
@@ -90,7 +90,7 @@ class ClassroomController extends Controller
     public function edit(Classroom $classroom)
     {
         return view('classrooms.edit', [
-            'title' => 'Edit Kelas',
+            'title' => 'Edit Kelas : ' . $classroom->name,
             'classroom' => $classroom,
             'teachers' => Teacher::all(),
             'majors' => Major::all(),

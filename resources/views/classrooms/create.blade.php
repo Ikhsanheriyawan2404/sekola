@@ -39,22 +39,22 @@
 @endsection
 
 @section('custom-styles')
-    <!-- Select2 -->
-    <link rel="stylesheet" href="{{ asset('asset') }}/plugins/select2/css/select2.min.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('asset') }}/plugins/select2/css/select2.min.css">
 @endsection
 
 @section('custom-scripts')
-    <!-- Select2 -->
-    <script src="{{ asset('asset') }}/plugins/select2/js/select2.full.min.js"></script>
-    <!-- bs-custom-file-input -->
-    <script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
+<!-- Select2 -->
+<script src="{{ asset('asset') }}/plugins/select2/js/select2.full.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="{{ asset('asset') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
 
-            $(document).on('submit', 'form', function() {
-                $('button').attr('disabled', 'disabled');
-            });
+        $(document).on('submit', 'form', function() {
+            $('button').attr('disabled', 'disabled');
         });
-    </script>
+    });
+</script>
 @endsection

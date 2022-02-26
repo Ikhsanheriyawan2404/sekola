@@ -31,7 +31,7 @@ class StudentController extends Controller
          * Yajra datatables serverside
          */
         if (request()->ajax()) {
-            $students = Student::with('classroom')->latest()->get();
+            $students = Student::latest()->get();
             return DataTables::of($students)
                 ->addIndexColumn()
                 ->addColumn('classroom', function (Student $student) {

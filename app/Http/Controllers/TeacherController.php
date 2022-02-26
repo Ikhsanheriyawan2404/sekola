@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Exports\TeacherExport;
 use App\Imports\TeacherImport;
-use App\Models\{Study, Teacher};
+use App\Models\{User, Study, Teacher};
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\TeacherRequest;
@@ -28,6 +27,9 @@ class TeacherController extends Controller
             $teacher = Teacher::latest()->get();
             return DataTables::of($teacher)
                     ->addIndexColumn()
+                    ->editColumn('gender', function ($request) {
+                        return $request->gender == 'L' ? 'Laki-Laki' : 'Perempuan';
+                    })
                     ->addColumn('action', function($row){
                         $btn =
                         '<div class="d-flex justify-content-between">
@@ -54,6 +56,7 @@ class TeacherController extends Controller
 
     public function show(Teacher $teacher)
     {
+        // show data mata pelajaran yang diajar guru
         $study_teacher = $teacher->studies()->get();
         return response()->json($study_teacher);
     }
@@ -126,6 +129,7 @@ class TeacherController extends Controller
             'image' => $image,
         ]);
 
+        // Memasukan data relation guru dan mata pelajaran ke tabel study_teacher
         $teacher->studies()->sync(request('studies'));
 
         toast('Data guru berhasil diedit!','success');
