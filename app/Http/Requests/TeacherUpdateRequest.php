@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TeacherRequest extends FormRequest
+class TeacherUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class TeacherRequest extends FormRequest
             'gender' => ['required'],
             'photo' => 'image|mimes:jpg,jpeg,png|max:2058',
             'studies' => 'required|array',
-            'email' => 'required',
+            'email' => 'required|max:255|unique:teachers,email,' . $this->teacher->id
         ];
     }
 }

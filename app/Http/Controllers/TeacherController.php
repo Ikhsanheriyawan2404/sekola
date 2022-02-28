@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Exports\TeacherExport;
 use App\Imports\TeacherImport;
-use App\Models\{User, Study, Teacher};
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Requests\TeacherRequest;
+use App\Http\Requests\{TeacherStoreRequest, TeacherUpdateRequest};
+use App\Models\{User, Study, Teacher};
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -72,7 +72,7 @@ class TeacherController extends Controller
         ]);
     }
 
-    public function store(TeacherRequest $request)
+    public function store(TeacherStoreRequest $request)
     {
         $request->validated();
 
@@ -109,7 +109,7 @@ class TeacherController extends Controller
         ]);
     }
 
-    public function update(TeacherRequest $request, Teacher $teacher)
+    public function update(TeacherUpdateRequest $request, Teacher $teacher)
     {
         $request->validated();
 
@@ -191,7 +191,9 @@ class TeacherController extends Controller
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
+        // dd(Excel::import(new TeacherImport, request()->file('file')->store('file')));
         Excel::import(new TeacherImport, request()->file('file')->store('file'));
+
 
         toast('Data guru berhasil diimport!', 'success');
         return redirect()->route('teachers.index');
