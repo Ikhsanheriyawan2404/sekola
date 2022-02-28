@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             ScheduleSeeder::class,
         ]);
-        // \App\Models\Student::factory(1000)->create();
+        \App\Models\Student::factory(1000)->create();
     }
 }

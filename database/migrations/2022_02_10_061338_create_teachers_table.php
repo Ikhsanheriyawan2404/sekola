@@ -20,7 +20,7 @@ class CreateTeachersTable extends Migration
             $table->enum('gender', ['L', 'P']);
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default('default.jpg');
             $table->timestamps();
             $table->softDeletes();
         });

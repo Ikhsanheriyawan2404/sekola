@@ -138,8 +138,12 @@ class StudentController extends Controller
 
         // Pengkodision upload gambar
         if (request('image')) {
-            Storage::delete($student->image);
-            $image = request()->file('image')->store('img/student');
+            if ($student->image == 'img/default.jpg') {
+                $image = request()->file('image')->store('img/students');
+            } else {
+                Storage::delete($student->image);
+                $image = request()->file('image')->store('img/students');
+            }
         } elseif ($student->image) {
             $image = $student->image;
         } else {
@@ -165,7 +169,9 @@ class StudentController extends Controller
 
     public function destroy(Student $student)
     {
-        Storage::delete($student->image);
+        if ($student->image !== 'img/default.jpg') {
+            Storage::delete($student->image);
+        }
         $student->delete();
         toast('Data siswa berhasil dihapus!', 'success');
         return redirect()->route('students.index');

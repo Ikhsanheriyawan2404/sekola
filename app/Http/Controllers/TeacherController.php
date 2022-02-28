@@ -114,8 +114,12 @@ class TeacherController extends Controller
         $request->validated();
 
         if (request('image')) {
-            Storage::delete($teacher->image);
-            $image = request()->file('image')->store('img/teachers');
+            if ($teacher->image == 'img/default.jpg') {
+                $image = request()->file('image')->store('img/teachers');
+            } else {
+                Storage::delete($teacher->image);
+                $image = request()->file('image')->store('img/teachers');
+            }
         } elseif ($teacher->image) {
             $image = $teacher->image;
         } else {
@@ -140,6 +144,10 @@ class TeacherController extends Controller
 
     public function destroy(Teacher $teacher)
     {
+        if ($teacher->image !== 'img/default.jpg') {
+            Storage::delete($teacher->image);
+        }
+
         $teacher->delete();
         toast('Data jurusan berhasil dihapus!','success');
         return redirect()->route('majors.index');

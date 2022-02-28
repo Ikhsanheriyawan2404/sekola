@@ -25,10 +25,11 @@ class TeacherUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
+            'nip' => 'required|unique:teachers,nip,' . $this->teacher->id,
             'gender' => ['required'],
-            'photo' => 'image|mimes:jpg,jpeg,png|max:2058',
+            'image' => 'image|mimes:jpg,jpeg,png|max:2058',
             'studies' => 'required|array',
-            'email' => 'required|max:255|unique:teachers,email,' . $this->teacher->id
+            'email' => 'required|max:255|unique:teachers,email,' . $this->teacher->id,
         ];
     }
 }

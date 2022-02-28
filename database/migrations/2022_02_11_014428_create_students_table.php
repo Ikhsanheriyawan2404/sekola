@@ -21,7 +21,7 @@ class CreateStudentsTable extends Migration
             $table->enum('religion', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Khonghucu']);
             $table->unsignedBigInteger('classroom_id');
             $table->string('date_of_birth');
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default('img/default.jpg');
             $table->string('phone');
             $table->string('email')->unique();
             $table->text('address')->nullable();
