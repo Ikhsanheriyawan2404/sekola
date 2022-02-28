@@ -16,7 +16,7 @@ class StudentFactory extends Factory
         $genders = ['L', 'P'];
         $religions = ['Islam', 'Kristen', 'Katolik', 'Hindu',  'Buddha', 'Khonghucu'];
 
-        return [
+        $student =  [
             'name' => $this->faker->name(),
             'nisn' => $this->faker->unique()->numberBetween(1, 999999),
             'gender' => $genders[rand(0,1)],
@@ -27,5 +27,7 @@ class StudentFactory extends Factory
             'address' => $this->faker->address(),
             'email' => $this->faker->email(),
         ];
+
+        return $student;
     }
 }

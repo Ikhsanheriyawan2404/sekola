@@ -49,6 +49,8 @@
                         <th>Nama</th>
                         <th>NIP</th>
                         <th>Jenis Kelamin</th>
+                        <th>Email</th>
+                        <th>Phone</th>
                         <th class="text-center" style="width: 15%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
@@ -163,6 +165,8 @@ $(function () {
             {data: 'name', name: 'name'},
             {data: 'nip', name: 'nip'},
             {data: 'gender', name: 'gender'},
+            {data: 'email', name: 'email'},
+            {data: 'phone', name: 'phone'},
             {data: 'action', name: 'action', orderable: true, searchable: true},
         ]
     });

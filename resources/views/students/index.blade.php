@@ -83,6 +83,7 @@
                         <li class="list-group-item gender"></li>
                         <li class="list-group-item religion"></li>
                         <li class="list-group-item date_of_birth"></li>
+                        <li class="list-group-item email"></li>
                         <li class="list-group-item phone"></li>
                         <li class="list-group-item address"></li>
                     </ul>
@@ -189,6 +190,7 @@
                 $('.gender').html('Jenis Kelamin : ' + data.gender);
                 $('.date_of_birth').html('Tanggal Lahir : ' + data.date_of_birth);
                 $('.religion').html('Agama : ' + data.religion);
+                $('.email').html('Email : ' + data.email);
                 $('.phone').html('No HP : ' + data.phone);
                 $('.address').html('Alamat : ' + data.address);
                 $('#image').attr("src", "/storage/" + data.image);

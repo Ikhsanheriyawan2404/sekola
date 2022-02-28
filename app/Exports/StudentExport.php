@@ -12,6 +12,6 @@ class StudentExport implements FromCollection
     */
     public function collection()
     {
-        return Student::all();
+        return Student::get(['name', 'nisn', 'gender', 'religion', 'classroom_id', 'date_of_birth', 'phone', 'email', 'address']);
     }
 }
