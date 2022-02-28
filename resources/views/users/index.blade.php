@@ -33,11 +33,11 @@
 <div class="container">
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">DataTable with default features</h3>
+            <h3 class="card-title">Data Pengguna</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="data-table" class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th style="width: 1%">No.</th>
@@ -48,7 +48,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    {{-- @foreach ($users as $user)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
@@ -74,9 +74,12 @@
                             @endcan
                         </td>
                     </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
+            {{-- <ul class="pagination my-3">
+                {{ $users->links() }}
+            </ul> --}}
         </div>
         <!-- /.card-body -->
     </div>
@@ -111,10 +114,38 @@
 
 @endsection
 
+@section('custom-styles')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="{{ asset('asset')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+@endsection
+
 @section('custom-scripts')
 
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('asset')}}/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('asset')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
 <script>
+
 $(document).ready(function () {
+
+    let table = $('#data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
+
+        ajax: "{{ route('users.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
+            {data: 'role', name: 'role'},
+            {data: 'action', name: 'action', orderable: true, searchable: true},
+        ]
+    });
 
     function timeFormatter(dateTime){
         var date = new Date(dateTime);

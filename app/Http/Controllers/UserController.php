@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Models\{User, Student};
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -22,9 +22,39 @@ class UserController extends Controller
 
     public function index()
     {
+        if (request()->ajax()) {
+            $users = User::latest()->get();
+            return DataTables::of($users)
+                ->addIndexColumn()
+                ->editColumn('role', function(User $user) {
+                    foreach ($user->getRoleNames() as $role) {
+                        return '<button class="btn btn-sm btn-primary">' . $role . '</button>';
+                    }
+                })
+                ->addColumn('action', function ($row) {
+                    $btn =
+                        '<div class="d-flex justify-content-between">
+
+                            <a href="javascript:void(0)" data-id="' . $row->id . '" id="user_details" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+
+
+                           <a href=" ' . route('users.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
+
+
+                           <form action=" ' . route('users.destroy', $row->id) . '" method="POST">
+                               <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Apakah yakin ingin menghapus ini?\')"><i class="fas fa-trash"></i></button>
+                            ' . csrf_field() . '
+                            ' . method_field('DELETE') . '
+                           </form>
+                        </div>';
+
+                    return $btn;
+                })
+                ->rawColumns(['role', 'action'])
+                ->make(true);
+        }
+
         return view('users.index', [
-            'users' => User::all(),
-            'breadcrumbs' => ['User', 'Tambah Pengguna'],
             'title' => 'Pengguna'
         ]);
     }
@@ -93,6 +123,13 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    // public function resetPassword(User $user)
+    // {
+    //     $user->update([
+    //         'password' => $user->student->nisn
+    //     ]);
+    // }
+
     public function edit(User $user)
     {
         return view('users.edit',[
@@ -125,7 +162,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        toast('Data barang berhasil dihapus!','success');
+        toast('Data pengguna berhasil dihapus!','success');
         return back()->with('succes', 'Pengguna berhasil dihapus');
     }
 
