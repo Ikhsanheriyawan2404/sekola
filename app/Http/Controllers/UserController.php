@@ -126,11 +126,11 @@ class UserController extends Controller
     {
         if ($user->teacher_id) {
             $user->update([
-                'password' => $user->student->nip
+                'password' => Hash::make($user->teacher->nip)
             ]);
         } else if ($user->student_id) {
             $user->update([
-                'password' => $user->student->nisn
+                'password' => Hash::make($user->student->nisn)
             ]);
         } else {
             toast('Tidak bisa mereset password Operator atau Superadmin!', 'warning');
