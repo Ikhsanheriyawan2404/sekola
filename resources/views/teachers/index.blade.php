@@ -106,6 +106,18 @@
             </div>
             <div>
                 <div class="modal-body">
+                    <div class="card card-primary">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Baris 1 = Nama Guru</li>
+                                <li>Baris 2 = NIP Guru</li>
+                                <li>Baris 3 = Jenis Kelamin (L/P)</li>
+                                <li>Baris 4 = Email</li>
+                                <li>Baris 5 = No HP</li>
+                            </ul>
+                        </div>
+                    </div>
                     @csrf
                     <div class="form-group">
                         <label for="customFile">Masukan file excel <span class="text-danger">*</span></label>

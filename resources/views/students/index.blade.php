@@ -113,6 +113,22 @@
             </div>
             <div>
                 <div class="modal-body">
+                    <div class="card card-primary">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Baris 1 = Nama Siswa</li>
+                                <li>Baris 2 = NISN Siswa</li>
+                                <li>Baris 3 = Jenis Kelamin (L/P)</li>
+                                <li>Baris 4 = Agama</li>
+                                <li>Baris 5 = Nama Kelas</li>
+                                <li>Baris 6 = Tanggal Lahir</li>
+                                <li>Baris 7 = No HP</li>
+                                <li>Baris 8 = Email</li>
+                                <li>Baris 9 = Alamat</li>
+                            </ul>
+                        </div>
+                    </div>
                     @csrf
                     <div class="form-group">
                         <label for="customFile">Masukan file excel <span class="text-danger">*</span></label>
