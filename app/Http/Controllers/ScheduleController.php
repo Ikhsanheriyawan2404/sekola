@@ -46,7 +46,7 @@ class ScheduleController extends Controller
 
     public function show($id)
     {
-        $schedules = Schedule::where('classroom_id', $id)->orderBy('day', 'ASC')->orderBy('start', 'ASC')->get();
+        $schedules = Schedule::with('study', 'teacher', 'classroom', 'room')->where('classroom_id', $id)->orderBy('day', 'ASC')->orderBy('start', 'ASC')->get();
         return view('schedules.show', [
             'title' => 'Data Jadwal',
             'schedules' => $schedules,

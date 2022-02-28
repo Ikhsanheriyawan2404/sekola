@@ -23,7 +23,7 @@ class ModuleController extends Controller
             'title' => 'Materi Mata Pelajaran',
             'student' => $student,
             'classrooms' => Classroom::all(),
-            'schedules' => Schedule::all(),
+            'schedules' => Schedule::with('study')->get(),
         ]);
     }
 
@@ -38,7 +38,7 @@ class ModuleController extends Controller
 
     public function create(Study $study, $id, Teacher $teacher)
     {
-        if ( $teacher->id == auth()->user()->teacher_id) {
+        if ($teacher->id == auth()->user()->teacher_id) {
             $classroom = Classroom::find($id);
             return view('modules.create', [
                 'title' => 'Tambah Modul',

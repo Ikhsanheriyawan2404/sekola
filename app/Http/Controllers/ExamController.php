@@ -15,7 +15,7 @@ class ExamController extends Controller
     public function show(Quiz $quiz)
     {
         session(['time' => $quiz->time]);
-        $questions = Question::inRandomOrder()->where('quiz_id', $quiz->id)->get();
+        $questions = Question::with('choices')->inRandomOrder()->where('quiz_id', $quiz->id)->get();
         session(['pertanyaan' => $questions]);
         $result = Result::where('student_id', auth()->user()->student_id)->where('quiz_id', $quiz->id)->exists();
         if ($quiz->status == '1' && !$result) {

@@ -43,7 +43,7 @@ class HomeController extends Controller
             'title' => 'Dashboard',
             'teacher' => $teacher,
             'classrooms' => Classroom::all(),
-            'schedules' => Schedule::all(),
+            'schedules' => Schedule::with('classroom', 'study', 'room', 'teacher')->get(),
         ]);
     }
 

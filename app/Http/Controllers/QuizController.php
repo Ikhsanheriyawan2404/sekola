@@ -22,13 +22,13 @@ class QuizController extends Controller
         return view('quizzes.index', [
             'title' => 'Quiz',
             'teacher' => $teacher,
-            'quizzes' => Quiz::all(),
+            'quizzes' => Quiz::with('study', 'teacher', 'classroom')->get(),
         ]);
     }
 
     public function show(Quiz $quiz)
     {
-        $questions = Question::where('quiz_id', $quiz->id)->get();
+        $questions = Question::with('choices')->where('quiz_id', $quiz->id)->get();
         return view('quizzes.show', [
             'title' => 'Show Quiz',
             'quiz' => $quiz,
@@ -111,7 +111,7 @@ class QuizController extends Controller
 
     public function result(Quiz $quiz)
     {
-        $results = Result::where('quiz_id', $quiz->id)->get();
+        $results = Result::with('student', 'quiz')->where('quiz_id', $quiz->id)->get();
         return view('quizzes.result', [
             'title' => 'Hasil ujian',
             'quiz' => $quiz,
