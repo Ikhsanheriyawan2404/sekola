@@ -35,17 +35,21 @@ class UserController extends Controller
                     $btn =
                         '<div class="d-flex justify-content-between">
 
-                            <a href="javascript:void(0)" data-id="' . $row->id . '" id="user_details" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+
+                        <a href=" ' . route('users.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
 
 
-                           <a href=" ' . route('users.edit', $row->id) . '" class="btn btn-sm btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                        <form action=" ' . route('users.destroy', $row->id) . '" method="POST">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Apakah yakin ingin menghapus ini?\')"><i class="fas fa-trash"></i></button>
+                        ' . csrf_field() . '
+                        ' . method_field('DELETE') . '
+                        </form>
 
+                        <form action=" ' . route('reset.password', $row->id) . '" method="POST">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Apakah yakin ingin mereset password pengguna ini?\')"><i class="fas fa-redo"></i></button>
+                        ' . csrf_field() . '
+                        </form>
 
-                           <form action=" ' . route('users.destroy', $row->id) . '" method="POST">
-                               <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(\'Apakah yakin ingin menghapus ini?\')"><i class="fas fa-trash"></i></button>
-                            ' . csrf_field() . '
-                            ' . method_field('DELETE') . '
-                           </form>
                         </div>';
 
                     return $btn;
@@ -57,11 +61,6 @@ class UserController extends Controller
         return view('users.index', [
             'title' => 'Pengguna'
         ]);
-    }
-
-    public function show(User $user)
-    {
-        return response()->json($user);
     }
 
     public function create()
@@ -123,12 +122,24 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    // public function resetPassword(User $user)
-    // {
-    //     $user->update([
-    //         'password' => $user->student->nisn
-    //     ]);
-    // }
+    public function resetPassword(User $user)
+    {
+        if ($user->teacher_id) {
+            $user->update([
+                'password' => $user->student->nip
+            ]);
+        } else if ($user->student_id) {
+            $user->update([
+                'password' => $user->student->nisn
+            ]);
+        } else {
+            toast('Tidak bisa mereset password Operator atau Superadmin!', 'warning');
+            return redirect()->back();
+        }
+
+        toast('Password user berhasil direset!', 'success');
+        return redirect()->back();
+    }
 
     public function edit(User $user)
     {

@@ -86,32 +86,6 @@
     <!-- /.card -->
 </div>
 
-<div class="modal fade" id="modal-default">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h4 class="modal-title"></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-            <ul class="list-group">
-                <li class="list-group-item" id="name"></li>
-                <li class="list-group-item" id="email"></li>
-                <li class="list-group-item" id="address"></li>
-            </ul>
-        </div>
-        <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-    </div>
-    <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
 @endsection
 
 @section('custom-styles')
@@ -145,33 +119,6 @@ $(document).ready(function () {
             {data: 'role', name: 'role'},
             {data: 'action', name: 'action', orderable: true, searchable: true},
         ]
-    });
-
-    function timeFormatter(dateTime){
-        var date = new Date(dateTime);
-        if (date.getHours()>=12){
-            var hour = parseInt(date.getHours()) - 12;
-            var amPm = "PM";
-        } else {
-            var hour = date.getHours();
-            var amPm = "AM";
-        }
-        var time = hour + ":" + date.getMinutes() + " " + amPm;
-        console.log(time);
-        return time;
-    }
-
-    $('body').on('click', '#user_details', function () {
-        var user_id = $(this).data('id');
-        $.get("{{ route('users.index') }}" +'/' + user_id, function (data) {
-            $('#modal-default').modal('show');
-            $('.modal-title').html("Data Pengguna : " + data.name);
-            $('#name').html("Nama: " + data.name);
-            $('#email').html("Email: " + data.email);
-            $('#address').html("Alamat: " + data.address);
-            var time = new Date();
-            $('#address').html("Dibuat: " + timeFormatter(data.created_at));
-        })
     });
 });
 </script>

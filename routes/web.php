@@ -18,6 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::resources(['users' => UserController::class]);
     Route::get('users/{user:id}/edit_user', [UserController::class, 'editUser'])->name('users.editUser');
     Route::put('users/{user:id}/edit_password', [UserController::class, 'editPassword'])->name('edit.password');
+    Route::post('users/{user:id}/reset_password', [UserController::class, 'resetPassword'])->name('reset.password');
 
     Route::resources(['roles' => RoleController::class]);
 
