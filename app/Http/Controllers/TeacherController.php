@@ -182,7 +182,7 @@ class TeacherController extends Controller
 
     public function export()
     {
-        return Excel::download(new TeacherExport, 'teacher.xlsx');
+        return Excel::download(new TeacherExport, time() . 'teacher.xlsx');
     }
 
     public function import()
