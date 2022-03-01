@@ -166,7 +166,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($quizzes->where('status', '1') as $quiz)
+                                @foreach ($quizzes->where('status', '1')->where('classroom_id', $student->classroom_id) as $quiz)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>({{ $quiz->classroom->name }}) {{ $quiz->study->name }}</td>

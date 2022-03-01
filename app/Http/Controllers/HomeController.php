@@ -26,7 +26,8 @@ class HomeController extends Controller
     public function student(Student $student)
     {
         $quizzes = Quiz::all();
-        $results = Result::get();
+        $results = Result::all();
+
         return view('dashboard', [
             'title' => 'Dashboard',
             'student' => $student,

@@ -89,36 +89,39 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
-                                @foreach ($questions as $key => $question)
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="mb-4">
-                                            <input type="hidden" name="question_id{{ $key+1 }}" value="{{ $question->id }}">
-                                            <input type="hidden" name="answer{{$key+1}}">
-                                            @if($question->image)
-                                            <img class="img-fluid" width="400px" src="/storage/{{ $question->image }}">
-                                            @endif
-                                            <p>Catatan : {{ $question->note }}</p>
-                                            <label>{{ $loop->iteration }}. {{ $question->question }}
-                                            </label>
-                                            <div class="container">
-                                                @foreach ($question->choices as $choice)
-                                                <div class="form-group">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="answer{{ $key+1 }}" value="{{ $choice->choice }}">
-                                                        <label class="form-check-label">{{ $choice->choice }}</label>
+                                @if (!$questions->isEmpty())
+                                    @foreach ($questions as $key => $question)
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="mb-4">
+                                                <input type="hidden" name="question_id{{ $key+1 }}" value="{{ $question->id }}">
+                                                <input type="hidden" name="answer{{$key+1}}">
+                                                @if($question->image)
+                                                <img class="img-fluid" width="400px" src="/storage/{{ $question->image }}">
+                                                @endif
+                                                <p>Catatan : {{ $question->note }}</p>
+                                                <label>{{ $loop->iteration }}. {{ $question->question }}
+                                                </label>
+                                                <div class="container">
+                                                    @foreach ($question->choices as $choice)
+                                                    <div class="form-group">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="answer{{ $key+1 }}" value="{{ $choice->choice }}">
+                                                            <label class="form-check-label">{{ $choice->choice }}</label>
+                                                        </div>
                                                     </div>
+                                                    @endforeach
+                                                    <a class="btn-primary btn-sm">Simpan</a>
                                                 </div>
-                                                @endforeach
-                                                <a class="btn-primary btn-sm">Simpan</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                @endforeach
+                                    @endforeach
 
-                                <input type="hidden" name="index" value="{{ $key+1 }}">
-                                <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
+                                    <input type="hidden" name="index" value="{{ $key+1 }}">
+                                    <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
+
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -14,10 +14,9 @@ class ExamController extends Controller
 
     public function show(Quiz $quiz)
     {
-        session(['time' => $quiz->time]);
         $questions = Question::with('choices')->inRandomOrder()->where('quiz_id', $quiz->id)->get();
-        session(['pertanyaan' => $questions]);
         $result = Result::where('student_id', auth()->user()->student_id)->where('quiz_id', $quiz->id)->exists();
+
         if ($quiz->status == '1' && !$result) {
             return view('exams.show', [
                 'title' => 'Start exam',
@@ -27,11 +26,6 @@ class ExamController extends Controller
         } else {
             abort(403, 'THIS ACTION IS UNAUTHORIZED.');
         }
-    }
-
-    public function takeChoices()
-    {
-        session(['choices' => request('choice')]);
     }
 
     public function store()
