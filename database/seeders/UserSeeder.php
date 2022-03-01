@@ -26,15 +26,8 @@ class UserSeeder extends Seeder
             'password' => bcrypt('admin'),
         ]);
 
-        $student = User::create([
-            'name' => 'Ikhsan',
-            'email' => 'student@role.test',
-            'password' => bcrypt('admin'),
-        ]);
-
         $superadmin->assignRole('Superadmin');
         $operator->assignRole('Operator');
-        $student->assignRole('Siswa');
 
     }
 }

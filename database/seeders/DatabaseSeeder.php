@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
             StudySeeder::class,
             TeacherSeeder::class,
             ClassroomSeeder::class,
-            // StudentSeeder::class,
+            StudentSeeder::class,
             SettingSeeder::class,
             ScheduleSeeder::class,
         ]);
-        \App\Models\Student::factory(1000)->create();
+        // \App\Models\Student::factory(1000)->create();
         \App\Models\Teacher::factory(1000)->create();
     }
 }

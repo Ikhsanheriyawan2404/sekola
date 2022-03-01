@@ -3,6 +3,9 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
         <img src="{{ asset('asset') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        {{-- {{ dd(auth()->user()->student_id) }} --}}
+        {{-- <img src="{{ auth()->user()->student }}" class="img-circle elevation-2" alt="User Image"> --}}
+        {{-- <img src="{{ auth()->user()->teacher->takeImage }}" class="img-circle elevation-2" alt="User Image"> --}}
         </div>
         <div class="info">
         <a href="#" class="d-block">{{ auth()->user()->name }}</a>
@@ -47,7 +50,7 @@
         </li>
         <li class="nav-item">
             @can('module-list')
-            <a href="{{ route('modules.index', auth()->user()->student_id) }}" class="nav-link {{ request()->routeIs('modules.index') ? 'active' : '' }}">
+            <a href="{{ route('modules.index', auth()->user()->student_id) }}" class="nav-link {{ request()->routeIs('modules.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                     Modul

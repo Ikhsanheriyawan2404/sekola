@@ -102,7 +102,7 @@ class StudentController extends Controller
             'date_of_birth' => request('date_of_birth'),
             'phone' => request('phone'),
             'email' => request('email'),
-            'image' => request('image') ? request()->file('image')->store('img/students') : null,
+            'image' => request('image') ? request()->file('image')->store('img/students') : 'img/default.jpg',
             'address' => request('address'),
             'classroom_id' => request('classroom_id'),
         ]);
@@ -147,7 +147,7 @@ class StudentController extends Controller
         } elseif ($student->image) {
             $image = $student->image;
         } else {
-            $image = null;
+            $image = 'img/default.jpg';
         }
 
         $student->update([

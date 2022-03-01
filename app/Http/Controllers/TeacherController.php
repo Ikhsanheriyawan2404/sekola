@@ -82,7 +82,7 @@ class TeacherController extends Controller
             'gender' => request('gender'),
             'phone' => request('phone'),
             'email' => request('email'),
-            'image' => request('image') ? request()->file('image')->store('img/teachers') : null,
+            'image' => request('image') ? request()->file('image')->store('img/teachers') : 'img/default.jpg',
         ]);
 
         $teacher->studies()->sync(request('studies'));
@@ -123,7 +123,7 @@ class TeacherController extends Controller
         } elseif ($teacher->image) {
             $image = $teacher->image;
         } else {
-            $image = null;
+            $image = 'img/default.jpg';
         }
 
         $teacher->update([
