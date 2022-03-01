@@ -29,7 +29,12 @@
                     @csrf
                     @method('PUT')
                     <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="." alt="User profile picture">
+                    @can('dashboard-teacher')
+                        <img class="profile-user-img img-fluid img-circle" src="{{ $user->teacher->takeImage }}" alt="User profile picture">
+                    @endcan
+                    @can('dashboard-student')
+                        <img class="profile-user-img img-fluid img-circle" src="{{ $user->student->takeImage }}" alt="User profile picture">
+                    @endcan
                     </div>
 
                     <h3 class="profile-username text-center">{{ $user->name }}</h3>

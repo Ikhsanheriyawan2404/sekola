@@ -33,7 +33,7 @@ class HomeController extends Controller
             'student' => $student,
             'results' => $results,
             'quizzes' => $quizzes,
-            'schedules' => Schedule::all(),
+            'schedules' => Schedule::with('classroom', 'teacher', 'study', 'room')->get(),
         ]);
     }
 

@@ -107,7 +107,7 @@
                         </ul>
                     </div>
                 </div>
-                <a href="{{ route('users.show', auth()->user()->id) }}" class="btn btn-primary mb-3 float-right">Edit Password <i class="fa fa-pencil-alt"></i></a>
+                <a href="{{ route('users.editUser', auth()->user()->id) }}" class="btn btn-primary mb-3 float-right">Edit Profil <i class="fa fa-pencil-alt"></i></a>
             </div>
         </div>
         <div class="row">

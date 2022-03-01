@@ -2,10 +2,18 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-        <img src="{{ asset('asset') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        {{-- {{ dd(auth()->user()->student_id) }} --}}
-        {{-- <img src="{{ auth()->user()->student }}" class="img-circle elevation-2" alt="User Image"> --}}
-        {{-- <img src="{{ auth()->user()->teacher->takeImage }}" class="img-circle elevation-2" alt="User Image"> --}}
+        @can('dashboard-admin')
+            <img src="{{ asset('asset') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        @endcan
+
+        @can('dashboard-student')
+            <img src="{{ auth()->user()->student->takeImage }}" class="img-circle elevation-2" alt="User Image">
+        @endcan
+
+        @can('dashboard-teacher')
+            <img src="{{ auth()->user()->teacher->takeImage }}" class="img-circle elevation-2" alt="User Image">
+        @endcan
+
         </div>
         <div class="info">
         <a href="#" class="d-block">{{ auth()->user()->name }}</a>
