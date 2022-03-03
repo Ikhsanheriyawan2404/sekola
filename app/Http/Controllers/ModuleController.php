@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\{ModuleStoreRequest, ModuleUpdateRequest};
-use App\Models\Schedule;
 use Illuminate\Support\Facades\Storage;
-use App\Models\{Module, Study, Classroom, Student, Teacher};
+use App\Models\{Module, Study, Classroom, Student, Teacher, Schedule};
 
 class ModuleController extends Controller
 {
@@ -123,7 +122,7 @@ class ModuleController extends Controller
         Storage::delete($module->file);
         $module->delete();
 
-        toast('Data siswa berhasil dihapus!','success');
+        toast('Data modul berhasil dihapus!','success');
         return redirect()->back();
     }
 }

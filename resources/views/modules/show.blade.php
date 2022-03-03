@@ -44,16 +44,18 @@
                 <div class="card card-primary card-outline">
                     <div class="card-header d-flex p-0">
                         <h3 class="card-title p-3">{{ $module->title }}
-                            @can('module-edit')
-                            <a href="{{ route('modules.edit', [$module->id, $module->teacher_id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
-                            @endcan
-                            @can('module-delete')
-                            <a onclick="event.preventDefault();document.getElementById('delete-module').submit();" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
-                            <form id="delete-module" action="{{ route('modules.destroy', $module->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                            @endcan
+                            <div class="d-flex">
+                                @can('module-edit')
+                                <a href="{{ route('modules.edit', [$module->id, $module->teacher_id]) }}" class="btn btn-primary btn-xs mr-1"><i class="fa fa-pencil-alt"></i> Edit</a>
+                                @endcan
+                                @can('module-delete')
+                                <form action="{{ route('modules.destroy', $module->id) }}" method="POST">
+                                    <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</button>
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                                @endcan
+                            </div>
                         </h3>
                         <ul class="nav nav-pills ml-auto p-2">
                             <li class="nav-item">
@@ -140,7 +142,7 @@
                             $host = explode('.',$values['host']);
                             echo $host[0] . $module->id;
                             @endphp">
-                                {{ $module->reference }}
+                                <a href="{{ $module->reference }}">{{ $module->reference }}</a>
                             </div>
                             <!-- /.tab-pane LINK REFERENCE -->
 
