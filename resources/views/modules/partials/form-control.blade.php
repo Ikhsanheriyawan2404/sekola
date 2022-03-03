@@ -34,7 +34,7 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label for="customFile">File pembelajaran</span></label>
+                <label for="customFile">File pembelajaran <small class="text-danger">Nama file harus jelas. Jangan menggunakan simbol ()#$%^&*-_=+!@</small></label>
                 <div class="custom-file">
                     <input type="file" name="file" class="custom-file-input @error('file') is-invalid @enderror" id="customFile">
                     <label class="custom-file-label" for="customFile">Pilih file</label>

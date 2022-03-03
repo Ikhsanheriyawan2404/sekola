@@ -107,7 +107,7 @@
                         </ul>
                     </div>
                 </div>
-                <a href="{{ route('users.editUser', auth()->user()->id) }}" class="btn btn-primary mb-3 float-right">Edit Profil <i class="fa fa-pencil-alt"></i></a>
+                <a href="{{ route('users.editUser', auth()->user()->id) }}" class="btn btn-primary mb-3 float-right">Edit Password <i class="fa fa-pencil-alt"></i></a>
             </div>
         </div>
         <div class="row">
@@ -185,6 +185,8 @@
                                             ->user()->student_id)
                                             ->where('quiz_id', $quiz->id)->first() === null)
                                             <a type="button" href="{{ route('exams.show', $quiz->id) }}" class="btn btn-primary">Start</a>
+                                        @else
+                                            <button class="btn btn-primary disabled">Selesai</button>
                                         @endif
                                     </td>
                                 </tr>

@@ -17,4 +17,9 @@ class Teacher extends Model
     {
         return $this->belongsToMany(Study::class);
     }
+
+    public function getTakeImageAttribute()
+    {
+        return "/storage/" . $this->image;
+    }
 }

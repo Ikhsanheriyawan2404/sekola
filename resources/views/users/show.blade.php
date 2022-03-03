@@ -12,7 +12,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">{{ Breadcrumbs::render('users') }}</li>
+            <li class="breadcrumb-item active">{{ Breadcrumbs::render('home') }}</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -30,10 +30,14 @@
                     @method('PUT')
                     <div class="text-center">
                     @can('dashboard-teacher')
+                    {{-- <a href="{{ route('students.editImage', $user->teacher_id) }}"> --}}
                         <img class="profile-user-img img-fluid img-circle" src="{{ $user->teacher->takeImage }}" alt="User profile picture">
+                    {{-- </a> --}}
                     @endcan
                     @can('dashboard-student')
-                        <img class="profile-user-img img-fluid img-circle" src="{{ $user->student->takeImage }}" alt="User profile picture">
+                        {{-- <a href="{{ route('students.editImage', $user->student_id) }}"> --}}
+                            <img class="profile-user-img img-fluid img-circle" src="{{ $user->student->takeImage }}" alt="User profile picture">
+                        {{-- </a> --}}
                     @endcan
                     </div>
 
@@ -41,7 +45,7 @@
 
                     <p class="text-muted text-center">{{ $user->email }}</p>
 
-                    <div class="form-group">
+                    <div class="form-group my-3">
                         <label for="password">Password Baru <span class="text-danger">*</span></label>
                         <input type="password" class="form-control @error('password')
                             is-invalid
@@ -52,6 +56,7 @@
                             </span>
                         @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="password_confirmation">Konfirmasi Password <span class="text-danger">*</span></label>
                         <input type="password" class="form-control @error('password_confirmation')
@@ -64,7 +69,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary float-right"><b>Ubah Password</b></button>
+                    <button type="submit" class="btn btn-primary float-right"><b>Ubah</b></button>
                 </form>
             </div>
             <!-- /.card-body -->
@@ -73,5 +78,16 @@
     </div>
 </div>
 
+@endsection
+
+@section('custom-scripts')
+<script>
+    $(document).ready(function() {
+
+        $(document).on('submit', 'form', function() {
+            $('button').attr('disabled', 'disabled');
+        });
+    });
+</script>
 @endsection
 

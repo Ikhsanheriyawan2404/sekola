@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\{User, Student};
 use Illuminate\Support\Facades\DB;
@@ -111,7 +112,7 @@ class UserController extends Controller
     public function editPassword(User $user)
     {
         request()->validate([
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['string', 'min:8', 'confirmed'],
         ]);
 
         $user->update([

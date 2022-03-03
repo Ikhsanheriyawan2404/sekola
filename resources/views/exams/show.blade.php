@@ -49,11 +49,11 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Waktu Mulai
-                            <span class="badge badge-primary badge-pill">{{ ($quiz->start) }}</span>
+                            <span class="badge badge-primary badge-pill">{{ date('H:m', strtotime($quiz->start)) }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Waktu Selesai
-                            <span class="badge badge-primary badge-pill">{{ $quiz->finished }}</span>
+                            <span class="badge badge-primary badge-pill">{{ date('H:m', strtotime($quiz->finished)) }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             TATA TERTIB PESERTA UJIAN <br>

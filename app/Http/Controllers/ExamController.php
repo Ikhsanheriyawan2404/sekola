@@ -12,6 +12,9 @@ class ExamController extends Controller
         $this->middleware('permission:exam-create', ['only' => ['create','store']]);
     }
 
+    /**
+     * Method untuk memulai ujian
+     */
     public function show(Quiz $quiz)
     {
         $questions = Question::with('choices')->inRandomOrder()->where('quiz_id', $quiz->id)->get();
@@ -28,6 +31,9 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * Menyimpan ujian
+     */
     public function store()
     {
         $userId = auth()->user()->student_id;
@@ -35,12 +41,13 @@ class ExamController extends Controller
         $wrongAnswer = 0;
         $data = request()->all();
 
-        for($i=1; $i <= request('index'); $i++)
+        for ($i=1; $i <= request('index'); $i++)
         {
-            if(isset($data['question_id'.$i])) {
-            $exam=new Exam;
+            if (isset($data['question_id'.$i])) {
 
+                $exam = new Exam;
                 $question = Question::where('id',$data['question_id'.$i])->get()->first();
+
                 if ($question->answer == $data['answer'.$i]) {
                     $result[$data['question_id'.$i]] = 'yes';
                     $exam->answered = "yes";

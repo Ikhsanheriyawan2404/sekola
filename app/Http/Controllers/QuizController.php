@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Result;
-use Yajra\DataTables\Facades\DataTables;
 use App\Models\{Quiz, Question, Study, Classroom, Teacher};
 use App\Http\Requests\{QuizStoreRequest, QuizUpdateRequest};
 
