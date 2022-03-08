@@ -147,6 +147,16 @@
             @endcan
         </li>
         <li class="nav-item">
+            @can('finance-list')
+            <a href="{{ route('finances.index') }}" class="nav-link {{ request()->routeIs('finances.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-money-bill"></i>
+                <p>
+                    Keuangan
+                </p>
+            </a>
+            @endcan
+        </li>
+        <li class="nav-item">
             @can('student-list')
             <a class="nav-link {{ request()->routeIs('trash.*') }}">
             <i class="nav-icon fas fa-recycle"></i>

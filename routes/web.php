@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController, ExamController, QuestionController};
+use App\Http\Controllers\{HomeController, RoleController, RoomController, UserController, MajorController, StudyController, ModuleController, SettingController, StudentController, TeacherController, ScheduleController, ClassroomController, QuizController, ExamController, FinanceController, QuestionController};
 
 Route::get('home', [HomeController::class,  'index'])->name('home');
 Route::get('', [LoginController::class, 'showLoginForm']);
@@ -34,6 +34,17 @@ Route::middleware('auth')->group(function () {
 
     Route::resources(['majors' => MajorController::class]);
     Route::resources(['rooms' => RoomController::class]);
+    // Route::resources(['finances' => FinanceController::class]);
+    Route::prefix('finances')->group(function () {
+        Route::get('', [FinanceController::class, 'index'])->name('finances.index');
+        Route::get('create_cash_in', [FinanceController::class, 'create_cash_in'])->name('finances.create_cash_in');
+        Route::get('create_cash_out', [FinanceController::class, 'create_cash_out'])->name('finances.create_cash_out');
+        Route::post('store_cash_in', [FinanceController::class, 'store_cash_in'])->name('finances.store_cash_in');
+        Route::post('store_cash_out', [FinanceController::class, 'store_cash_out'])->name('finances.store_cash_out');
+        Route::delete('{finance:id}', [FinanceController::class, 'destroy'])->name('finances.destroy');
+        Route::get('export', [FinanceController::class, 'export'])->name('finances.export');
+        Route::get('print', [FinanceController::class, 'print'])->name('finances.print');
+    });
 
     Route::resources(['classrooms' => ClassroomController::class]);
     Route::get('classrooms/show/students/{id}', [ClassroomController::class, 'showStudents'])->name('classrooms.show.students');

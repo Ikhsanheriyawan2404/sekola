@@ -111,8 +111,22 @@
                     <a href="{{ route('rooms.index', []) }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            <div class="col-lg-3 col-6">
+            <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{ $finances->sum('cash_in') - $finances->sum('cash_in') }}</h3>
+                        <p>Keuangan</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-money-bill"></i>
+                    </div>
+                    <a href="{{ route('finances.index', []) }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
-  </section>
+</section>
 @endsection

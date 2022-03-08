@@ -162,6 +162,24 @@ Breadcrumbs::for('edit_role', function (BreadcrumbTrail $trail, $role) {
     $trail->push("Edit : {$role->name}", route('roles.edit', $role));
 });
 
+// Home > Finances
+Breadcrumbs::for('finances', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Keuangan', route('finances.index'));
+});
+
+// Home > Finances > [Create]
+Breadcrumbs::for('create_cash_in', function (BreadcrumbTrail $trail) {
+    $trail->parent('finances');
+    $trail->push('Buat Pemasukan', route('finances.create_cash_in'));
+});
+
+// Home > Finances > [Create]
+Breadcrumbs::for('create_cash_out', function (BreadcrumbTrail $trail) {
+    $trail->parent('finances');
+    $trail->push('Buat Pengeluaran', route('finances.create_cash_out'));
+});
+
 // Home > Jurusan
 Breadcrumbs::for('majors', function (BreadcrumbTrail $trail) {
     $trail->parent('home');

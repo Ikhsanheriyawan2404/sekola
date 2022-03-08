@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Student, Teacher, Classroom, Study, Major, Room, Setting, Schedule, Result, Quiz};
+use App\Models\{Student, Teacher, Classroom, Finance, Study, Major, Room, Setting, Schedule, Result, Quiz};
 
 class HomeController extends Controller
 {
@@ -53,6 +53,7 @@ class HomeController extends Controller
     {
         return view('dashboard_admin', [
             'title' => 'Dashboard',
+            'finances' => Finance::all(),
             'students' => Student::all(),
             'teachers' => Teacher::all(),
             'classrooms' => Classroom::all(),

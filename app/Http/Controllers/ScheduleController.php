@@ -107,7 +107,7 @@ class ScheduleController extends Controller
             'room_id' => request('room_id'),
             'classroom_id' => request('classroom_id'),
             'start' => request('start'),
-            'end' => request('end'),
+            'finished' => request('finished'),
         ]);
 
         toast('Data jadwal berhasil diedit!','success');
