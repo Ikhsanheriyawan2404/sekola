@@ -10,10 +10,10 @@ class StudyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:studies-list|studies-create|studies-edit|studies-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:studies-create', ['only' => ['create','store']]);
-        $this->middleware('permission:studies-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:studies-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:study-list|study-create|study-edit|study-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:study-create', ['only' => ['create','store']]);
+        $this->middleware('permission:study-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:study-delete', ['only' => ['destroy']]);
         $this->middleware('permission:study-print', ['only' => ['export', 'import', 'printPDF',]]);
         $this->middleware('permission:study-trash', ['only' => ['trash', 'restore', 'deletePermanent', 'deleteAll',]]);
     }

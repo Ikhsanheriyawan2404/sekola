@@ -117,7 +117,7 @@
             @endcan
         </li>
         <li class="nav-item">
-            @can('studies-list')
+            @can('study-list')
             <a href="{{ route('studies.index') }}" class="nav-link {{ request()->routeIs('studies.*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-book-open"></i>
                 <p>

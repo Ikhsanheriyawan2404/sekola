@@ -17,18 +17,38 @@ class ExamController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        $questions = Question::with('choices')->inRandomOrder()->where('quiz_id', $quiz->id)->get();
-        $result = Result::where('student_id', auth()->user()->student_id)->where('quiz_id', $quiz->id)->exists();
+        $oldtime = $quiz->time;
+        $newtime = time();
+        $difference = $newtime - $oldtime;
+
+        // request()->session()->put('name', 'Ikhsan');
+        // request()->session()->decrement('count', $decrementBy = $quiz->time);
+        // dd(request()->session());
+
+        $questions = Question::with('choices')
+                ->inRandomOrder()
+                ->where('quiz_id', $quiz->id)
+                ->get();
+
+        $result = Result::where('student_id', auth()
+                ->user()->student_id)
+                ->where('quiz_id', $quiz->id)->exists();
 
         if ($quiz->status == '1' && !$result) {
             return view('exams.show', [
                 'title' => 'Start exam',
                 'quiz' => $quiz,
                 'questions' => $questions,
+                'difference' => $difference,
             ]);
         } else {
             abort(403, 'THIS ACTION IS UNAUTHORIZED.');
         }
+    }
+
+    public function storeChoice()
+    {
+        dd(request()->session()->put('name', 'Ikhsan Heriyawan'));
     }
 
     /**

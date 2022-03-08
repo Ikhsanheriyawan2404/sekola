@@ -184,7 +184,7 @@
                                         @if ($results->where('student_id', auth()
                                             ->user()->student_id)
                                             ->where('quiz_id', $quiz->id)->first() === null)
-                                            <a type="button" href="{{ route('exams.show', $quiz->id) }}" class="btn btn-primary">Start</a>
+                                            <a type="button" href="{{ route('exams.show', $quiz->id) }}" class="btn btn-primary" onclick="return confirm('Yakin mulai ujian ini? Jika iya waktu akan mulai berjalan.')">Start</a>
                                         @else
                                             <button class="btn btn-primary disabled">Selesai</button>
                                         @endif

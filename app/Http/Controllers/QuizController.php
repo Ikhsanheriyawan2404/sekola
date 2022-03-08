@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Result;
-use App\Models\{Quiz, Question, Study, Classroom, Teacher};
+use App\Models\{Quiz, Question, Study, Classroom, Teacher, Result};
 use App\Http\Requests\{QuizStoreRequest, QuizUpdateRequest};
 
 class QuizController extends Controller

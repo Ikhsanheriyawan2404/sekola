@@ -50,16 +50,7 @@ class QuestionController extends Controller
         }
 
         toast('Soal berhasil ditambahkan!', 'success');
-        return redirect()->route('quizzes.index', auth()->user()->teacher_id);
-    }
-
-    public function edit(Quiz $quiz, Question $question)
-    {
-        return view('questions.edit', [
-            'title' => 'Edit Soal',
-            'quiz' => $quiz,
-            'question' => $question,
-        ]);
+        return redirect()->back();
     }
 
     public function destroy(Question $question)

@@ -31,33 +31,41 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        @foreach ($questions as $question)
-                        <div class="mb-4">
-                            @if($question->image)
-                            <img class="img-fluid" width="400px" src="/storage/{{ $question->image }}">
-                            @endif
-                            <p>Catatan : {{ $question->note }}</p>
-                            <label>{{ $loop->iteration }}. {{ $question->question }}
-                                <button onclick="event.preventDefault();document.getElementById('delete{{ $question->id }}').submit();" class="btn btn-xs btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                                <form id="delete{{ $question->id }}" action="{{ route('questions.destroy', $question->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </label>
-                            <div class="container">
-                                @foreach ($question->choices as $choice)
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="radio1">
-                                        <label class="form-check-label {{ $question->answer == $choice->choice  ? 'text-success' : '' }}">{{ $choice->choice }}</label>
+                        @if (!$questions->isEmpty())
+                            @foreach ($questions as $question)
+                            <div class="mb-4">
+                                @if($question->image)
+                                <img class="img-fluid" width="400px" src="/storage/{{ $question->image }}">
+                                @endif
+                                <p>Catatan : {{ $question->note }}</p>
+                                <label>{{ $loop->iteration }}. {{ $question->question }}
+                                    <button onclick="event.preventDefault();document.getElementById('delete{{ $question->id }}').submit();" class="btn btn-xs btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                    <form id="delete{{ $question->id }}" action="{{ route('questions.destroy', $question->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </label>
+                                <div class="container">
+                                    @foreach ($question->choices as $choice)
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio1">
+                                            <label class="form-check-label {{ $question->answer == $choice->choice  ? 'text-success' : '' }}">{{ $choice->choice }}</label>
+                                        </div>
                                     </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>
-                        </div>
-                        @endforeach
+                            @endforeach
+                        @else
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Belum ada soal</h6>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

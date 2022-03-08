@@ -37,7 +37,7 @@
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Waktu
-                            <span class="badge badge-primary badge-pill js-timeout">{{ session('time') }}</span>
+                            <span class="badge badge-primary badge-pill js-timeout"></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Mata Pelajaran
@@ -111,7 +111,7 @@
                                                         </div>
                                                     </div>
                                                     @endforeach
-                                                    <a class="btn-primary btn-sm">Simpan</a>
+                                                    <button class="btn btn-xs btn-primary" data-id="{{ $question->id }}">Simpan</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,6 +121,12 @@
                                     <input type="hidden" name="index" value="{{ $key+1 }}">
                                     <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
 
+                                @else
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6>Belum ada soal</h6>
+                                        </div>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -142,37 +148,49 @@
     <script>
         $(document).ready(function() {
 
+            $('body').click('click', '#storeChoice', function () {
+                $.ajax({
+                    url: '/exams/store/choice',
+                    data: data,
+                    success: function () {
+                        console.log(data)
+                    },
+                });
+            });
+
             $(document).on('submit', 'form', function() {
                 $('button').attr('disabled', 'disabled');
             });
         });
     </script>
+
     <script type="text/javascript">
         var interval;
         var form = document.forms.exam;
+
         function countdown() {
-          clearInterval(interval);
+            clearInterval(interval);
 
-          interval = setInterval( function() {
-              var timer = $('.js-timeout').html();
-              timer = timer.split(':');
-              var minutes = timer[0];
-              var seconds = timer[1];
-              seconds -= 1;
-              if (minutes < 0) return;
-              else if (seconds < 0 && minutes != 0) {
-                  minutes -= 1;
-                  seconds = 59;
-              }
-              else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+            interval = setInterval( function() {
+                var timer = $('.js-timeout').html();
+                timer = timer.split(':');
+                var minutes = timer[0];
+                var seconds = timer[1];
+                seconds -= 1;
+                if (minutes < 0) return;
+                else if (seconds < 0 && minutes != 0) {
+                    minutes -= 1;
+                    seconds = 59;
+                }
+                else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 
-              $('.js-timeout').html(minutes + ':' + seconds);
+                $('.js-timeout').html(minutes + ':' + seconds);
 
-              if (minutes == 0 && seconds == 0) { clearInterval(interval); form.submit(); alert("Waktu sudah habis!");}
-          }, 1000);
+                if (minutes == 0 && seconds == 0) { clearInterval(interval); form.submit(); alert("Waktu sudah habis!");}
+            }, 1000);
         }
 
-        $('.js-timeout').text("{{ $quiz->time }}:00");
+        $('.js-timeout').text("{{ $difference }}:00");
         countdown();
     </script>
 @endsection

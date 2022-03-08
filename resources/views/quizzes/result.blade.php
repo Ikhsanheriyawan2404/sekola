@@ -36,7 +36,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="data-table" class="table table-bordered table-striped">
+            <table id="data-table" class="table table-bordered table-striped table-responsive">
                 <thead class="table-dark">
                     <tr>
                         <th style="width: 1%">No.</th>

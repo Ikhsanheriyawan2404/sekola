@@ -56,12 +56,12 @@ Route::middleware('auth')->group(function () {
     Route::prefix('questions')->group(function () {
         Route::get('create/{quiz:id}', [QuestionController::class, 'create'])->name('questions.create');
         Route::post('', [QuestionController::class, 'store'])->name('questions.store');
-        Route::get('{quiz:id}/{question:id}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
         Route::delete('{question:id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
     });
 
     Route::prefix('exams')->group(function () {
         Route::get('{quiz:id}', [ExamController::class, 'show'])->block($lockSeconds = 10, $waitSeconds = 10)->name('exams.show');
+        Route::post('store/choice', [ExamController::class, 'storeChoice'])->name('exams.storeChoice');
         Route::post('', [ExamController::class, 'store'])->name('exams.store');
     });
 
