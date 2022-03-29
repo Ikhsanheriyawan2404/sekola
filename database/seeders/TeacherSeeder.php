@@ -35,7 +35,7 @@ class TeacherSeeder extends Seeder
 
         $teacher2 = Teacher::create([
             'name' => 'Suherti',
-            'nip' => '240416',
+            'nip' => '1900032',
             'email' => 'suherti@mail.test',
             'phone' => '082423428',
             'gender' => 'P',

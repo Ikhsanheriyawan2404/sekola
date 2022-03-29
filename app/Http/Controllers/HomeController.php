@@ -54,6 +54,7 @@ class HomeController extends Controller
         return view('dashboard_admin', [
             'title' => 'Dashboard',
             'finances' => Finance::all(),
+            'schedules' => Schedule::all(),
             'students' => Student::all(),
             'teachers' => Teacher::all(),
             'classrooms' => Classroom::all(),

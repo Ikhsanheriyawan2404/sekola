@@ -103,7 +103,7 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>{{ $rooms->count() }}</h3>
-                    <p>Room</p>
+                    <p>Ruang</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-building"></i>
@@ -111,6 +111,23 @@
                     <a href="{{ route('rooms.index', []) }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            <!-- ./col -->
+
+            <div class="col-lg-3 col-6">
+            <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{ $schedules->count() }}</h3>
+                    <p>Jadwal</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-clock"></i>
+                    </div>
+                    <a href="{{ route('schedules.index', []) }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+
             <div class="col-lg-3 col-6">
             <!-- small box -->
                 <div class="small-box bg-danger">

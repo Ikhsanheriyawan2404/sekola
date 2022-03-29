@@ -17,7 +17,7 @@ class StudentSeeder extends Seeder
     {
         $student = Student::create([
             'name' => 'Ikhsan Heriyawan',
-            'nisn' => '240416',
+            'nisn' => '190032',
             'gender' => 'L',
             'religion' => 'Islam',
             'classroom_id' => 1,

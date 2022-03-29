@@ -1,25 +1,26 @@
 # Learning Management System
 
 Learning Management System for SMK or SMA.
-Features include: 
 
-CRUD User
-Management role and permission users
-CRUD Teacher
-Import & export excel Teacher
-Print PDF Teacher
-CRUD Student
-Import & export excel Student
-Print PDF Student
-CRUD Schedule
-Print PDF Schedule
-CRUD Class
-CRUD Study
-CRUD Major
-CRUD Room
-CRUD Finance
-Print excel or pdf Finance
-Soft delete every module
+### Features include: 
+
+- CRUD User
+- Management role and permission users
+- CRUD Teacher
+- Import & export excel Teacher
+- Print PDF Teacher
+- CRUD Student
+- Import & export excel Student
+- Print PDF Student
+- CRUD Schedule
+- Print PDF Schedule
+- CRUD Class
+- CRUD Study
+- CRUD Major
+- CRUD Room
+- CRUD Finance
+- Print excel or pdf Finance
+- Soft delete every module
 
 
 
@@ -28,6 +29,8 @@ Soft delete every module
 ![Screenshot](public/img/image2.png)
 ![Screenshot](public/img/image3.png)
 ![Screenshot](public/img/image4.png)
+![Screenshot](public/img/image5.png)
+![Screenshot](public/img/image6.png)
 
 ## Installation
 
@@ -46,12 +49,15 @@ add this line in your .env file
 FILESYSTEM_DRIVER=public
 ```
 ### Users
-- Admin
-- Email : admin@gmail.com
+- Super Admin
+- Email : superadmin@role.test
 - Password : admin
-- User
-- Email : user@gmail.com
-- Password : admin
+- Teacher
+- Email : suherti@mail.test
+- Password : 1900032
+- Student
+- Email : ikhsan@gmail.com
+- Password : 1900032
 
 ### Important
 if you want to add feature default avatar image for users you can follow these steps
