@@ -139,8 +139,8 @@ $(function () {
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
-            {data: 'cash_in', render: $.fn.dataTable.render.number( '.', ',', 2, 'Rp' )},
-            {data: 'cash_out', render: $.fn.dataTable.render.number( '.', ',', 2, 'Rp' )},
+            {data: 'cash_in', render: $.fn.dataTable.render.number( '.', ',', 2, 'Rp. ' )},
+            {data: 'cash_out', render: $.fn.dataTable.render.number( '.', ',', 2, 'Rp. ' )},
             {data: 'description', name: 'description'},
             {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action', orderable: true, searchable: true},

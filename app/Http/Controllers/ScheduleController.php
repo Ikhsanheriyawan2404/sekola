@@ -29,7 +29,7 @@ class ScheduleController extends Controller
                         '<div class="d-flex justify-content-center">
                             <a href="' . route('schedules.show', $row->id) . '" class="btn btn-sm btn-primary mr-2">
                             <i class="fas fa-eye"></i>
-                            Jadwal
+                            Lihat Jadwal
                             </a>
                         </div>';
 
@@ -154,5 +154,13 @@ class ScheduleController extends Controller
 
         toast('Semua data jadwal berhasil dihapus permanen!', 'success');
     	return redirect()->back();
+    }
+
+    public function print(Classroom $classroom)
+    {
+        $schedules = Schedule::where('classroom_id', $classroom->id)->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('schedules.pdf', compact('schedules'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }

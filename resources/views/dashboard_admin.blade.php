@@ -113,10 +113,10 @@
             </div>
             <div class="col-lg-3 col-6">
             <!-- small box -->
-                <div class="small-box bg-info">
+                <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>{{ $finances->sum('cash_in') - $finances->sum('cash_in') }}</h3>
-                        <p>Keuangan</p>
+                        <h3><i class="fa fa-money-bill"></i></h3>
+                        <p>@currency($finances->sum('cash_in') - $finances->sum('cash_out'))</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-money-bill"></i>

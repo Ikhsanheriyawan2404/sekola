@@ -33,7 +33,7 @@
                     <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body" style="display: none;">
+                <div class="card-body" style="display: block;">
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Waktu
@@ -106,7 +106,7 @@
                                                     @foreach ($question->choices as $choice)
                                                     <div class="form-group">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" name="answer{{ $key+1 }}" value="{{ $choice->choice }}">
+                                                            <input class="form-check-input" type="radio" name="answer{{ $key+1 }}" value="{{ $choice->choice ?? old('choice') }}">
                                                             <label class="form-check-label">{{ $choice->choice }}</label>
                                                         </div>
                                                     </div>
@@ -190,7 +190,7 @@
             }, 1000);
         }
 
-        $('.js-timeout').text("{{ $difference }}:00");
-        countdown();
+        $('.js-timeout').html("{{ $quiz->time }}:00");
+        // countdown();
     </script>
 @endsection

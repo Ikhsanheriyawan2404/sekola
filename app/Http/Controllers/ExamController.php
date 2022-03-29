@@ -17,14 +17,6 @@ class ExamController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        $oldtime = $quiz->time;
-        $newtime = time();
-        $difference = $newtime - $oldtime;
-
-        // request()->session()->put('name', 'Ikhsan');
-        // request()->session()->decrement('count', $decrementBy = $quiz->time);
-        // dd(request()->session());
-
         $questions = Question::with('choices')
                 ->inRandomOrder()
                 ->where('quiz_id', $quiz->id)
@@ -36,10 +28,9 @@ class ExamController extends Controller
 
         if ($quiz->status == '1' && !$result) {
             return view('exams.show', [
-                'title' => 'Start exam',
+                'title' => 'Start Ujian',
                 'quiz' => $quiz,
-                'questions' => $questions,
-                'difference' => $difference,
+                'questions' => $questions
             ]);
         } else {
             abort(403, 'THIS ACTION IS UNAUTHORIZED.');

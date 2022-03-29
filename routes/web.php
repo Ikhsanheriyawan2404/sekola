@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resources(['studies' => StudyController::class]);
     Route::resources(['schedules' => ScheduleController::class]);
+    Route::get('schedules/print/{classroom:id}',  [ScheduleController::class, 'print'])->name('schedule.printpdf');
 
     Route::prefix('quizzes')->group(function () {
         Route::get('{teacher:id}', [QuizController::class, 'index'])->name('quizzes.index');

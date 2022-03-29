@@ -30,16 +30,28 @@
 				<td>{{ $finance->name }}</td>
 				<td>{{ $finance->description }}</td>
 				<td>{{ date('d-m-Y', strtotime($finance->created_at)) }}</td>
-				<td>{{ $finance->cash_in }}</td>
-				<td>{{ $finance->cash_out }}</td>
+				<td>
+                    @if ($finance->cash_in)
+                        @currency($finance->cash_in);
+                    @else
+                        -
+                    @endif
+                </td>
+				<td>
+                    @if ($finance->cash_out)
+                        @currency($finance->cash_out);
+                    @else
+                        -
+                    @endif
+                </td>
 			</tr>
 			@endforeach
 		</tbody>
         <tfoot>
             <tr>
-				<th colspan="4">Saldo : {{ $finance->sum('cash_in') - $finances->sum('cash_out')  }}</th>
-                <th>{{ $finances->sum('cash_in') }}</th>
-                <th>{{ $finances->sum('cash_out') }}</th>
+				<th colspan="4">Saldo : @currency($finance->sum('cash_in') - $finances->sum('cash_out')) </th>
+                <th>@currency($finances->sum('cash_in'))</th>
+                <th>@currency($finances->sum('cash_out'))</th>
 			</tr>
         </tfoot>
 	</table>

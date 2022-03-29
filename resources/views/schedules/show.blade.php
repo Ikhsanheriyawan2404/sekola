@@ -23,6 +23,7 @@
 <div class="container-fluid mb-3 d-flex justify-content-end">
     <div class="row">
         <div class="col-12">
+            <a href="{{ route('schedule.printpdf', request()->segment(count(request()->segments()))) }}" class="btn btn-sm btn-danger">Print PDF <i class="fa fa-file-pdf"></i></a>
         </div>
     </div>
 </div>
@@ -63,7 +64,9 @@
                         </td>
                         <td>{{ $schedule->classroom->name }}</td>
                         <td>{{ $schedule->room->name }}</td>
-                        <td>{{ date('H:i', strtotime($schedule->start)) }} - {{ date('H:i', strtotime($schedule->finished)) }}</td>
+                        <td>
+                            {{ date('H:i', strtotime($schedule->start)) }} - {{ date('H:i', strtotime($schedule->finished)) }}
+                        </td>
                         <td class="d-flex justify-content-center">
                             <a href="{{ route('schedules.edit', $schedule->id) }}" class="btn btn-sm btn-primary mr-2"><i class="fas fa-pencil-alt"></i></a>
                             <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST">
